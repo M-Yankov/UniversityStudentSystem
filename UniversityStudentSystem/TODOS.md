@@ -21,3 +21,9 @@
                     "Please check the path.");
             }
 ```
+
+```c#
+
+    // TODO: When stat seeding to try start from index above 1000 Example:
+    // context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('MyTable', RESEED, 1000);");
+```

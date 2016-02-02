@@ -1,0 +1,57 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Data", "Data", "{D315B416-2569-440F-8B39-2A8BCEBD3A58}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Data", "Data\UniversityStudentSystem.Data\UniversityStudentSystem.Data.csproj", "{7450C22B-ACDD-4474-8956-7B08D9B6E886}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Data.Models", "Data\UniversityStudentSystem.Data.Models\UniversityStudentSystem.Data.Models.csproj", "{8774E5AD-C366-45DD-93F5-1E6DD5609FFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Web", "Web", "{01123EFE-B986-4001-98C1-0B5C0267AB94}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Web", "Web\UniversityStudentSystem.Web\UniversityStudentSystem.Web.csproj", "{F3BA0432-FCC5-48F5-A8CC-04093A04E108}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B2BFB2E0-9FEC-4DA9-A787-2EBADB0B2D90}"
+	ProjectSection(SolutionItems) = preProject
+		TODOS.md = TODOS.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FA9E50DE-0D29-40F2-946F-EA2F9C7CC47D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Common", "Common\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj", "{80C37FBB-455A-4D94-BD75-02811191EF58}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{7450C22B-ACDD-4474-8956-7B08D9B6E886}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7450C22B-ACDD-4474-8956-7B08D9B6E886}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7450C22B-ACDD-4474-8956-7B08D9B6E886}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7450C22B-ACDD-4474-8956-7B08D9B6E886}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3BA0432-FCC5-48F5-A8CC-04093A04E108}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3BA0432-FCC5-48F5-A8CC-04093A04E108}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3BA0432-FCC5-48F5-A8CC-04093A04E108}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3BA0432-FCC5-48F5-A8CC-04093A04E108}.Release|Any CPU.Build.0 = Release|Any CPU
+		{80C37FBB-455A-4D94-BD75-02811191EF58}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{80C37FBB-455A-4D94-BD75-02811191EF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{80C37FBB-455A-4D94-BD75-02811191EF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{80C37FBB-455A-4D94-BD75-02811191EF58}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{7450C22B-ACDD-4474-8956-7B08D9B6E886} = {D315B416-2569-440F-8B39-2A8BCEBD3A58}
+		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF} = {D315B416-2569-440F-8B39-2A8BCEBD3A58}
+		{F3BA0432-FCC5-48F5-A8CC-04093A04E108} = {01123EFE-B986-4001-98C1-0B5C0267AB94}
+		{80C37FBB-455A-4D94-BD75-02811191EF58} = {FA9E50DE-0D29-40F2-946F-EA2F9C7CC47D}
+	EndGlobalSection
+EndGlobal
