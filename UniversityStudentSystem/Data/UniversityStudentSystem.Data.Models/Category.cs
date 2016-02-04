@@ -1,6 +1,7 @@
 ﻿namespace UniversityStudentSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Category
     {
@@ -8,8 +9,8 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(500)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
     }
 }

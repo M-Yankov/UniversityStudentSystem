@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class News
     {
@@ -9,20 +10,20 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(ModelConstants.NameMinLength)]
         public string Content { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DatePosted { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string PhotoPath { get; set; }
     }
 }

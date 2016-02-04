@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class ForumPost
     {
@@ -17,16 +18,16 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string Title { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DatePosted { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(ModelConstants.NameMinLength)]
         public string Content { get; set; }
 
         public string UserId { get; set; }

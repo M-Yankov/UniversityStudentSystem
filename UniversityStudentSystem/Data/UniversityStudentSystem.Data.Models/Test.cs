@@ -1,9 +1,10 @@
-using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-
 namespace UniversityStudentSystem.Data.Models
 {
+    using System;
+    using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
+    using UniversityStudentSystem.Common;
+
     public class Test
     {
         private ICollection<Question> questions;
@@ -14,19 +15,19 @@ namespace UniversityStudentSystem.Data.Models
         }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime StartDate { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime EndDate { get; set; }
 
         [Key]
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]

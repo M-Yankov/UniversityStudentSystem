@@ -1,6 +1,7 @@
 namespace UniversityStudentSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using UniversityStudentSystem.Common;
 
     public class Answer
     {
@@ -8,7 +9,7 @@ namespace UniversityStudentSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Content { get; set; }
 
         [Required]

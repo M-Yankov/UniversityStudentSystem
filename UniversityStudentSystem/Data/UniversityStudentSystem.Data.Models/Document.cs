@@ -2,6 +2,7 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Document
     {
@@ -17,10 +18,10 @@ namespace UniversityStudentSystem.Data.Models
         public virtual Candidate Candidate { get; set; }
 
         [Required]
-        [MaxLength(500)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Path { get; set; }
 
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DateUploaded { get; set; }
     }
 }

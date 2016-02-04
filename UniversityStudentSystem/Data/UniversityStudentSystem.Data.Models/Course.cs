@@ -2,6 +2,7 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Course
     {
@@ -20,13 +21,13 @@ namespace UniversityStudentSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(15000)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Description { get; set; }
 
         public int SemesterId { get; set; }

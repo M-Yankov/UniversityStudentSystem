@@ -1,6 +1,7 @@
 namespace UniversityStudentSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class CourseTask
     {
@@ -8,8 +9,8 @@ namespace UniversityStudentSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(15000)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Requirements { get; set; }
 
         public int CourseId { get; set; }

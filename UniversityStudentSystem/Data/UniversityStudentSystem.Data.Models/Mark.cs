@@ -3,16 +3,18 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations;
+    using Common;
+
     public class Mark
     {
         public int Id { get; set; }
 
         [Required]
-        [Range(2, 6)]
+        [Range(ModelConstants.MarkMinValue, ModelConstants.MarkMaxValue)]
         public int Value { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string Reason { get; set; }
 
         public string UserId { get; set; }

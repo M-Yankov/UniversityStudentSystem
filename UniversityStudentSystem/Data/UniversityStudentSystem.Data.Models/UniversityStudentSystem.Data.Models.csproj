@@ -82,6 +82,12 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\Common\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj">
+      <Project>{80c37fbb-455a-4d94-bd75-02811191ef58}</Project>
+      <Name>UniversityStudentSystem.Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

@@ -2,6 +2,7 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Diploma
     {
@@ -16,13 +17,13 @@ namespace UniversityStudentSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(15000)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Description { get; set; }
 
         public int SpecialtyId { get; set; }
@@ -30,8 +31,8 @@ namespace UniversityStudentSystem.Data.Models
         public virtual Specialty Specialty { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string PathToImage { get; set; }
 
         public ICollection<User> Users

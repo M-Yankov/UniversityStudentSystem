@@ -3,6 +3,7 @@ namespace UniversityStudentSystem.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Semester
     {
@@ -17,15 +18,19 @@ namespace UniversityStudentSystem.Data.Models
         public int Id { get; set; }
 
         [Required]
-        [MaxLength(50)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
+        
+        [Required]
+        [Range(0, double.MaxValue)]
+        public int Fee { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime StartDate { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime EndDate { get; set; }
 
         public int SpecialtyId { get; set; }

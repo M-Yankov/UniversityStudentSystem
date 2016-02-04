@@ -5,6 +5,8 @@
     using System.ComponentModel.DataAnnotations;
     using System.Security.Claims;
     using System.Threading.Tasks;
+
+    using Common;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
@@ -26,37 +28,37 @@
         }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string LastName { get; set; }
 
         [Required]
         public Genre MyProperty { get; set; }
 
         [Required]
-        [Range(3, 100)]
+        [Range(ModelConstants.MinAge, ModelConstants.MaxAge)]
         public int Age { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(50)]
-        [RegularExpression("((http|https):\\/\\/|)(www\\.|)facebook\\.com\\/[a-zA-Z0-9.]{1,}")]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
+        [RegularExpression(ModelConstants.FacebookProfileRegularExpression)]
         public string FacebookAccount { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string SkypeName { get; set; }
 
-        [MinLength(3)]
-        [MaxLength(50)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.NameMaxLength)]
         public string LinkedInProfile { get; set; }
 
         [Required]
-        [Range(1000, 999999)]
+        [Range(ModelConstants.FacultyStartNumber, ModelConstants.FacultyEndNumber)]
         public long FacultyNumber { get; set; }
 
         [Required]
@@ -64,10 +66,10 @@
 
         public bool IsGroupManager { get; set; }
 
-        [MaxLength(15000)]
+        [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string AboutMe { get; set; }
 
-        [MaxLength(500)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string AvaratUrl { get; set; }
 
         public virtual ICollection<Diploma> Diploms

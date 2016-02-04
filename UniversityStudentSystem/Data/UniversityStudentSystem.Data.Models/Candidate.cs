@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using Common;
 
     public class Candidate
     {
@@ -17,7 +18,7 @@
         [Key]
         public int Id { get; set; }
 
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DateSent { get; set; }
 
         public string UserId { get; set; }

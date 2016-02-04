@@ -2,6 +2,7 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+    using Common;
 
     public class Comment
     {
@@ -9,11 +10,11 @@
         public int Id { get; set; }
 
         [Required]
-        [DataRange("01.01.2016", "01.01.2030")]
+        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DatePosted { get; set; }
 
         [Required]
-        [MinLength(3)]
+        [MinLength(ModelConstants.NameMinLength)]
         public string Content { get; set; }
 
         public string UserId { get; set; }

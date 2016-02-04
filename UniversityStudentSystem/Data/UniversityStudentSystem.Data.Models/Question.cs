@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
+    using Common;
 
     public class Question
     {
@@ -18,8 +19,8 @@
         public int Id { get; set; }
 
         [Required]
-        [MinLength(3)]
-        [MaxLength(500)]
+        [MinLength(ModelConstants.NameMinLength)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string Content { get; set; }
 
         [Required]
