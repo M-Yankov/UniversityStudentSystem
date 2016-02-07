@@ -31,7 +31,7 @@
         [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Description { get; set; }
 
-        public virtual ICollection<Diploma> Diploma
+        public virtual ICollection<Diploma> Diploms
         {
             get
             {

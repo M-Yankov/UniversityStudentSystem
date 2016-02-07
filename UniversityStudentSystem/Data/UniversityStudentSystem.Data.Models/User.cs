@@ -38,7 +38,7 @@
         public string LastName { get; set; }
 
         [Required]
-        public Genre MyProperty { get; set; }
+        public Genre Genre { get; set; }
 
         [Required]
         [Range(ModelConstants.MinAge, ModelConstants.MaxAge)]
@@ -63,6 +63,8 @@
 
         [Required]
         public DateTime DateRegistered { get; set; }
+
+        public Status Status { get; set; }
 
         public bool IsGroupManager { get; set; }
 

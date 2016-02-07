@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="IUniversityDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
     <Compile Include="Repositories\EfGenericRepository.cs" />
@@ -69,6 +70,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Common\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj">
+      <Project>{80c37fbb-455a-4d94-bd75-02811191ef58}</Project>
+      <Name>UniversityStudentSystem.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\UniversityStudentSystem.Data.Models\UniversityStudentSystem.Data.Models.csproj">
       <Project>{8774e5ad-c366-45dd-93f5-1e6dd5609fff}</Project>
       <Name>UniversityStudentSystem.Data.Models</Name>

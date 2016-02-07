@@ -2,8 +2,8 @@ namespace UniversityStudentSystem.Data.Models
 {
     public enum Genre
     {
-        Male,
-        Female,
-        NotSpecified
+        Male = 0,
+        Female = 1,
+        NotSpecified = 3
     }
 }

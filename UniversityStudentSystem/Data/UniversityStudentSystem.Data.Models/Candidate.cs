@@ -21,6 +21,10 @@
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DateSent { get; set; }
 
+        public bool IsApproved { get; set; }
+
+        public bool IsRejected { get; set; }
+
         public string UserId { get; set; }
 
         public virtual User User { get; set; }
@@ -28,8 +32,6 @@
         public int SpecialtyId { get; set; }
 
         public virtual Specialty Specialty { get; set; }
-
-        public int CandidateId { get; set; }
 
         public virtual ICollection<Document> Documents
         {

@@ -5,6 +5,7 @@
         Pending,
         Confirmed,
         Rejected,
-        Graduated
+        Graduated,
+        Staff
     }
 }
