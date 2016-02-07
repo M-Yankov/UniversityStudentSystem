@@ -27,3 +27,6 @@
     // TODO: When stat seeding to try start from index above 1000 Example:
     // context.Database.ExecuteSqlCommand("DBCC CHECKIDENT('MyTable', RESEED, 1000);");
 ```
+
+[Courses](http://www.unwe.bg/en/pages/401/professional-fields-and-specialities.html)
+[NBU](http://www.nbu.bg/en/prospective-students/admission-to-undergraduate-programs/bachelor-s-programs)
