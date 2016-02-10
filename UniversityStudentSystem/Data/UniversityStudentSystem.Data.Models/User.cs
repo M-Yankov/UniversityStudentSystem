@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using System.Security.Claims;
     using System.Threading.Tasks;
 
@@ -16,6 +17,7 @@
         private ICollection<Specialty> specialties;
         private ICollection<Comment> comments;
         private ICollection<ForumPost> forumPosts;
+        private ICollection<Course> courses;
         private ICollection<Mark> marks;
 
         public User()
@@ -25,6 +27,7 @@
             this.comments = new HashSet<Comment>();
             this.forumPosts = new HashSet<ForumPost>();
             this.marks = new HashSet<Mark>();
+            this.courses = new HashSet<Course>();
         }
 
         [Required]
@@ -58,6 +61,7 @@
         public string LinkedInProfile { get; set; }
 
         [Required]
+        [Index(IsUnique = true)]
         [Range(ModelConstants.FacultyStartNumber, ModelConstants.FacultyEndNumber)]
         public long FacultyNumber { get; set; }
 
@@ -107,6 +111,19 @@
             set
             {
                 this.comments = value;
+            }
+        }
+
+
+        public ICollection<Course> Courses
+        {
+            get
+            {
+                return this.courses;
+            }
+            set
+            {
+                this.courses = value;
             }
         }
 

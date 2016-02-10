@@ -1,23 +1,17 @@
-namespace UniversityStudentSystem.Data.Migrations
+﻿namespace UniversityStudentSystem.Data.Migrations
 {
-    using System.Collections;
+    using System;
     using System.Collections.Generic;
     using System.Data.Entity.Migrations;
-    using System.IO;
     using System.Linq;
+
     using Common;
-    using System;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
+
     public sealed class Configuration : DbMigrationsConfiguration<UniversityDbContext>
     {
-        private const string PathToLastNames = "LNames.txt";
-        private const string PathToFirstNames = "FNames.txt";
-        private const string PathToEmails = "LNames.txt";
-        private const string PathToUsernames = "Usernames.txt";
-        private const string CurrentDirectory = "Data/UniversityStudentSystem.Data/";
-
         private static Random random = new Random();
 
         private UserData userData;
@@ -42,17 +36,19 @@ namespace UniversityStudentSystem.Data.Migrations
             this.SeedAdmins(context, userManager);
             this.SeedSpecialties(context);
             this.SeedCandidates(context, userManager);
+            this.SeedTrainers(context, userManager);
+            this.SeedConfirmedStudents(context, userManager);
+            this.SeedSemesters(context);
+            this.SeedCourses(context);
         }
 
         private void SeedRoles(UniversityDbContext context, RoleManager<IdentityRole> manager)
         {
-            const int RolesCount = 2;
-
             int rolesCount = context
                 .Roles
                 .Count(r => r.Name == RoleConstants.Admin || r.Name == RoleConstants.Trainer);
 
-            if (rolesCount == RolesCount)
+            if (rolesCount >= SeedConstants.RolesCount)
             {
                 return;
             }
@@ -77,11 +73,11 @@ namespace UniversityStudentSystem.Data.Migrations
 
         private void SeedAdmins(UniversityDbContext context, UserManager<User> manager)
         {
-            const int AdminsCount = 3;
+
             const string AdminUsername = "admin";
             IdentityRole adminRole = context
                  .Roles
-                 .FirstOrDefault(r => r.Name == RoleConstants.Admin && r.Users.Count == AdminsCount);
+                 .FirstOrDefault(r => r.Name == RoleConstants.Admin && r.Users.Count >= SeedConstants.AdminsCount);
 
             if (adminRole != null)
             {
@@ -97,7 +93,7 @@ namespace UniversityStudentSystem.Data.Migrations
                 RequireUppercase = false
             };
 
-            for (int i = 0; i < AdminsCount; i++)
+            for (int i = 0; i < SeedConstants.AdminsCount; i++)
             {
                 User admin = new User
                 {
@@ -106,7 +102,7 @@ namespace UniversityStudentSystem.Data.Migrations
                     Email = this.ProvideRandomEmail(),
                     UserName = AdminUsername + ((i == 0) ? string.Empty : i.ToString()),
                     Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
-                    FacultyNumber = ModelConstants.FacultyStartNumber,
+                    FacultyNumber = ModelConstants.FacultyStartNumber + (i + 1),
                     Genre = Genre.NotSpecified,
                     DateRegistered = DateTime.Now,
                     Status = Status.Staff
@@ -133,10 +129,9 @@ namespace UniversityStudentSystem.Data.Migrations
 
         private void SeedSpecialties(UniversityDbContext context)
         {
-            const int SpecialtiesCount = 5;
             int count = context.Speciallties.Count();
 
-            if (count == SpecialtiesCount)
+            if (count >= SeedConstants.SpecialtiesCount)
             {
                 return;
             }
@@ -180,14 +175,15 @@ namespace UniversityStudentSystem.Data.Migrations
 
         private void SeedCandidates(UniversityDbContext context, UserManager<User> manager)
         {
-            const int CandidatesCount = 50;
             int count = context.Users.Count(u => u.Status == Status.Pending && !u.UserName.Contains("admin"));
 
-            if (count == CandidatesCount)
+            if (count >= SeedConstants.CandidatesCount)
             {
                 return;
             }
 
+            // Keep unique usernames
+            HashSet<string> dbUsernames = new HashSet<string>();
             List<Specialty> specialties = context.Speciallties.ToList();
 
             Document[] initialDocuments = new Document[]
@@ -198,19 +194,26 @@ namespace UniversityStudentSystem.Data.Migrations
             };
 
             List<User> candidateStudents = new List<User>();
-
-            for (int i = 0; i < CandidatesCount; i++)
+            int currentFacultyNumber = (int)context.Users.Select(c => c.FacultyNumber).Max();
+            for (int i = 0; i < SeedConstants.CandidatesCount; i++)
             {
+                // Ensure Usernames will not duplicate! db throws an exception.
+                string currentUsername = this.ProvideRandomUsername();
+                while (dbUsernames.Contains(currentUsername))
+                {
+                    currentUsername = this.ProvideRandomUsername();
+                }
+
                 User candidateStudent = new User
                 {
                     FirstName = this.ProvideRandomFirstName(),
                     LastName = this.ProvideRandomLastName(),
                     Email = this.ProvideRandomEmail(),
-                    UserName = this.ProvideRandomUsername(),
+                    UserName = currentUsername,
                     Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
-                    FacultyNumber = ModelConstants.FacultyStartNumber,
+                    FacultyNumber = ++currentFacultyNumber,
                     Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
-                            ? Genre.Female 
+                            ? Genre.Female
                             : Genre.Male,
                     DateRegistered = DateTime.Now,
                     Status = Status.Pending
@@ -220,15 +223,17 @@ namespace UniversityStudentSystem.Data.Migrations
 
                 if (!result.Succeeded)
                 {
-                    throw new InvalidOperationException("Admins cannot be added! " + string.Join(" ", result.Errors));
+                    throw new InvalidOperationException(
+                        "Candidates cannot be added! " + string.Join(" ", result.Errors));
                 }
 
+                dbUsernames.Add(currentUsername);
                 candidateStudents.Add(candidateStudent);
             }
 
             context.SaveChanges();
 
-            for (int i = 0; i < CandidatesCount; i++)
+            for (int i = 0; i < SeedConstants.CandidatesCount; i++)
             {
                 Candidate candidature = new Candidate
                 {
@@ -244,6 +249,347 @@ namespace UniversityStudentSystem.Data.Migrations
             context.SaveChanges();
         }
 
+        private void SeedTrainers(UniversityDbContext context, UserManager<User> manager)
+        {
+            IdentityRole roleWithTrainers = context.Roles.FirstOrDefault(r => r.Name == RoleConstants.Trainer && r.Users.Count >= SeedConstants.TrainersCount);
+
+            if (roleWithTrainers != null)
+            {
+                return;
+            }
+
+            // Keep unique usernames --too many queries :(
+            HashSet<string> dbUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
+            int currentFacultyNumber = (int)context.Users.Select(c => c.FacultyNumber).Max();
+
+            for (int i = 0; i < SeedConstants.TrainersCount; i++)
+            {
+                // Ensure Usernames will not duplicate! db throws an exception.
+                string currentUsername = this.ProvideRandomUsername();
+                while (dbUsernames.Contains(currentUsername))
+                {
+                    currentUsername = this.ProvideRandomUsername();
+                }
+
+                User trainer = new User
+                {
+                    FirstName = this.ProvideRandomFirstName(),
+                    LastName = this.ProvideRandomLastName(),
+                    Email = this.ProvideRandomEmail(),
+                    UserName = currentUsername,
+                    Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                    FacultyNumber = ++currentFacultyNumber,
+                    Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
+                            ? Genre.Female
+                            : Genre.Male,
+                    DateRegistered = DateTime.Now,
+                    Status = Status.Staff
+                };
+
+                IdentityResult result = manager.Create(trainer, trainer.UserName);
+
+                if (!result.Succeeded)
+                {
+                    throw new InvalidOperationException("Trainer cannot be added! " + string.Join(" ", result.Errors));
+                }
+
+                result = manager.AddToRole(trainer.Id, RoleConstants.Trainer);
+
+                if (!result.Succeeded)
+                {
+                    throw new InvalidOperationException(
+                        "Trainer cannot be added to it' role! " + string.Join(" ", result.Errors));
+                }
+
+                dbUsernames.Add(currentUsername);
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedConfirmedStudents(UniversityDbContext context, UserManager<User> manager)
+        {
+            IList<Specialty> specialties = context.Speciallties.ToList();
+
+            if (specialties.Any(s => s.Students.Count > 0))
+            {
+                return;
+            }
+
+            HashSet<string> dbUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
+            int currentFacultyNumber = (int)context.Users.Select(c => c.FacultyNumber).Max();
+
+            for (int z = 0; z < specialties.Count; z++)
+            {
+                for (int i = 0; i < SeedConstants.StudentsPerSpecialty; i++)
+                {
+                    string currentUsername = this.ProvideRandomUsername();
+                    while (dbUsernames.Contains(currentUsername))
+                    {
+                        currentUsername = this.ProvideRandomUsername();
+                    }
+
+                    User student = new User
+                    {
+                        FirstName = this.ProvideRandomFirstName(),
+                        LastName = this.ProvideRandomLastName(),
+                        Email = this.ProvideRandomEmail(),
+                        UserName = currentUsername,
+                        Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                        FacultyNumber = ++currentFacultyNumber,
+                        Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
+                                ? Genre.Female
+                                : Genre.Male,
+                        DateRegistered = DateTime.Now,
+                        Status = Status.Confirmed
+                    };
+
+                    IdentityResult result = manager.Create(student, student.UserName);
+                    if (!result.Succeeded)
+                    {
+                        throw new InvalidOperationException(
+                            "Student cannot be added! " + string.Join(" ", result.Errors));
+                    }
+
+                    specialties[z].Students.Add(student);
+                    dbUsernames.Add(student.UserName);
+                }
+
+                context.SaveChanges();
+            }
+        }
+
+        private void SeedSemesters(UniversityDbContext context)
+        {
+            IList<Specialty> specialties = context.Speciallties.ToList();
+
+            if (specialties.Any(s => s.Semesters.Count > 0))
+            {
+                return;
+            }
+
+            // For each specialty there are different semesters. Only for seed they will have same property values.
+            for (int i = 0; i < specialties.Count; i++)
+            {
+                specialties[i].Semesters.Add(new Semester()
+                {
+                    StartDate = DateTime.Now,
+                    EndDate = DateTime.Now.AddMonths(2),
+                    Name = SeedConstants.FirstNameModule,
+                    Fee = SeedConstants.FirstModuleFee,
+                });
+
+                specialties[i].Semesters.Add(new Semester()
+                {
+                    StartDate = DateTime.Now.AddMonths(4),
+                    EndDate = DateTime.Now.AddMonths(6),
+                    Name = SeedConstants.SecondModule,
+                    Fee = SeedConstants.SecondModuleFee,
+                });
+
+                specialties[i].Semesters.Add(new Semester()
+                {
+                    StartDate = DateTime.Now.AddMonths(8),
+                    EndDate = DateTime.Now.AddMonths(10),
+                    Name = SeedConstants.ThirdModule,
+                    Fee = SeedConstants.ThirdModuleFee,
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedCourses(UniversityDbContext context)
+        {
+            if (context.Courses.Any())
+            {
+                return;
+            }
+
+            // Hell ↓
+            var trainerRole = context.Roles.FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            IList<User> trainers = context.Users.Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id)).ToList();
+
+            this.SeedCoursesForSoftware(context, SpecialtiesConstants.SoftwareEngineering, trainers);
+            this.SeedCoursesForHardware(context, SpecialtiesConstants.HardwareEngineering, trainers);
+            this.SeedCoursesForInfomationTechnologies(context, SpecialtiesConstants.InformationTechnologies, trainers);
+            this.SeedCoursesForBusiness(context, SpecialtiesConstants.BusinessManagement, trainers);
+            this.SeedCoursesForEconomics(context, SpecialtiesConstants.Economics, trainers);
+        }
+
+        private void SeedCoursesForEconomics(UniversityDbContext context, string specialtyName, IList<User> trainers)
+        {
+            Semester firstSemSoft = this.GetSemester(
+                context,
+                SeedConstants.FirstNameModule,
+                specialtyName);
+
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.Economics, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.Macroeconomics, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.Marketing, trainers));
+
+            Semester secondSemSoft = this.GetSemester(
+                context,
+                SeedConstants.SecondModule,
+                specialtyName);
+
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.EconomicsOfIndustry, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.EconomicsOfTourism, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.EconomicsOfTrade, trainers));
+
+            Semester thirdSemSoft = this.GetSemester(
+                context,
+                SeedConstants.ThirdModule,
+                specialtyName);
+
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.RealEstateEconomics, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.StatisticsAndEconometrics, trainers));
+
+            context.SaveChanges();
+        }
+
+        private void SeedCoursesForBusiness(UniversityDbContext context, string specialtyName, IList<User> trainers)
+        {
+            Semester firstSemSoft = this.GetSemester(
+                context,
+                SeedConstants.FirstNameModule,
+                specialtyName);
+
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.BusinessAdministration, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.InternationalRelations, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.BusinessEconomics, trainers));
+
+            Semester secondSemSoft = this.GetSemester(
+                context,
+                SeedConstants.SecondModule,
+                specialtyName);
+
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.BusinessInformatics, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.PublicAdministration, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.Sociology, trainers));
+
+            Semester thirdSemSoft = this.GetSemester(
+                context,
+                SeedConstants.ThirdModule,
+                specialtyName);
+
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.RegionalDevelopment, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.BusinessLogistics, trainers));
+
+            context.SaveChanges();
+        }
+
+        private void SeedCoursesForInfomationTechnologies(UniversityDbContext context, string specialtyName, IList<User> trainers)
+        {
+            Semester firstSemSoft = this.GetSemester(
+                context,
+                SeedConstants.FirstNameModule,
+                specialtyName);
+
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.InformationalSystems, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.LinearMaths, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.AdvancedMathematics, trainers));
+
+            Semester secondSemSoft = this.GetSemester(
+                context,
+                SeedConstants.SecondModule,
+                specialtyName);
+
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ArtificialIntelligence, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.DataBaseTechnologies, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ProcessAndModelingSystems, trainers));
+
+            Semester thirdSemSoft = this.GetSemester(
+                context,
+                SeedConstants.ThirdModule,
+                specialtyName);
+
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.RouterConfiguration, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.OperatingSystems, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.LogicProgramming, trainers));
+
+            context.SaveChanges();
+        }
+
+        private void SeedCoursesForHardware(UniversityDbContext context, string specialtyName, IList<User> trainers)
+        {
+            Semester firstSemSoft = this.GetSemester(
+                context,
+                SeedConstants.FirstNameModule,
+                specialtyName);
+
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.MicroprocessorsAndApplications, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ElectricalEngineering, trainers));
+
+            Semester secondSemSoft = this.GetSemester(
+                context,
+                SeedConstants.SecondModule,
+                specialtyName);
+
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.NetworkAdministration, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.DigitalCircuitFaultDetection, trainers));
+
+            Semester thirdSemSoft = this.GetSemester(
+                context,
+                SeedConstants.ThirdModule,
+                specialtyName);
+
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.MicrocomputerDesign, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.InfrastructureEngineering, trainers));
+
+            context.SaveChanges();
+        }
+
+        private void SeedCoursesForSoftware(UniversityDbContext context, string specialtyName, IList<User> trainers)
+        {
+            Semester firstSemSoft = this.GetSemester(
+                context,
+                SeedConstants.FirstNameModule,
+                specialtyName);
+
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.CPlusPlus, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.CSharp, trainers));
+            firstSemSoft.Courses.Add(this.GetCourse(CoursersConstants.OOP, trainers));
+
+            Semester secondSemSoft = this.GetSemester(
+                context,
+                SeedConstants.SecondModule,
+                specialtyName);
+
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.JSBasic, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.JSDom, trainers));
+            secondSemSoft.Courses.Add(this.GetCourse(CoursersConstants.JSAdvanced, trainers));
+
+            Semester thirdSemSoft = this.GetSemester(
+                context,
+                SeedConstants.ThirdModule,
+                specialtyName);
+
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ASPWebApi, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ASPWebForms, trainers));
+            thirdSemSoft.Courses.Add(this.GetCourse(CoursersConstants.ASPMVC, trainers));
+
+            context.SaveChanges();
+        }
+
+        private Course GetCourse(string name , IList<User> trainers)
+        {
+            return new Course()
+            {
+                Name = name,
+                Trainers = new HashSet<User>() { trainers[this.ProvideRandomNumber(0, trainers.Count - 1)] }
+            };
+        }
+
+        private Semester GetSemester(UniversityDbContext context, string fromModule, string specialtyName)
+        {
+            return context.Semesters
+                .FirstOrDefault(c =>
+                    c.Name == fromModule &&
+                    c.Specialty.Name == specialtyName);
+        }
+
+        // TODO: Separate Random Provider
         private string ProvideRandomFirstName()
         {
             int index = random.Next(0, this.userData.FirstNames.Count);

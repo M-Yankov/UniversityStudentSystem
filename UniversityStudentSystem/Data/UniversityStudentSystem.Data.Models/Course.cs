@@ -25,7 +25,6 @@ namespace UniversityStudentSystem.Data.Models
         [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
 
-        [Required]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Description { get; set; }
@@ -47,7 +46,6 @@ namespace UniversityStudentSystem.Data.Models
         }
         
         public ICollection<Test> Tests
-        
         {
             get
             {
