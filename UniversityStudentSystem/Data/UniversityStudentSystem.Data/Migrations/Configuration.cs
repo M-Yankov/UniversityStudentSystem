@@ -6,15 +6,14 @@
     using System.Linq;
 
     using Common;
+    using Helpers;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
 
     public sealed class Configuration : DbMigrationsConfiguration<UniversityDbContext>
     {
-        private static Random random = new Random();
-
-        private UserData userData;
+        private RandomUserDataProvider randomProvider;
 
         public Configuration()
         {
@@ -24,7 +23,7 @@
 
         protected override void Seed(UniversityDbContext context)
         {
-            this.userData = new UserData();
+            this.randomProvider = new RandomUserDataProvider();
 
             var roleStore = new RoleStore<IdentityRole>(context);
             var roleManager = new RoleManager<IdentityRole>(roleStore);
@@ -97,11 +96,11 @@
             {
                 User admin = new User
                 {
-                    FirstName = this.ProvideRandomFirstName(),
-                    LastName = this.ProvideRandomLastName(),
-                    Email = this.ProvideRandomEmail(),
+                    FirstName = this.randomProvider.ProvideRandomFirstName(),
+                    LastName = this.randomProvider.ProvideRandomLastName(),
+                    Email = this.randomProvider.ProvideRandomEmail(),
                     UserName = AdminUsername + ((i == 0) ? string.Empty : i.ToString()),
-                    Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                    Age = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
                     FacultyNumber = ModelConstants.FacultyStartNumber + (i + 1),
                     Genre = Genre.NotSpecified,
                     DateRegistered = DateTime.Now,
@@ -198,21 +197,21 @@
             for (int i = 0; i < SeedConstants.CandidatesCount; i++)
             {
                 // Ensure Usernames will not duplicate! db throws an exception.
-                string currentUsername = this.ProvideRandomUsername();
+                string currentUsername = this.randomProvider.ProvideRandomUsername();
                 while (dbUsernames.Contains(currentUsername))
                 {
-                    currentUsername = this.ProvideRandomUsername();
+                    currentUsername = this.randomProvider.ProvideRandomUsername();
                 }
 
                 User candidateStudent = new User
                 {
-                    FirstName = this.ProvideRandomFirstName(),
-                    LastName = this.ProvideRandomLastName(),
-                    Email = this.ProvideRandomEmail(),
+                    FirstName = this.randomProvider.ProvideRandomFirstName(),
+                    LastName = this.randomProvider.ProvideRandomLastName(),
+                    Email = this.randomProvider.ProvideRandomEmail(),
                     UserName = currentUsername,
-                    Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                    Age = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
                     FacultyNumber = ++currentFacultyNumber,
-                    Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
+                    Genre = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
                             ? Genre.Female
                             : Genre.Male,
                     DateRegistered = DateTime.Now,
@@ -265,21 +264,21 @@
             for (int i = 0; i < SeedConstants.TrainersCount; i++)
             {
                 // Ensure Usernames will not duplicate! db throws an exception.
-                string currentUsername = this.ProvideRandomUsername();
+                string currentUsername = this.randomProvider.ProvideRandomUsername();
                 while (dbUsernames.Contains(currentUsername))
                 {
-                    currentUsername = this.ProvideRandomUsername();
+                    currentUsername = this.randomProvider.ProvideRandomUsername();
                 }
 
                 User trainer = new User
                 {
-                    FirstName = this.ProvideRandomFirstName(),
-                    LastName = this.ProvideRandomLastName(),
-                    Email = this.ProvideRandomEmail(),
+                    FirstName = this.randomProvider.ProvideRandomFirstName(),
+                    LastName = this.randomProvider.ProvideRandomLastName(),
+                    Email = this.randomProvider.ProvideRandomEmail(),
                     UserName = currentUsername,
-                    Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                    Age = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
                     FacultyNumber = ++currentFacultyNumber,
-                    Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
+                    Genre = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
                             ? Genre.Female
                             : Genre.Male,
                     DateRegistered = DateTime.Now,
@@ -323,21 +322,21 @@
             {
                 for (int i = 0; i < SeedConstants.StudentsPerSpecialty; i++)
                 {
-                    string currentUsername = this.ProvideRandomUsername();
+                    string currentUsername = this.randomProvider.ProvideRandomUsername();
                     while (dbUsernames.Contains(currentUsername))
                     {
-                        currentUsername = this.ProvideRandomUsername();
+                        currentUsername = this.randomProvider.ProvideRandomUsername();
                     }
 
                     User student = new User
                     {
-                        FirstName = this.ProvideRandomFirstName(),
-                        LastName = this.ProvideRandomLastName(),
-                        Email = this.ProvideRandomEmail(),
+                        FirstName = this.randomProvider.ProvideRandomFirstName(),
+                        LastName = this.randomProvider.ProvideRandomLastName(),
+                        Email = this.randomProvider.ProvideRandomEmail(),
                         UserName = currentUsername,
-                        Age = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
+                        Age = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge),
                         FacultyNumber = ++currentFacultyNumber,
-                        Genre = this.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
+                        Genre = this.randomProvider.ProvideRandomNumber(ModelConstants.MinAge, ModelConstants.MaxAge) % 2 == 0
                                 ? Genre.Female
                                 : Genre.Male,
                         DateRegistered = DateTime.Now,
@@ -577,7 +576,7 @@
             return new Course()
             {
                 Name = name,
-                Trainers = new HashSet<User>() { trainers[this.ProvideRandomNumber(0, trainers.Count - 1)] }
+                Trainers = new HashSet<User>() { trainers[this.randomProvider.ProvideRandomNumber(0, trainers.Count - 1)] }
             };
         }
 
@@ -587,40 +586,6 @@
                 .FirstOrDefault(c =>
                     c.Name == fromModule &&
                     c.Specialty.Name == specialtyName);
-        }
-
-        // TODO: Separate Random Provider
-        private string ProvideRandomFirstName()
-        {
-            int index = random.Next(0, this.userData.FirstNames.Count);
-            string firstName = this.userData.FirstNames[index];
-            string firstLetterUppercase = firstName[0].ToString().ToUpper();
-            return firstLetterUppercase + firstName.Substring(1);
-        }
-
-        private string ProvideRandomLastName()
-        {
-            int index = random.Next(0, this.userData.FirstNames.Count);
-            string lastName = this.userData.LastNames[index];
-            string firstLetterUppercase = lastName[0].ToString().ToUpper();
-            return firstLetterUppercase + lastName.Substring(1);
-        }
-
-        private string ProvideRandomEmail()
-        {
-            int index = random.Next(0, this.userData.FirstNames.Count);
-            return this.userData.Emais[index];
-        }
-
-        private string ProvideRandomUsername()
-        {
-            int index = random.Next(0, this.userData.FirstNames.Count);
-            return this.userData.Usernames[index];
-        }
-
-        private int ProvideRandomNumber(int min, int max)
-        {
-            return random.Next(min, max + 1);
         }
     }
 }

@@ -59,6 +59,7 @@
   <ItemGroup>
     <Compile Include="IUniversityDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Helpers\RandomUserDataProvider.cs" />
     <Compile Include="Migrations\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IRepository.cs" />
