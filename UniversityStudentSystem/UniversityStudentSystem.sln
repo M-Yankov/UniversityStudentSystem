@@ -22,6 +22,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Common", "Common", "{FA9E50
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Common", "Common\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj", "{80C37FBB-455A-4D94-BD75-02811191EF58}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UniversityStudentSystem.Web.Infrastructure", "Web\UniversityStudentSystem.Web.Infrastructure\UniversityStudentSystem.Web.Infrastructure.csproj", "{9F38FAD2-2964-4042-AD32-F0C263853D6B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -44,6 +46,10 @@ Global
 		{80C37FBB-455A-4D94-BD75-02811191EF58}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{80C37FBB-455A-4D94-BD75-02811191EF58}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{80C37FBB-455A-4D94-BD75-02811191EF58}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9F38FAD2-2964-4042-AD32-F0C263853D6B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9F38FAD2-2964-4042-AD32-F0C263853D6B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9F38FAD2-2964-4042-AD32-F0C263853D6B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9F38FAD2-2964-4042-AD32-F0C263853D6B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -53,5 +59,6 @@ Global
 		{8774E5AD-C366-45DD-93F5-1E6DD5609FFF} = {D315B416-2569-440F-8B39-2A8BCEBD3A58}
 		{F3BA0432-FCC5-48F5-A8CC-04093A04E108} = {01123EFE-B986-4001-98C1-0B5C0267AB94}
 		{80C37FBB-455A-4D94-BD75-02811191EF58} = {FA9E50DE-0D29-40F2-946F-EA2F9C7CC47D}
+		{9F38FAD2-2964-4042-AD32-F0C263853D6B} = {01123EFE-B986-4001-98C1-0B5C0267AB94}
 	EndGlobalSection
 EndGlobal

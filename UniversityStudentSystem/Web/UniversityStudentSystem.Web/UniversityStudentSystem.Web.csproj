@@ -162,6 +162,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="App_Start\AutoMapperConfiguration.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\DatabaseConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -269,6 +270,10 @@
     <ProjectReference Include="..\..\Data\UniversityStudentSystem.Data\UniversityStudentSystem.Data.csproj">
       <Project>{7450c22b-acdd-4474-8956-7b08d9b6e886}</Project>
       <Name>UniversityStudentSystem.Data</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\UniversityStudentSystem.Web.Infrastructure\UniversityStudentSystem.Web.Infrastructure.csproj">
+      <Project>{9f38fad2-2964-4042-ad32-f0c263853d6b}</Project>
+      <Name>UniversityStudentSystem.Web.Infrastructure</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

@@ -13,7 +13,9 @@
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+
             ViewEnginesConfig.Register();
+            AutoMapperConfiguration.Register();
             DatabaseConfig.Initalize();
         }
     }
