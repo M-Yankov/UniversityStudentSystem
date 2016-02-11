@@ -1,13 +1,11 @@
 namespace UniversityStudentSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
+    using CommonModels;
     using UniversityStudentSystem.Common;
 
-    public class Answer
+    public class Answer : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string Content { get; set; }

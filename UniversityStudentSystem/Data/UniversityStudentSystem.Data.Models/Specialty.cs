@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.ComponentModel.DataAnnotations.Schema;
     using Common;
+    using CommonModels;
 
-    public class Specialty
+    public class Specialty : BaseModel<int>
     {
         private ICollection<User> students;
         private ICollection<Diploma> diploms;
@@ -18,10 +20,8 @@
             this.semesters = new HashSet<Semester>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
+        [Index(IsUnique = true)]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }

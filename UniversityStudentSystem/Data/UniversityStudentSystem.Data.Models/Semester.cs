@@ -3,9 +3,12 @@ namespace UniversityStudentSystem.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class Semester
+    using Common;
+    using CommonModels;
+    using CustomAttributes;
+
+    public class Semester: BaseModel<int>
     {
         private ICollection<Course> courses;
 
@@ -13,9 +16,6 @@ namespace UniversityStudentSystem.Data.Models
         {
             this.courses = new HashSet<Course>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [MaxLength(ModelConstants.NameMaxLength)]

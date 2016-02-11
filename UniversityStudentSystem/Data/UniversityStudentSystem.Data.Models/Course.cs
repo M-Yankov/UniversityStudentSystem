@@ -2,9 +2,12 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
+    using System.ComponentModel.DataAnnotations.Schema;
 
-    public class Course
+    using Common;
+    using CommonModels;
+
+    public class Course : BaseModel<int>
     {
         private ICollection<User> trainers;
         private ICollection<Test> tests;
@@ -17,10 +20,8 @@ namespace UniversityStudentSystem.Data.Models
             this.tasks = new HashSet<CourseTask>();
         }
 
-        [Key]
-        public int Id { get; set; }
-
         [Required]
+        [Index(IsUnique = true)]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }

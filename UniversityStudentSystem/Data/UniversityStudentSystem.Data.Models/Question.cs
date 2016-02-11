@@ -4,9 +4,11 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using Common;
 
-    public class Question
+    using Common;
+    using CommonModels;
+
+    public class Question : BaseModel<int>
     {
         private ICollection<Answer> answers;
 
@@ -14,9 +16,6 @@
         {
             this.answers = new HashSet<Answer>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [MinLength(ModelConstants.NameMinLength)]

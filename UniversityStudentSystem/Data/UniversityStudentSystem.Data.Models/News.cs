@@ -2,13 +2,13 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using Common;
+    using CommonModels;
+    using CustomAttributes;
 
-    public class News
+    public class News : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]

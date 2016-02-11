@@ -4,9 +4,12 @@
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
-    using Common;
 
-    public class Candidate
+    using Common;
+    using CommonModels;
+    using CustomAttributes;
+
+    public class Candidate : BaseModel<int>
     {
         private ICollection<Document> documents;
 
@@ -14,10 +17,7 @@
         {
             this.documents = new HashSet<Document>();
         }
-
-        [Key]
-        public int Id { get; set; }
-
+        
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DateSent { get; set; }
 

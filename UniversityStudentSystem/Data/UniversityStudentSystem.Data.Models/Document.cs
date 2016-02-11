@@ -3,9 +3,12 @@ namespace UniversityStudentSystem.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class Document
+    using Common;
+    using CommonModels;
+    using CustomAttributes;
+
+    public class Document : BaseModel<int>
     {
         private ICollection<Candidate> candidatures;
 
@@ -13,9 +16,6 @@ namespace UniversityStudentSystem.Data.Models
         {
             this.candidatures = new HashSet<Candidate>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         public string UserId { get; set; }
 

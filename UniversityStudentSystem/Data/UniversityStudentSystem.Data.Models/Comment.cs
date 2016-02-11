@@ -2,13 +2,13 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
+
     using Common;
+    using CommonModels;
+    using CustomAttributes;
 
-    public class Comment
+    public class Comment : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DatePosted { get; set; }

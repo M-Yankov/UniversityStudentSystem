@@ -2,12 +2,10 @@ namespace UniversityStudentSystem.Data.Models
 {
     using System.ComponentModel.DataAnnotations;
     using Common;
+    using CommonModels;
 
-    public class CourseTask
+    public class CourseTask : BaseModel<int>
     {
-        [Key]
-        public int Id { get; set; }
-
         [Required]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.DescriptionMaxLength)]

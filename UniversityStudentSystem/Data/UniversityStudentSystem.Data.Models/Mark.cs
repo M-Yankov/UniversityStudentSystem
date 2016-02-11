@@ -5,11 +5,10 @@ namespace UniversityStudentSystem.Data.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Common;
+    using CommonModels;
 
-    public class Mark
+    public class Mark : BaseModel<int>
     {
-        public int Id { get; set; }
-
         [Required]
         [Range(ModelConstants.MarkMinValue, ModelConstants.MarkMaxValue)]
         public int Value { get; set; }

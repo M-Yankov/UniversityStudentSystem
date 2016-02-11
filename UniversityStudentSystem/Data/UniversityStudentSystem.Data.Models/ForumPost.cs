@@ -3,9 +3,12 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class ForumPost
+    using Common;
+    using CommonModels;
+    using CustomAttributes;
+
+    public class ForumPost : BaseModel<int>
     {
         private ICollection<Comment> comments;
 
@@ -13,9 +16,6 @@
         {
             this.comments = new HashSet<Comment>();
         }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [MinLength(ModelConstants.NameMinLength)]

@@ -1,4 +1,4 @@
-namespace UniversityStudentSystem.Data.Models
+namespace UniversityStudentSystem.Data.Models.CustomAttributes
 {
     using System;
     using System.ComponentModel.DataAnnotations;

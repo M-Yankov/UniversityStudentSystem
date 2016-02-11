@@ -3,8 +3,9 @@ namespace UniversityStudentSystem.Data.Models
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using Common;
+    using CommonModels;
 
-    public class Diploma
+    public class Diploma : BaseModel<int>
     {
         private ICollection<User> users;
 
@@ -12,10 +13,7 @@ namespace UniversityStudentSystem.Data.Models
         {
             this.users = new HashSet<User>();
         }
-
-        [Key]
-        public int Id { get; set; }
-
+        
         [Required]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]

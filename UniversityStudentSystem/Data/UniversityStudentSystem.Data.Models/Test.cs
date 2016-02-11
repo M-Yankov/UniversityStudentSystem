@@ -3,9 +3,12 @@ namespace UniversityStudentSystem.Data.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+
+    using CommonModels;
+    using CustomAttributes;
     using UniversityStudentSystem.Common;
 
-    public class Test
+    public class Test : BaseModel<int>
     {
         private ICollection<Question> questions;
 
@@ -21,9 +24,6 @@ namespace UniversityStudentSystem.Data.Models
         [Required]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime EndDate { get; set; }
-
-        [Key]
-        public int Id { get; set; }
 
         [Required]
         [MinLength(ModelConstants.NameMinLength)]

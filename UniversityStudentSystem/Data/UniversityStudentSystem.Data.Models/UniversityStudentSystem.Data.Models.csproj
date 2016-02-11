@@ -61,8 +61,11 @@
     <Compile Include="Candidate.cs" />
     <Compile Include="Category.cs" />
     <Compile Include="Comment.cs" />
+    <Compile Include="CommonModels\BaseModel{TKey}.cs" />
+    <Compile Include="CommonModels\IAuditInfo.cs" />
+    <Compile Include="CommonModels\IDeletableEntity.cs" />
     <Compile Include="Course.cs" />
-    <Compile Include="DataRangeAttribute.cs" />
+    <Compile Include="CustomAttributes\DataRangeAttribute.cs" />
     <Compile Include="Diploma.cs" />
     <Compile Include="Document.cs" />
     <Compile Include="ForumPost.cs" />
