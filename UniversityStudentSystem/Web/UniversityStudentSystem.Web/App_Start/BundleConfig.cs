@@ -7,6 +7,27 @@
         // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
+            bundles.Add(new StyleBundle("~/bundles/css-SBAdmin").Include(
+                            "~/SBAdminTheme/bower_components/bootstrap/dist/css/bootstrap.min.css",
+                            "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.css",
+                            "~/SBAdminTheme/dist/css/timeline.css",
+                            "~/SBAdminTheme/dist/css/sb-admin-2.css",
+                            "~/SBAdminTheme/bower_components/morrisjs/morris.css",
+                            "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"
+                            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-SBAdmin").Include(
+                            "~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
+                            "~/SBAdminTheme/bower_components/bootstrap/dist/js/bootstrap.min.js",
+                            "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.js",
+                            "~/SBAdminTheme/bower_components/raphael/raphael-min.js",
+                            "~/SBAdminTheme/bower_components/morrisjs/morris.min.js",
+                            "~/SBAdminTheme/dist/js/sb-admin-2.js"
+                            ));
+
+            bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
+                            "~/Content/Site.css"));
+
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

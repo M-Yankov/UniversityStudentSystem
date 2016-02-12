@@ -236,6 +236,11 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="SBAdminTheme\dist\css\sb-admin-2.css" />
+    <Content Include="SBAdminTheme\dist\css\timeline.css" />
+    <Content Include="SBAdminTheme\dist\js\sb-admin-2.js" />
+    <Content Include="SBAdminTheme\js\flot-data.js" />
+    <Content Include="SBAdminTheme\js\morris-data.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="App_Data\Common\CVBG.pdf" />
@@ -245,6 +250,12 @@
     <Content Include="Areas\Public\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Public\Views\Specialties\Index.cshtml" />
+    <Content Include="SBAdminTheme\bower.json" />
+    <Content Include="SBAdminTheme\less\mixins.less" />
+    <Content Include="SBAdminTheme\less\sb-admin-2.less" />
+    <Content Include="SBAdminTheme\less\variables.less" />
+    <Content Include="SBAdminTheme\LICENSE" />
+    <Content Include="SBAdminTheme\README.md" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -291,6 +302,7 @@
     <Content Include="Views\Manage\VerifyPhoneNumber.cshtml" />
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\Shared\_Layout - BackUp.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Areas\Public\Models\" />
