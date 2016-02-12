@@ -1,16 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
-
-namespace UniversityStudentSystem.Web.Controllers
+﻿namespace UniversityStudentSystem.Web.Controllers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Web;
+    using System.Web.Mvc;
+    using UniversityStudentSystem.Services.Contracts;
+
     public class HomeController : Controller
     {
+        private IMyService servc;
+
+        public HomeController(IMyService servc)
+        {
+            this.servc = servc;
+        }
+
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult About()
