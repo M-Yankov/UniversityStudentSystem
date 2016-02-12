@@ -72,7 +72,6 @@
 
         private void SeedAdmins(UniversityDbContext context, UserManager<User> manager)
         {
-
             const string AdminUsername = "admin";
             IdentityRole adminRole = context
                  .Roles
@@ -104,6 +103,7 @@
                     FacultyNumber = ModelConstants.FacultyStartNumber + (i + 1),
                     Genre = Genre.NotSpecified,
                     DateRegistered = DateTime.Now,
+                    CreatedOn = DateTime.Now,
                     Status = Status.Staff
                 };
 
@@ -160,7 +160,7 @@
                 new Specialty()
                 {
                     Name = SpecialtiesConstants.BusinessManagement,
-                    Description = SpecialtiesConstants.BusinessManagement
+                    Description = SpecialtiesConstants.BusinessManagementDescription
                 },
             };
 
@@ -215,6 +215,7 @@
                             ? Genre.Female
                             : Genre.Male,
                     DateRegistered = DateTime.Now,
+                    CreatedOn = DateTime.Now,
                     Status = Status.Pending
                 };
 
@@ -282,6 +283,7 @@
                             ? Genre.Female
                             : Genre.Male,
                     DateRegistered = DateTime.Now,
+                    CreatedOn = DateTime.Now,
                     Status = Status.Staff
                 };
 
@@ -340,6 +342,7 @@
                                 ? Genre.Female
                                 : Genre.Male,
                         DateRegistered = DateTime.Now,
+                        CreatedOn = DateTime.Now,
                         Status = Status.Confirmed
                     };
 

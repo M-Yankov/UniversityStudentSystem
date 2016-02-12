@@ -6,7 +6,7 @@
     using Repositories;
 
     public interface IRepository<T> : IRepository<T, int>
-        where T : BaseModel<int>
+        where T : class, IAuditInfo, IDeletableEntity, IIdentifiableEntity<int>
     {
     }
 }

@@ -5,13 +5,16 @@
     using System.Linq;
     using Models.CommonModels;
 
-    public class EfGenericRepository<T> : IRepository<T> where T : BaseModel<int>
+    public class EfRepository<T, TKey> : IRepository<T, TKey>
+        where T : class, IAuditInfo, IDeletableEntity, IIdentifiableEntity<TKey> 
     {
-        public EfGenericRepository(DbContext context)
+        public EfRepository(DbContext context)
         {
             if (context == null)
             {
-                throw new ArgumentException("An instance of DbContext is required to use this repository.", nameof(context));
+                throw new ArgumentException(
+                    "An instance of DbContext is required to use this repository.", 
+                    nameof(context));
             }
 
             this.Context = context;
@@ -32,9 +35,10 @@
             return this.DbSet;
         }
 
-        public T GetById(int id)
+        public T GetById(TKey id)
         {
-            return this.All().FirstOrDefault(x => x.Id == id);
+            T entity = this.DbSet.Find(id);
+            return entity != null && !entity.IsDeleted ? entity : null;
         }
 
         public void Add(T entity)

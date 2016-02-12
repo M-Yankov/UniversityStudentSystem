@@ -64,6 +64,7 @@
     <Compile Include="CommonModels\BaseModel{TKey}.cs" />
     <Compile Include="CommonModels\IAuditInfo.cs" />
     <Compile Include="CommonModels\IDeletableEntity.cs" />
+    <Compile Include="CommonModels\IIdentifiableEntity.cs" />
     <Compile Include="Course.cs" />
     <Compile Include="CustomAttributes\DataRangeAttribute.cs" />
     <Compile Include="Diploma.cs" />

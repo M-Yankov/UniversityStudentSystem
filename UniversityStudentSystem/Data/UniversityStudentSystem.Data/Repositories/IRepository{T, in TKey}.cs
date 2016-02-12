@@ -7,7 +7,8 @@ using UniversityStudentSystem.Data.Models.CommonModels;
 
 namespace UniversityStudentSystem.Data.Repositories
 {
-    public interface IRepository <T, in TKey> where T : BaseModel<TKey>
+    public interface IRepository <T, TKey>
+        where T : class, IAuditInfo, IDeletableEntity, IIdentifiableEntity<TKey>
     {
         IQueryable<T> All();
 

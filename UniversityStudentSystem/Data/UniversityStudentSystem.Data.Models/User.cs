@@ -8,10 +8,11 @@
     using System.Threading.Tasks;
 
     using Common;
+    using CommonModels;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser
+    public class User : IdentityUser, IIdentifiableEntity<string>, IAuditInfo, IDeletableEntity 
     {
         private ICollection<Diploma> diploms;
         private ICollection<Specialty> specialties;
@@ -77,6 +78,14 @@
 
         [MaxLength(ModelConstants.ContentMaxLength)]
         public string AvaratUrl { get; set; }
+
+        public DateTime CreatedOn { get; set; }
+
+        public DateTime? ModifiedOn { get; set; }
+
+        public bool IsDeleted { get; set; }
+
+        public DateTime? DeletedOn { get; set; }
 
         public virtual ICollection<Diploma> Diploms
         {
