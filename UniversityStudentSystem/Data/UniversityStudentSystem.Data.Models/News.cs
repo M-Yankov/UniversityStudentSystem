@@ -18,11 +18,6 @@
         [MinLength(ModelConstants.NameMinLength)]
         public string Content { get; set; }
 
-        [Required]
-        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
-        public DateTime DatePosted { get; set; }
-
-        [Required]
         [MaxLength(ModelConstants.ContentMaxLength)]
         public string PhotoPath { get; set; }
     }

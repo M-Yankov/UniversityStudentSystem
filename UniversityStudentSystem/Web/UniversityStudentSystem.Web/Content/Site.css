@@ -35,3 +35,13 @@ a:focus, a:hover {
     color: #276b0d;
 }
 */
+
+#page-wrapper {
+    padding-top: 100px;
+}
+
+@media(min-width:768px) {
+    #page-wrapper {
+        padding: 50px 30px;
+    }
+}

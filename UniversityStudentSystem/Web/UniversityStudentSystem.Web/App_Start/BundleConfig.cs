@@ -13,8 +13,7 @@
                             "~/SBAdminTheme/dist/css/timeline.css",
                             "~/SBAdminTheme/dist/css/sb-admin-2.css",
                             "~/SBAdminTheme/bower_components/morrisjs/morris.css",
-                            "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"
-                            ));
+                            "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/js-SBAdmin").Include(
                             "~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
@@ -22,8 +21,7 @@
                             "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.js",
                             "~/SBAdminTheme/bower_components/raphael/raphael-min.js",
                             "~/SBAdminTheme/bower_components/morrisjs/morris.min.js",
-                            "~/SBAdminTheme/dist/js/sb-admin-2.js"
-                            ));
+                            "~/SBAdminTheme/dist/js/sb-admin-2.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));

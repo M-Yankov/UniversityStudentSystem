@@ -7,6 +7,7 @@
 
     using Common;
     using Helpers;
+    using LoremNET;
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
@@ -39,6 +40,7 @@
             this.SeedConfirmedStudents(context, userManager);
             this.SeedSemesters(context);
             this.SeedCourses(context);
+            this.SeedNews(context);
         }
 
         private void SeedRoles(UniversityDbContext context, RoleManager<IdentityRole> manager)
@@ -574,6 +576,32 @@
             context.SaveChanges();
         }
 
+        private void SeedNews(UniversityDbContext context)
+        {
+            if (context.News.Any())
+            {
+                return;
+            }
+
+            const int MinWordCount = 15;
+            const int MaxWordCount = 30;
+            const int ParagraphsCount = 4;
+
+            for (int i = 0; i < SeedConstants.NewsCount; i++)
+            {
+                News news = new News()
+                {
+                    Title = this.GetNewsRandomTitle(ModelConstants.NameMinLength, ModelConstants.NameMaxLength),
+                    Content = Lorem.Paragraph(MinWordCount, MaxWordCount, ParagraphsCount),
+                    CreatedOn = DateTime.Now,
+                };
+
+                context.News.Add(news);
+            }
+
+            context.SaveChanges();
+        }
+
         private Course GetCourse(string name , IList<User> trainers)
         {
             return new Course()
@@ -589,6 +617,19 @@
                 .FirstOrDefault(c =>
                     c.Name == fromModule &&
                     c.Specialty.Name == specialtyName);
+        }
+
+        private string GetNewsRandomTitle(int wordCount, int maxTitleLength)
+        {
+            string title = Lorem.Words(wordCount, includePunctuation: true);
+
+            // Just for sure
+            while (title.Length >= maxTitleLength)
+            {
+                title = Lorem.Words(wordCount, includePunctuation: true);
+            }
+
+            return title;
         }
     }
 }

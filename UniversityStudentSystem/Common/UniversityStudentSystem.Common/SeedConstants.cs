@@ -8,6 +8,7 @@
         public const int SpecialtiesCount = 5;
         public const int AdminsCount = 3;
         public const int RolesCount = 2;
+        public const int NewsCount = 20;
 
         // Semesters
         public const string FirstNameModule = "First module";

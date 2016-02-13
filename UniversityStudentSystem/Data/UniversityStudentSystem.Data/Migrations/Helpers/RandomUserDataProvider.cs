@@ -2,6 +2,9 @@
 {
     using System;
 
+    /// <summary>
+    /// Information gathered from https://randomuser.me/
+    /// </summary>
     public class RandomUserDataProvider
     {
         private UserData userData;
