@@ -41,6 +41,9 @@
             this.SeedSemesters(context);
             this.SeedCourses(context);
             this.SeedNews(context);
+            this.SeedCategories(context);
+            this.SeedForumPosts(context);
+            this.SeedComments(context);
         }
 
         private void SeedRoles(UniversityDbContext context, RoleManager<IdentityRole> manager)
@@ -600,6 +603,106 @@
             }
 
             context.SaveChanges();
+        }
+
+        private void SeedCategories(UniversityDbContext context)
+        {
+            if (context.Categories.Any())
+            {
+                return;
+            }
+
+            string[] categoryNames = new string[] 
+            {
+                "Forum",
+                "Courses",
+                "Student System",
+                "Trainers",
+                "Certificates",
+                "Specialties",
+                "Common",
+                "Off Topic"
+            };
+
+            for (int i = 0; i < categoryNames.Length; i++)
+            {
+                context.Categories.Add(new Category()
+                {
+                    CreatedOn = DateTime.Now,
+                    Name = categoryNames[i]
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedForumPosts(UniversityDbContext context)
+        {
+            if (context.ForumPosts.Any())
+            {
+                return;
+            }
+
+            IList<int> categoryIds = context.Categories.Select(x => x.Id).ToList();
+            IList<string> userIds = context.Users.Select(x => x.Id).ToList();
+
+            const int MinWordCount = 5;
+            const int MaxWordCount = 15;
+            const int MinSentenseCount = 1;
+            const int MaxSentenseCount = 4;
+
+            for (int i = 0; i < SeedConstants.ForumPostCount; i++)
+            {
+                int idOfCategory = categoryIds[(int)Lorem.Number(0, categoryIds.Count - 1)];
+                string idOfUser = userIds[(int)Lorem.Number(0, categoryIds.Count - 1)];
+
+                context.ForumPosts.Add(new ForumPost()
+                {
+                    Title = this.GetNewsRandomTitle(3, ModelConstants.NameMaxLength),
+                    Content = Lorem.Paragraph(MinWordCount, MaxWordCount, MinSentenseCount, MaxSentenseCount),
+                    CreatedOn = DateTime.Now,
+                    CategoryId = idOfCategory,
+                    UserId = idOfUser
+                });
+            }
+
+            context.SaveChanges();
+        }
+
+        private void SeedComments(UniversityDbContext context)
+        {
+            if (context.Comments.Any())
+            {
+                return;
+            }
+
+            IList<ForumPost> forumPosts = context.ForumPosts.ToList();
+            IList<string> userIds = context.Users.Select(u => u.Id).ToList();
+
+            const int MinWordCount = 2;
+            const int MaxWordCount = 26;
+            const int MinSentenseCount = 1;
+            const int MaxSentenseCount = 7;
+
+            for (int i = 0; i < forumPosts.Count; i++)
+            {
+                for (int z = 0; z < SeedConstants.CommentsPerPost; z++)
+                {
+                    int indexOfUser = (int)Lorem.Number(0, userIds.Count - 1);
+
+                    Comment comment = new Comment()
+                    {
+                        CreatedOn = DateTime.Now,
+                        Content = Lorem.Paragraph(MinWordCount, MaxWordCount, MinSentenseCount, MaxSentenseCount),
+                        UserId = userIds[indexOfUser],
+                        ForumPostId = forumPosts[i].Id,
+                    };
+
+                    context.Comments.Add(comment);
+                }
+
+                context.SaveChanges();
+            }
         }
 
         private Course GetCourse(string name , IList<User> trainers)

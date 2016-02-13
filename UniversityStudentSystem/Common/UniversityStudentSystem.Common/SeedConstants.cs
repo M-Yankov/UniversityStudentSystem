@@ -9,6 +9,8 @@
         public const int AdminsCount = 3;
         public const int RolesCount = 2;
         public const int NewsCount = 20;
+        public const int ForumPostCount = 25;
+        public const int CommentsPerPost = 3;
 
         // Semesters
         public const string FirstNameModule = "First module";

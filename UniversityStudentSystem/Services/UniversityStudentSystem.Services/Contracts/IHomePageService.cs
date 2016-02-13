@@ -7,6 +7,6 @@
     {
         IQueryable<News> GetTopNews();
 
-        // TODO: Forum Posts
+        IQueryable<ForumPost> GetTopForumPosts();
     }
 }

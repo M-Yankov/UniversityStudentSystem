@@ -1,0 +1,38 @@
+﻿@using UniversityStudentSystem.Common.Extensions
+@model IList<UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel>
+@{
+    Layout = null;
+}
+
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-success">
+            <div class="panel-heading">
+                <i class="fa fa-edit fa-fw"></i> Latest Forum Posts
+            </div>
+            <!-- /.panel-heading -->
+            <div class="panel-body">
+                <div class="list-group">
+                    @for (int i = 0; i < Model.Count; i++)
+            {
+            @* because of inner html in anchor tag *@
+            <a href="@(Url.Action("Details", "Forum", new { area = "Public", id = Model[i].Id +"/" +  Model[i].Title.ToUrl()}))" class="list-group-item ">
+                <i class="fa fa-bookmark fa-fw"></i>
+                <strong>@Model[i].Title</strong>
+                in <em class="text-info">@Model[i].Category</em>
+                @(Model[i].Comments.Count) Answers
+                <i class="fa fa-comment"></i>
+                <span class="pull-right text-muted small">
+                    <em>4 minutes ago</em>
+                </span>
+            </a>
+            }
+                </div>
+                <!-- /.list-group -->
+                @Html.ActionLink("Visit Forum", "Index", "Forum", new { area = "public" }, new { @class = "btn btn-default btn-block" })
+            </div>
+            <!-- /.panel-body -->
+        </div>
+
+    </div>
+</div>

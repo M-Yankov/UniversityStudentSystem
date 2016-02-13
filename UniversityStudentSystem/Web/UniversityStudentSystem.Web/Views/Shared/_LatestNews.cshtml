@@ -7,12 +7,14 @@
     <div class="col-md-10 col-md-offset-1">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <i class="fa fa-bars fa-fw"></i> Latest News
-            <div class="pull-right">
-                <div class="btn-group">
-                    @Html.ActionLink("Check all", "Index", "News", new { area = "Public"}, new { @class = "btn btn-success btn-xs"})
-                </div>
-            </div>
+                <h3>
+                    <i class="fa fa-bars fa-fw"></i> Latest News
+                    <div class="pull-right">
+                        <div class="btn-group">
+                            @Html.ActionLink("Read all", "Index", "News", new { area = "Public"}, new { @class = "btn btn-success btn-sm"})
+                        </div>
+                    </div>
+                </h3>
             </div>
             <div class="panel-body">
                 <ul class="timeline">
@@ -36,7 +38,7 @@
                                     <p>
                                         @Model[i].ShortContent
                                     </p>
-                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id }, new { @class = "btn btn-outline btn-success btn-sm" })
+                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id, area = "public" }, new { @class = "btn btn-outline btn-success btn-sm" })
 
                                 </div>
                             </div>
@@ -60,7 +62,7 @@
                                     <p>
                                         @Model[i + 1].ShortContent
                                     </p>
-                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id }, new { @class = "btn btn-outline btn-success btn-sm" })
+                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id, area = "public" }, new { @class = "btn btn-outline btn-success btn-sm" })
                                 </div>
                             </div>
                         </li>

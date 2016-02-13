@@ -23,10 +23,6 @@
         public string Title { get; set; }
 
         [Required]
-        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
-        public DateTime DatePosted { get; set; }
-
-        [Required]
         [MinLength(ModelConstants.NameMinLength)]
         public string Content { get; set; }
 

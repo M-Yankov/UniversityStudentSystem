@@ -20,4 +20,19 @@
 
 @{
     Html.RenderAction("LatestNews");
+    Html.RenderAction("LatestForumPosts");
+}
+
+@section Scripts {
+    <script>
+        window.onload = function () {
+            $('body').on('mouseenter', '.list-group-item', function (e) {
+                $(this).addClass('list-group-item-success');
+            })
+
+            $('body').on('mouseleave', '.list-group-item', function (e) {
+                $(this).removeClass('list-group-item-success');
+            })
+        }
+    </script>
 }
