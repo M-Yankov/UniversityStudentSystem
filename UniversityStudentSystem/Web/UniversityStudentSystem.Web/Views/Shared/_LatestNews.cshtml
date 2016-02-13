@@ -1,0 +1,72 @@
+﻿@model IList<UniversityStudentSystem.Web.Models.NewsModels.NewsViewModel>
+
+@{ 
+    Layout = null;
+}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <i class="fa fa-bars fa-fw"></i> Latest News
+            <div class="pull-right">
+                <div class="btn-group">
+                    @Html.ActionLink("Check all", "Index", "News", new { area = "Public"}, new { @class = "btn btn-success btn-xs"})
+                </div>
+            </div>
+            </div>
+            <div class="panel-body">
+                <ul class="timeline">
+                    @for (int i = 0; i < Model.Count; i += 2)
+                    {
+                        <li>
+                            <div class="timeline-badge success">
+                                <i class="fa fa fa-graduation-cap"></i>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="timeline-title">@Model[i].Title</h4>
+                                    <p>
+                                        <small class="text-muted">
+                                            <i class="fa fa-clock-o"></i>
+                                            @Model[i].CreatedOn.ToShortDateString()
+                                        </small>
+                                    </p>
+                                </div>
+                                <div class="timline-body">
+                                    <p>
+                                        @Model[i].ShortContent
+                                    </p>
+                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id }, new { @class = "btn btn-outline btn-success btn-sm" })
+
+                                </div>
+                            </div>
+                        </li>
+                        @* To HTML helper? *@
+                        <li class="timeline-inverted">
+                            <div class="timeline-badge success">
+                                <i class="fa fa fa-graduation-cap"></i>
+                            </div>
+                            <div class="timeline-panel">
+                                <div class="timeline-heading">
+                                    <h4 class="timeline-title">@Model[i + 1].Title</h4>
+                                    <p>
+                                        <small class="text-muted">
+                                            <i class="fa fa-clock-o"></i>
+                                            @Model[i + 1].CreatedOn.ToShortDateString()
+                                        </small>
+                                    </p>
+                                </div>
+                                <div class="timline-body">
+                                    <p>
+                                        @Model[i + 1].ShortContent
+                                    </p>
+                                    @Html.ActionLink("More", "Details", "News", new { id = Model[i].Id }, new { @class = "btn btn-outline btn-success btn-sm" })
+                                </div>
+                            </div>
+                        </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

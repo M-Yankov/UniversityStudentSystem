@@ -57,11 +57,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Contracts\IHomePageService.cs" />
     <Compile Include="Contracts\IMyService.cs" />
     <Compile Include="Contracts\ISpecialtiesService.cs" />
+    <Compile Include="Contracts\IUserService.cs" />
+    <Compile Include="HomePageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="MyService.cs" />
     <Compile Include="SpecialtiesService.cs" />
+    <Compile Include="UserService.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Data\UniversityStudentSystem.Data.Models\UniversityStudentSystem.Data.Models.csproj">
