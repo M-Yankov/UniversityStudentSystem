@@ -6,10 +6,14 @@
 
     public interface IUserService
     {
-        int GetNextFacultyNumber();
+        long GetLastFacultyNumber();
 
         IQueryable<User> GetAll();
 
         IQueryable<IdentityRole> GetRoles();
+
+        User GetById(string id);
+
+        void Update(User user);
     }
 }

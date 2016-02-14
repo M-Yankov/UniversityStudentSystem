@@ -31,9 +31,20 @@
             return usersRepository.All();
         }
 
-        public int GetNextFacultyNumber()
+        public long GetLastFacultyNumber()
         {
-           return (int)this.usersRepository.All().Select(u => u.FacultyNumber).Max();
+           return this.usersRepository.All().Select(u => u.FacultyNumber).Max();
+        }
+
+        public User GetById(string id)
+        {
+            return this.usersRepository.GetById(id);
+        }
+
+        public void Update(User user)
+        {
+            this.usersRepository.Update(user);
+            this.usersRepository.Save();
         }
     }
 }

@@ -23,6 +23,10 @@
                             "~/SBAdminTheme/bower_components/morrisjs/morris.min.js",
                             "~/SBAdminTheme/dist/js/sb-admin-2.js"));
 
+            bundles.Add(new StyleBundle("~/bundles/css-social").Include(
+                            "~/SBAdminTheme/bower_components/bootstrap-social/bootstrap-social.css"));
+
+
             bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));
 

@@ -175,7 +175,7 @@
                     DateRegistered = DateTime.Now
                 };
 
-                user.FacultyNumber = usersService.GetNextFacultyNumber() + 1;
+                user.FacultyNumber = usersService.GetLastFacultyNumber() + 1;
 
                 var result = await UserManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

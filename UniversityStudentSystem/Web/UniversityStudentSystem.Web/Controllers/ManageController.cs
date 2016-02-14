@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -6,18 +7,25 @@ using System.Web.Mvc;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
+using UniversityStudentSystem.Common;
+using UniversityStudentSystem.Data.Models;
+using UniversityStudentSystem.Services.Contracts;
+using UniversityStudentSystem.Web.HelperProviders;
 using UniversityStudentSystem.Web.Models.Manage;
+using UniversityStudentSystem.Web.Models.Users;
 
 namespace UniversityStudentSystem.Web.Controllers
 {
     [Authorize]
-    public class ManageController : Controller
+    public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        private IUserService usersService;
 
-        public ManageController()
+        public ManageController(IUserService servce)
         {
+            this.usersService = servce;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -52,27 +60,58 @@ namespace UniversityStudentSystem.Web.Controllers
 
         //
         // GET: /Manage/Index
-        public async Task<ActionResult> Index(ManageMessageId? message)
+        public ActionResult Index(ManageMessageId? message)
         {
-            ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.SetPasswordSuccess ? "Your password has been set."
-                : message == ManageMessageId.SetTwoFactorSuccess ? "Your two-factor authentication provider has been set."
-                : message == ManageMessageId.Error ? "An error has occurred."
-                : message == ManageMessageId.AddPhoneSuccess ? "Your phone number was added."
-                : message == ManageMessageId.RemovePhoneSuccess ? "Your phone number was removed."
-                : "";
-
             var userId = User.Identity.GetUserId();
-            var model = new IndexViewModel
-            {
-                HasPassword = HasPassword(),
-                PhoneNumber = await UserManager.GetPhoneNumberAsync(userId),
-                TwoFactor = await UserManager.GetTwoFactorEnabledAsync(userId),
-                Logins = await UserManager.GetLoginsAsync(userId),
-                BrowserRemembered = await AuthenticationManager.TwoFactorBrowserRememberedAsync(userId)
-            };
+            
+            var model = this.Mapper.Map<UserViewModel>(usersService.GetById(userId));
             return View(model);
+        }
+
+        // GET: /Manage/Edit
+        public ActionResult Edit()
+        {
+            string userId = this.User.Identity.GetUserId();
+            var model = this.Mapper.Map<UserInputModel>(usersService.GetById(userId));
+
+            return this.View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(UserInputModel model, HttpPostedFileBase file)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            string defaultAvatarName = string.Empty;
+
+            if (file != null)
+            {
+                SaveImageResult result = this.UserManagement.SaveImage(file, this.UserId);
+                if (!result.HasSucceed)
+                {
+                    this.ViewBag.Message = result.Error;
+                    return this.View(model);
+                }
+            }
+
+            User dbUser = usersService.GetById(this.UserId);
+            dbUser.FirstName = model.FirstName;
+            dbUser.LastName = model.LastName ;
+            dbUser.Age = model.Age;
+            dbUser.Email = model.Email;
+            dbUser.AboutMe = model.AboutMe;
+            dbUser.SkypeName = model.SkypeName;
+            dbUser.LinkedInProfile = model.LinkedInProfile;
+            dbUser.FacebookAccount = model.FacebookAccount;
+
+            dbUser.AvaratUrl = Path.Combine("/Users", this.UserId, defaultAvatarName);
+            this.usersService.Update(dbUser);
+            
+            return this.RedirectToAction("Index");
         }
 
         //

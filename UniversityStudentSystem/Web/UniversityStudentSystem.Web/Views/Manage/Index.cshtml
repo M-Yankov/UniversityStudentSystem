@@ -1,84 +1,85 @@
-﻿@model UniversityStudentSystem.Web.Models.Manage.IndexViewModel
+﻿@using UniversityStudentSystem.Common;
+
+@model UniversityStudentSystem.Web.Models.Users.UserViewModel
 @{
     ViewBag.Title = "Manage";
 }
 
-<h2>@ViewBag.Title.</h2>
+<h2>Profile</h2>
 
-<p class="text-success">@ViewBag.StatusMessage</p>
 <div>
-    <h4>Change your account settings</h4>
+    <h4>@(Model.FullName) (@Model.Username)</h4>
     <hr />
-    <dl class="dl-horizontal">
-        <dt>Password:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Change your password", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-        <dt>External Logins:</dt>
-        <dd>
-            @Model.Logins.Count [
-            @Html.ActionLink("Manage", "ManageLogins") ]
-        </dd>
-        @*
-            Phone Numbers can used as a second factor of verification in a two-factor authentication system.
-             
-             See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication using SMS.
-             
-             Uncomment the following block after you have set up two-factor authentication
-        *@
-        @*  
-            <dt>Phone Number:</dt>
-            <dd>
-                @(Model.PhoneNumber ?? "None") [
-                @if (Model.PhoneNumber != null)
-                {
-                    @Html.ActionLink("Change", "AddPhoneNumber")
-                    @: &nbsp;|&nbsp;
-                    @Html.ActionLink("Remove", "RemovePhoneNumber")
-                }
-                else
-                {
-                    @Html.ActionLink("Add", "AddPhoneNumber")
-                }
-                ]
-            </dd>
-        *@
-        <dt>Two-Factor Authentication:</dt>
-        <dd>
-            <p>
-                There are no two-factor authentication providers configured. See <a href="http://go.microsoft.com/fwlink/?LinkId=403804">this article</a>
-                for details on setting up this ASP.NET application to support two-factor authentication.
-            </p>
-            @*@if (Model.TwoFactor)
-                {
-                    using (Html.BeginForm("DisableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Enabled
-                        <input type="submit" value="Disable" class="btn btn-link" />
-                        </text>
-                    }
-                }
-                else
-                {
-                    using (Html.BeginForm("EnableTwoFactorAuthentication", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
-                    {
-                        @Html.AntiForgeryToken()
-                        <text>Disabled
-                        <input type="submit" value="Enable" class="btn btn-link" />
-                        </text>
-                    }
-                }*@
-        </dd>
-    </dl>
+    <div class="row">
+        <div class="col-md-4">
+            <img src="@(string.IsNullOrEmpty(Model.AvaratUrl) ? WebConstants.DefaultImageProfile : Model.AvaratUrl)" alt="avatar" class="col-md-12" width="250" />
+            <hr class="col-md-12" />
+            <div class="text-center">
+                <a class="btn btn-social-icon btn-facebook @(string.IsNullOrEmpty(Model.FacebookAccount) ? "disabled" : string.Empty)">
+                    <i class="fa fa-facebook">
+                    </i>
+                </a>
+
+                <a class="btn btn-social-icon btn-linkedin @(string.IsNullOrEmpty(Model.LinkedInProfile) ? "disabled" : string.Empty)">
+                    <i class="fa fa-linkedin">
+                    </i>
+                </a>
+
+                <a class="btn btn-social-icon btn-twitter @(string.IsNullOrEmpty(Model.SkypeName) ? "disabled" : string.Empty)">
+                    <i class="fa fa-skype">
+                    </i>
+                </a>
+            </div>
+        </div>
+        
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    Personal info
+                </div>
+                <div class="panel-body">
+                    <p class="lead"> @Model.FullName</p>
+                    <p class="text-muted">@(Model.Genre) - @(Model.Age) years old</p>
+                    <p>
+                        <strong>Faculty Number:</strong>
+                        <span>@Model.FacultyNumber.ToString().PadLeft(10, '0')</span>
+                    </p>
+                    <p>
+                        <strong>Email:</strong>
+                        <span>@Model.Email</span>
+                    </p>
+                    <p>
+                        <strong>Registered on:</strong>
+                        <span>@(Model.DateRegistered.ToShortDateString())</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    Forum activity
+                </div>
+                <div class="panel-body">
+                    <!-- TODO: Forum posts -->
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    @Model.AboutMe
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        @Html.ActionLink("Edit profile", "Edit", "Manage", null, new {  @class = "btn-outline btn btn-warning" })
+    </div>
 </div>
+
+@section SocialStyles{
+    @Styles.Render("~/bundles/css-social")
+}
