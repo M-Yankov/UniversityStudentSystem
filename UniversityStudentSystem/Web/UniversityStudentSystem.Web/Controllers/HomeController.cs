@@ -53,11 +53,13 @@
         // [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult LatestForumPosts()
         {
+            // TODO: Check if this is working if the Forum post doesn't have any comments.
             IList<ForumPostViewModel> forumPosts = homeService
                 .GetTopForumPosts()
-                .OrderByDescending(f => f.CreatedOn)
+                .OrderByDescending(f => f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn)
                 .Take(WebConstants.TopForumPostsCount)
-                .To<ForumPostViewModel>().ToList();
+                .To<ForumPostViewModel>()
+                .ToList();
             return this.PartialView("_LatestForumPosts", forumPosts);
         }
 

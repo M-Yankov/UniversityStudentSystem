@@ -14,19 +14,29 @@
             <div class="panel-body">
                 <div class="list-group">
                     @for (int i = 0; i < Model.Count; i++)
-            {
-            @* because of inner html in anchor tag *@
-            <a href="@(Url.Action("Details", "Forum", new { area = "Public", id = Model[i].Id +"/" +  Model[i].Title.ToUrl()}))" class="list-group-item ">
-                <i class="fa fa-bookmark fa-fw"></i>
-                <strong>@Model[i].Title</strong>
-                in <em class="text-info">@Model[i].Category</em>
-                @(Model[i].Comments.Count) Answers
-                <i class="fa fa-comment"></i>
-                <span class="pull-right text-muted small">
-                    <em>4 minutes ago</em>
-                </span>
-            </a>
-            }
+                    {
+                        @* because of inner html in anchor tag *@
+                        <a href="@(Url.Action("Details", "Forum", new { area = "Public", id = Model[i].Id + "/" + Model[i].Title.ToUrl() }))" class="list-group-item ">
+                            <i class="fa fa-bookmark fa-fw"></i>
+                            <strong>@Model[i].Title</strong>
+                            in <em class="text-info">@Model[i].Category</em>
+                            @(Model[i].Comments.Count) Answers
+                            <i class="fa fa-comment"></i>
+                            <span class="pull-right text-muted small">
+                                @{
+                                    var firstComment = Model[i].Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault();
+                                }
+                                @if (firstComment != null)
+                                {
+                                    <em>@(firstComment.CreatedOn.DateTimeAgo())</em>
+                                }
+                                else
+                                {
+                                    <em>@(Model[i].CreatedOn.DateTimeAgo())</em>
+                                }
+                            </span>
+                        </a>
+                                    }
                 </div>
                 <!-- /.list-group -->
                 @Html.ActionLink("Visit Forum", "Index", "Forum", new { area = "public" }, new { @class = "btn btn-default btn-block" })
