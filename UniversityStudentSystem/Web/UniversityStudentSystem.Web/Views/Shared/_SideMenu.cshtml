@@ -1,0 +1,73 @@
+﻿@using UniversityStudentSystem.Common.Extensions;
+@model UniversityStudentSystem.Web.Models.SideMenu.SideMenuViewModel
+
+@{ 
+    Layout = null;
+}
+
+<div class="navbar-default sidebar" role="navigation">
+    <div class="sidebar-nav navbar-collapse">
+        <ul class="nav" id="side-menu">
+            <li class="sidebar-search">
+                <div class="input-group custom-search-form">
+                    <input type="text" class="form-control" placeholder="Search...">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="button">
+                            <i class="fa fa-search"></i>
+                        </button>
+                    </span>
+                </div>
+                <!-- /input-group -->
+            </li>
+            <li>
+                <a href="/"><i class="fa fa-home fa-fw"></i> Home</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-life-saver fa-fw"></i> Specialties<span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    @foreach (var spec in Model.Specialties)
+                    {
+                        <li>
+                            @Html.ActionLink(spec.Name, "Details", "Specialties", new { area = "Public", id = spec.Id, name = spec.Name.ToUrl() }, null)
+                        </li>
+                    }
+                </ul>
+                <!-- /.nav-second-level -->
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-th-list fa-fw"></i> Courses <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    @foreach (var course in Model.Courses)
+                    {
+                        <li>
+                            @Html.ActionLink(course.Name, "Details", "Courses", new { area = "Public", id = course.Id, name = course.Name.ToUrl() }, null)
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-child fa-fw"></i> Trainers <span class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    @foreach (var trainer in Model.Trainers)
+                    {
+                        <li>
+                            @Html.ActionLink(trainer.FullName, "Details", "Trainers", new { area = "Public", id = trainer.Id }, null)
+                        </li>
+                    }
+                </ul>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-trophy fa-fw"></i> Certificates</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-info-circle fa-fw"></i> About University</a>
+            </li>
+            <li>
+                <a href="#"><i class="fa fa-bug fa-fw"></i> Report a bug</a>
+                <!-- /.nav-second-level -->
+            </li>
+        </ul>
+    </div>
+    <!-- /.sidebar-collapse -->
+</div>
+<!-- /.navbar-static-side -->

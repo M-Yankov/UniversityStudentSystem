@@ -16,8 +16,8 @@
         {
             context.MapRoute(
                 "Public_default",
-                "Public/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                "Public/{controller}/{action}/{id}/{name}",
+                new { action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional }
             );
         }
     }

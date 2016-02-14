@@ -1,15 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UniversityStudentSystem.Data;
-using UniversityStudentSystem.Data.Models;
-using UniversityStudentSystem.Data.Repositories;
-using UniversityStudentSystem.Services.Contracts;
-
-namespace UniversityStudentSystem.Services
+﻿namespace UniversityStudentSystem.Services
 {
+    using UniversityStudentSystem.Data.Models;
+    using UniversityStudentSystem.Data.Repositories;
+    using UniversityStudentSystem.Services.Contracts;
+
     public class MyService : IMyService
     {
         private IRepository<User, string> users;

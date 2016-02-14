@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Data;
+    using Data.Repositories;
     using Data.Models;
     using UniversityStudentSystem.Services.Contracts;
 

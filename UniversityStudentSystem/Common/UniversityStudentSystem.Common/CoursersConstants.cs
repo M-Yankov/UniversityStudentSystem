@@ -48,9 +48,9 @@
         public const string BusinessInformatics = "Business informatics";
 
         /* Economics */
-        public const string Economics = " Economics";
+        public const string Economics = "Economics";
         public const string Macroeconomics = "Macroeconomics";
-        public const string Marketing = " Marketing";
+        public const string Marketing = "Marketing";
         public const string EconomicsOfIndustry = "Economics of industry";
         public const string EconomicsOfTrade = "Economics of trade";
         public const string EconomicsOfTourism = "Economics of tourism";

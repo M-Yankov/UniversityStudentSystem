@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{7BC77941-442B-473C-93CC-DFFE312268F8}</ProjectGuid>
+    <ProjectGuid>{1528A9EF-5D6D-44E9-B547-068C96953DD2}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UniversityStudentSystem.Services</RootNamespace>
-    <AssemblyName>UniversityStudentSystem.Services</AssemblyName>
+    <RootNamespace>UniversityStudentSystem.Common.Extensions</RootNamespace>
+    <AssemblyName>UniversityStudentSystem.Common.Extensions</AssemblyName>
     <TargetFrameworkVersion>v4.6</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -57,30 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\ICoursesService.cs" />
-    <Compile Include="Contracts\IHomePageService.cs" />
-    <Compile Include="Contracts\IMyService.cs" />
-    <Compile Include="Contracts\ISpecialtiesService.cs" />
-    <Compile Include="Contracts\IUserService.cs" />
-    <Compile Include="CoursesService.cs" />
-    <Compile Include="HomePageService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MyService.cs" />
-    <Compile Include="SpecialtiesService.cs" />
-    <Compile Include="UserService.cs" />
+    <Compile Include="StringExtensions.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Common\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj">
-      <Project>{80c37fbb-455a-4d94-bd75-02811191ef58}</Project>
-      <Name>UniversityStudentSystem.Common</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Data\UniversityStudentSystem.Data.Models\UniversityStudentSystem.Data.Models.csproj">
       <Project>{8774e5ad-c366-45dd-93f5-1e6dd5609fff}</Project>
       <Name>UniversityStudentSystem.Data.Models</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Data\UniversityStudentSystem.Data\UniversityStudentSystem.Data.csproj">
-      <Project>{7450c22b-acdd-4474-8956-7b08d9b6e886}</Project>
-      <Name>UniversityStudentSystem.Data</Name>
+    <ProjectReference Include="..\UniversityStudentSystem.Common\UniversityStudentSystem.Common.csproj">
+      <Project>{80c37fbb-455a-4d94-bd75-02811191ef58}</Project>
+      <Name>UniversityStudentSystem.Common</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

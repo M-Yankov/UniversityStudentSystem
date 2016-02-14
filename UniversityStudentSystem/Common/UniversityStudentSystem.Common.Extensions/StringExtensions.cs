@@ -29,5 +29,7 @@
 
             return resultString.ToString().Trim('-');
         }
+
+        // TODO: Add extension for DateTimeAgo
     }
 }

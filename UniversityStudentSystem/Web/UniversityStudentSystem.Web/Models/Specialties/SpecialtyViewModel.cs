@@ -9,6 +9,8 @@
 
     public class SpecialtyViewModel : IMapFrom<Specialty>, IHaveCustomMappings
     {
+        public int Id { get; set; }
+
         public string Name { get; set; }
 
         public string Description { get; set; }

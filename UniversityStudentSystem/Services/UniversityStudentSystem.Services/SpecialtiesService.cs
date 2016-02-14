@@ -2,7 +2,7 @@
 {
     using System;
     using System.Linq;
-    using Data;
+    using Data.Repositories;
     using Data.Models;
     using UniversityStudentSystem.Services.Contracts;
 
@@ -15,9 +15,9 @@
             this.specialtiesRepository = repository;
         }
 
-        public IQueryable<Specialty> GetAll(int count)
+        public IQueryable<Specialty> GetAll()
         {
-            return this.specialtiesRepository.All().Take(count);
+            return this.specialtiesRepository.All();
         }
     }
 }

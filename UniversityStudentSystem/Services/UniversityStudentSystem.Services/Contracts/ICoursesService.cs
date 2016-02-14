@@ -3,8 +3,8 @@
     using System.Linq;
     using UniversityStudentSystem.Data.Models;
 
-    public interface ISpecialtiesService
+    public interface ICoursesService
     {
-        IQueryable<Specialty> GetAll();
+        IQueryable<Course> GetAll();
     }
 }

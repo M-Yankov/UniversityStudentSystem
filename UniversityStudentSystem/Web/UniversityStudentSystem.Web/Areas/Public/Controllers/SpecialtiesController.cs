@@ -20,7 +20,7 @@
         // GET: Public/Specialties
         public ActionResult Index()
         {
-            IEnumerable<SpecialtyViewModel> specialties = this.specialties.GetAll(10).To<SpecialtyViewModel>().ToList();
+            IEnumerable<SpecialtyViewModel> specialties = this.specialties.GetAll().To<SpecialtyViewModel>().ToList();
             return View(specialties);
         }
     }
