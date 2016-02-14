@@ -86,7 +86,7 @@ namespace UniversityStudentSystem.Web.Controllers
                 return this.View(model);
             }
 
-            string defaultAvatarName = string.Empty;
+            string defaultAvatarName = null;
 
             if (file != null)
             {
@@ -96,8 +96,11 @@ namespace UniversityStudentSystem.Web.Controllers
                     this.ViewBag.Message = result.Error;
                     return this.View(model);
                 }
+
+                defaultAvatarName = result.Path;
             }
 
+            // TODO: try something:
             User dbUser = usersService.GetById(this.UserId);
             dbUser.FirstName = model.FirstName;
             dbUser.LastName = model.LastName ;
@@ -108,7 +111,7 @@ namespace UniversityStudentSystem.Web.Controllers
             dbUser.LinkedInProfile = model.LinkedInProfile;
             dbUser.FacebookAccount = model.FacebookAccount;
 
-            dbUser.AvaratUrl = Path.Combine("/Users", this.UserId, defaultAvatarName);
+            dbUser.AvaratUrl = Path.Combine("/Users", this.UserId, defaultAvatarName ?? dbUser.AvaratUrl);
             this.usersService.Update(dbUser);
             
             return this.RedirectToAction("Index");

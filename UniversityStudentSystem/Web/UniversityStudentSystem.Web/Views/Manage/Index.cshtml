@@ -14,7 +14,7 @@
         <div class="col-md-4">
             <img src="@(string.IsNullOrEmpty(Model.AvaratUrl) ? WebConstants.DefaultImageProfile : Model.AvaratUrl)" alt="avatar" class="col-md-12" width="250" />
             <hr class="col-md-12" />
-            <div class="text-center">
+            <p class="text-center col-md-12">
                 <a class="btn btn-social-icon btn-facebook @(string.IsNullOrEmpty(Model.FacebookAccount) ? "disabled" : string.Empty)">
                     <i class="fa fa-facebook">
                     </i>
@@ -29,7 +29,7 @@
                     <i class="fa fa-skype">
                     </i>
                 </a>
-            </div>
+            </p>
         </div>
         
         <div class="col-md-3">

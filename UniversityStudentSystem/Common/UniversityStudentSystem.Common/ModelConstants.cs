@@ -11,9 +11,15 @@
 
         public const string FacebookProfileRegularExpression = 
             "((http|https):\\/\\/|)(www\\.|)facebook\\.com\\/[a-zA-Z0-9.]{1,}";
+        public const string SkypeNameRegularexpression = "^$|[a-zA-Z][a-zA-Z0-9_\\-\\,\\.]{5,31}";
+        public const string LinkedInProfileRegularExpression = 
+            "(?i)^$|^((http|https)?(\\://)?(www\\.)?linkedin.com/)(.)+$";
+
+        public const string ErrorMessageProfile = "Provide a {0} profile";
 
         public const int MarkMinValue = 2;
         public const int MarkMaxValue = 6;
+
 
         public const int MinAge = 18;
         public const int MaxAge = 100;

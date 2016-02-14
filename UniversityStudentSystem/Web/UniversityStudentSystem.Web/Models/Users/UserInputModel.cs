@@ -31,17 +31,22 @@
         [Display(Name ="Facebook")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
-        [RegularExpression(ModelConstants.FacebookProfileRegularExpression)]
+        [RegularExpression(ModelConstants.FacebookProfileRegularExpression, 
+            ErrorMessage = ModelConstants.ErrorMessageProfile)]
         public string FacebookAccount { get; set; }
 
         [Display(Name ="Skype")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
+        [RegularExpression(ModelConstants.SkypeNameRegularexpression,
+            ErrorMessage = ModelConstants.ErrorMessageProfile)]
         public string SkypeName { get; set; }
 
         [Display(Name ="LinkedIn")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
+        [RegularExpression(ModelConstants.LinkedInProfileRegularExpression,
+            ErrorMessage = ModelConstants.ErrorMessageProfile)]
         public string LinkedInProfile { get; set; }
 
         [MaxLength(ModelConstants.DescriptionMaxLength)]
