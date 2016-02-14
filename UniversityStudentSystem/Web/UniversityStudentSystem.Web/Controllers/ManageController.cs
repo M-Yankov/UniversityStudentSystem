@@ -117,6 +117,14 @@ namespace UniversityStudentSystem.Web.Controllers
             return this.RedirectToAction("Index");
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult RemoveAvatar()
+        {
+            this.usersService.ClearAvatar(this.UserId);
+            return this.RedirectToAction("Index");
+        }
+
         //
         // POST: /Manage/RemoveLogin
         [HttpPost]

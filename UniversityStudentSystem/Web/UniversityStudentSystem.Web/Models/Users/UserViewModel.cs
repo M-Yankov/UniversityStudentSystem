@@ -1,6 +1,7 @@
 ﻿namespace UniversityStudentSystem.Web.Models.Users
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
@@ -33,6 +34,7 @@
 
         public string AvaratUrl { get; set; }
 
+        [DisplayFormat(NullDisplayText = "Description missing")]
         public string AboutMe { get; set; }
 
         public DateTime DateRegistered { get; set; }

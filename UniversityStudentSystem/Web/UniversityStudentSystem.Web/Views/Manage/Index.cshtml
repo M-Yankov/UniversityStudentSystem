@@ -11,7 +11,14 @@
     <h4>@(Model.FullName) (@Model.Username)</h4>
     <hr />
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-3">
+            @using (Html.BeginForm("RemoveAvatar", "Manage", FormMethod.Post, new { @class = "pull-left remove-btn" }))
+            {
+                @(Html.AntiForgeryToken())
+                <button class="btn-danger btn btn-circle">
+                    <i class="fa fa-times"></i>
+                </button>
+            }
             <img src="@(string.IsNullOrEmpty(Model.AvaratUrl) ? WebConstants.DefaultImageProfile : Model.AvaratUrl)" alt="avatar" class="col-md-12" width="250" />
             <hr class="col-md-12" />
             <p class="text-center col-md-12">
@@ -31,7 +38,7 @@
                 </a>
             </p>
         </div>
-        
+
         <div class="col-md-3">
             <div class="panel panel-default">
                 <div class="panel-heading text-center">
@@ -67,7 +74,7 @@
         </div>
     </div>
     <div class="row">
-        <div class="col-md-4">
+        <div class="col-md-6">
             <div class="panel panel-default">
                 <div class="panel-body">
                     @Model.AboutMe
@@ -76,7 +83,9 @@
         </div>
     </div>
     <div class="row">
-        @Html.ActionLink("Edit profile", "Edit", "Manage", null, new {  @class = "btn-outline btn btn-warning" })
+        <div class="col-md-4">
+            @Html.ActionLink("Edit profile", "Edit", "Manage", null, new { @class = "btn-outline btn btn-warning" })
+        </div>
     </div>
 </div>
 

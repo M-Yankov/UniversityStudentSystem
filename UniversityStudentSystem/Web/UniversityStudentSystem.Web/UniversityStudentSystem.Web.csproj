@@ -256,9 +256,9 @@
     <Content Include="SBAdminTheme\js\morris-data.js" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
-    <Content Include="App_Data\Common\CVBG.pdf" />
-    <Content Include="App_Data\Common\CVEN.pdf" />
-    <Content Include="App_Data\Common\CVFR.pdf" />
+    <Content Include="Users\Common\CVBG.pdf" />
+    <Content Include="Users\Common\CVEN.pdf" />
+    <Content Include="Users\Common\CVFR.pdf" />
     <Content Include="Areas\Public\Views\web.config" />
     <Content Include="Areas\Public\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_Layout.cshtml" />
@@ -281,6 +281,8 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
+    <Content Include="Users\579c1395-bf70-432c-b777-a2aab1e3a334\avatar.jpeg" />
+    <Content Include="Users\579c1395-bf70-432c-b777-a2aab1e3a334\avatar.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -323,7 +325,9 @@
     <Content Include="Views\Error\NotFound.cshtml" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Users\ca8b09c6-3eb0-4402-812e-f01b2955155a\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

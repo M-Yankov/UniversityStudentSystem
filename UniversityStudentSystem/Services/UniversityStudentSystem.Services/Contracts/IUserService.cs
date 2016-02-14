@@ -15,5 +15,7 @@
         User GetById(string id);
 
         void Update(User user);
+
+        void ClearAvatar(string id);
     }
 }

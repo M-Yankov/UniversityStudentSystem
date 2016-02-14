@@ -15,7 +15,7 @@
 
         public UserService(IRepository<User, string> repository)
         {
-            this.usersRepository = repository;  
+            this.usersRepository = repository;
         }
 
         public IQueryable<IdentityRole> GetRoles()
@@ -33,7 +33,7 @@
 
         public long GetLastFacultyNumber()
         {
-           return this.usersRepository.All().Select(u => u.FacultyNumber).Max();
+            return this.usersRepository.All().Select(u => u.FacultyNumber).Max();
         }
 
         public User GetById(string id)
@@ -45,6 +45,13 @@
         {
             this.usersRepository.Update(user);
             this.usersRepository.Save();
+        }
+
+        public void ClearAvatar(string id)
+        {
+            User user = this.GetById(id);
+            user.AvaratUrl = null;
+            this.Update(user);
         }
     }
 }

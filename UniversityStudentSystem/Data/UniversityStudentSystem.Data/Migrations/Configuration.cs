@@ -192,9 +192,9 @@
 
             Document[] initialDocuments = new Document[]
             {
-                new Document() { DateUploaded = DateTime.Now, Path = "~/App_Data/Common/CVBG.pdf" },
-                new Document() { DateUploaded = DateTime.Now, Path = "~/App_Data/Common/CVFR.pdf" },
-                new Document() { DateUploaded = DateTime.Now, Path = "~/App_Data/Common/CVEN.pdf" },
+                new Document() { DateUploaded = DateTime.Now, Path = "~/Users/Common/CVBG.pdf" },
+                new Document() { DateUploaded = DateTime.Now, Path = "~/Users/Common/CVFR.pdf" },
+                new Document() { DateUploaded = DateTime.Now, Path = "~/Users/Common/CVEN.pdf" },
             };
 
             List<User> candidateStudents = new List<User>();

@@ -55,3 +55,8 @@ li .timeline-panel:hover {
 .required {
     font-size: 24px;
 }
+
+.remove-btn {
+    position: absolute;
+    z-index: 200;
+}

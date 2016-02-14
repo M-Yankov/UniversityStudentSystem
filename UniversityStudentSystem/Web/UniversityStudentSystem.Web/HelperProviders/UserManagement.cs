@@ -20,11 +20,16 @@
         public void EnsureFolder(string userId)
         {
             string path = this.server.MapPath($"~/Users/{ userId }");
+            string uploadsFolder = Path.Combine(path, "Uploads");
 
-            // TODO: Ensure other paths like: Users/UserId/Uploads/  
             if (!Directory.Exists(path))
             {
                 Directory.CreateDirectory(path);
+            }
+
+            if (!Directory.Exists(uploadsFolder))
+            {
+                Directory.CreateDirectory(uploadsFolder);
             }
         }
 
@@ -66,6 +71,8 @@
 
             string defaultAvatarName = $"avatar.{ fileExtension }";
             string imagePath = Path.Combine(userDirectory, defaultAvatarName);
+
+            this.EnsureFolder(userId);
             file.SaveAs(imagePath);
 
             return new SaveImageResult()
