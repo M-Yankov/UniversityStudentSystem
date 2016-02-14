@@ -27,7 +27,7 @@
         @Html.Partial("_LoginPartial")
         <!-- /.navbar-top-links -->
         @{
-            Html.RenderAction("SideMenu", "Home", null);
+            Html.RenderAction("SideMenu", "Home", new { area = "" });
         }
     </nav>
     <div id="page-wrapper">
