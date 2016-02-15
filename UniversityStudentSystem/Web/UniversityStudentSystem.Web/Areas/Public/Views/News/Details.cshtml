@@ -1,0 +1,26 @@
+﻿@using UniversityStudentSystem.Common.Extensions;
+@using UniversityStudentSystem.Common;
+
+@model UniversityStudentSystem.Web.Models.NewsModels.NewsViewModel
+
+@{
+    ViewBag.Title = "Details";
+}
+
+
+<h2>@Model.Title</h2>
+
+<p class="lead text-muted"> @Model.CreatedOn.DateTimeAgo()</p>
+<div class="row container text-justify">
+
+    <div class="well jumbotron col-md-6">
+        <div class="row">
+            <img src="@(Model.PhotoPath ?? WebConstants.DefaultImageNews)" width="150" style="float: left; margin-right: 20px;" />
+            <span class="lead ">
+                @Model.Content
+            </span>
+        </div>
+    </div>
+
+</div>
+@Html.ActionLink("All news", "Index", "News", new { area = "Public" }, new { @class = "btn btn-outline btn-success" })

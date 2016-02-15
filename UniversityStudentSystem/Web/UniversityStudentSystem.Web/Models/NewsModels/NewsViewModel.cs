@@ -14,6 +14,8 @@
 
         public string Content { get; set; }
 
+        public string PhotoPath { get; set; }
+
         public string ShortContent
         {
             get

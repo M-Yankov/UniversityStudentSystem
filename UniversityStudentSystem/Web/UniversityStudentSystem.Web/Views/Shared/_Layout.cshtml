@@ -8,6 +8,9 @@
 
     @Styles.Render("~/bundles/css-SBAdmin")
     @RenderSection("SocialStyles", required: false)
+
+    @RenderSection("KendoCss", required: false)
+
     @Styles.Render("~/bundles/css-site")
 </head>
 <body>
@@ -45,5 +48,6 @@
 
     @Scripts.Render("~/bundles/js-SBAdmin")
     @RenderSection("Scripts", required: false)
+    @RenderSection("KendoJs", required: false)
 </body>
 </html>

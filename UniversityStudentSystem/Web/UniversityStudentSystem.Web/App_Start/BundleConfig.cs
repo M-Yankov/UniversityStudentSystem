@@ -11,6 +11,8 @@
                             "~/SBAdminTheme/bower_components/bootstrap/dist/css/bootstrap.min.css",
                             "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.css",
                             "~/SBAdminTheme/dist/css/timeline.css",
+                            //"~/SBAdminTheme/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.css",
+                            //"~/SBAdminTheme/bower_components/datatables-responsive/css/dataTables.responsive.css",
                             "~/SBAdminTheme/dist/css/sb-admin-2.css",
                             "~/SBAdminTheme/bower_components/morrisjs/morris.css",
                             "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"));
@@ -21,11 +23,13 @@
                             "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.js",
                             "~/SBAdminTheme/bower_components/raphael/raphael-min.js",
                             "~/SBAdminTheme/bower_components/morrisjs/morris.min.js",
-                            "~/SBAdminTheme/dist/js/sb-admin-2.js"));
+                            "~/SBAdminTheme/dist/js/sb-admin-2.js"
+                           // "~/SBAdminTheme/bower_components/datatables/media/js/jquery.dataTables.min.js",
+                            //"~/SBAdminTheme/bower_components/datatables-plugins/integration/bootstrap/3/dataTables.bootstrap.min.js"
+                            ));
 
             bundles.Add(new StyleBundle("~/bundles/css-social").Include(
                             "~/SBAdminTheme/bower_components/bootstrap-social/bootstrap-social.css"));
-
 
             bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));
