@@ -29,7 +29,6 @@
 
         public ActionResult GetPosts([DataSourceRequest] DataSourceRequest request)
         {
-            // TODO: If post doesn't have any comments
             var posts = this.forumService.GetAll()
                 .OrderByDescending(f => f.Comments.Any() 
                                     ? f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn 

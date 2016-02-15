@@ -3,24 +3,76 @@
 @model IEnumerable<UniversityStudentSystem.Web.Models.NewsModels.NewsViewModel>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "News";
 }
 
 <h2>News</h2>
 <hr />
+<div class="row">
 
-@foreach (var item in Model)
-{
-    <div class="row" >
+    @(Html.Kendo()
+                .ListView<UniversityStudentSystem.Web.Models.NewsModels.NewsViewModel>()
+            .Name("news")
+            .ClientTemplateId("template")
+            .DataSource(source =>
+            {
+                source.Read(read => read.Action("GetNews", "News"));
+                source.PageSize(5);
+            })
+            .TagName("div")
+            .AutoBind(true)
+            .Pageable()
+            .HtmlAttributes(new { style = "border-style: none;", @class = "container" }))
+
+</div>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="row">
         <div class="col-md-6">
-            <h3>@item.Title</h3>
-            <p class="text-muted">@item.CreatedOn.DateTimeAgo()</p>
+            <h3>#:Title#</h3>
+            <p class="text-muted">#: CreatedOnUI#</p>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @item.ShortContent
+                    #: ShortContent#
                 </div>
             </div>
-            @Html.ActionLink("Read", "Details", new { id = item.Id, name = item.Title.ToUrl(), area = "Public" }, new { @class ="btn btn-outline btn-success" })  
+            <a href="/Public/News/Details/#:Id#/#:TitleUI#" class="btn btn-outline btn-success">Read</a>
+            @*  @Html.ActionLink("Read", "Details", new { id = item.Id, name = item.Title.ToUrl(), area = "Public" }, new { @class = "btn btn-outline btn-success" })*@
         </div>
     </div>
+</script>
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo");
 }
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-listview")
+
+}
+
+
+
+
+
+
+@*@foreach (var item in Model)
+    {
+        <div class="row">
+            <div class="col-md-6">
+                <h3>@item.Title</h3>
+                <p class="text-muted">@item.CreatedOn.DateTimeAgo()</p>
+                <div class="panel panel-default">
+                    <div class="panel-body">
+                        @item.ShortContent
+                    </div>
+                </div>
+                @Html.ActionLink("Read", "Details", new { id = item.Id, name = item.Title.ToUrl(), area = "Public" }, new { @class = "btn btn-outline btn-success" })
+            </div>
+        </div>
+    }*@

@@ -21,8 +21,14 @@
         // GET: Public/News
         public ActionResult Index()
         {
+            return View();
+        }
+
+        public ActionResult GetNews([DataSourceRequest] DataSourceRequest request)
+        {
             var news = this.newsService.GetAll().To<NewsViewModel>().ToList();
-            return View(news);
+
+            return this.Json(news.ToDataSourceResult(request));
         }
 
         // GET: Public/Details

@@ -54,7 +54,6 @@
         // [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult LatestForumPosts()
         {
-            // TODO: Check if this is working if the Forum post doesn't have any comments.
             IList<ForumPostViewModel> forumPosts = homeService
                 .GetTopForumPosts()
                 .OrderByDescending(f => f.Comments.Any()

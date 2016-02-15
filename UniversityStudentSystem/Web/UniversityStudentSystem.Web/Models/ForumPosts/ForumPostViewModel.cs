@@ -4,6 +4,7 @@
     using System.Collections.Generic;
     using AutoMapper;
     using Comments;
+    using Common.Extensions;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
@@ -12,6 +13,14 @@
         public int Id { get; set; }
 
         public string Title { get; set; }
+
+        public string TitleUI
+        {
+            get
+            {
+                return this.Title.ToUrl();
+            }
+        }
 
         public string Content { get; set; }
 

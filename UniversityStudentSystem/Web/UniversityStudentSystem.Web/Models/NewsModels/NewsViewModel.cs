@@ -3,6 +3,7 @@
     using System;
     using AutoMapper;
     using Common;
+    using Common.Extensions;
     using Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
@@ -11,6 +12,14 @@
         public int Id { get; set; }
 
         public string Title { get; set; }
+
+        public string TitleUI
+        {
+            get
+            {
+                return this.Title.ToUrl();
+            }
+        }
 
         public string Content { get; set; }
 
@@ -27,5 +36,13 @@
         }
 
         public DateTime CreatedOn { get; set; }
+
+        public string CreatedOnUI
+        {
+            get
+            {
+                return this.CreatedOn.DateTimeAgo();
+            }
+        }
     }
 }
