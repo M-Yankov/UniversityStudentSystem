@@ -20,7 +20,7 @@
                 <!-- /input-group -->
             </li>
             <li>
-                <a href="/"><i class="fa fa-home fa-fw"></i> Home</a>
+                <a href="@Url.Action(string.Empty, "Home", new { area = string.Empty})"><i class="fa fa-home fa-fw"></i> Home</a>
             </li>
             <li>
                 <a href="#"><i class="fa fa-life-saver fa-fw"></i> Specialties<span class="fa arrow"></span></a>
@@ -72,7 +72,7 @@
                 <a href="#"><i class="fa fa-trophy fa-fw"></i> Certificates</a>
             </li>
             <li>
-                <a href="#"><i class="fa fa-info-circle fa-fw"></i> About University</a>
+                <a href="@Url.Action("Index", "About", new { area = "Public"})"><i class="fa fa-info-circle fa-fw"></i> About University</a>
             </li>
             <li>
                 <a href="@Url.Action("Index", "News", new { area = "Public"})"><i class="fa fa-bars fa-fw"></i> News</a>
