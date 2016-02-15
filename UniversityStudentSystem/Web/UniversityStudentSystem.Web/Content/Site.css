@@ -60,3 +60,7 @@ li .timeline-panel:hover {
     position: absolute;
     z-index: 200;
 }
+
+#accordion .panel-heading:hover {
+    background-color: #8ebc00
+}

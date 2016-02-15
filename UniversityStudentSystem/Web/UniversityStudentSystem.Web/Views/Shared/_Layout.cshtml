@@ -12,6 +12,9 @@
     @RenderSection("KendoCss", required: false)
 
     @Styles.Render("~/bundles/css-site")
+
+    @Scripts.Render("~/bundles/js-kendo-jquery")
+    @RenderSection("KendoHead", required: false)
 </head>
 <body>
     <nav class="navbar navbar-default navbar-fixed-top success" role="navigation" style="margin-bottom: 0">
@@ -45,6 +48,7 @@
             <p>&copy; @DateTime.Now.Year - University system</p>
         </footer>
     </div>
+
 
     @Scripts.Render("~/bundles/js-SBAdmin")
     @RenderSection("Scripts", required: false)

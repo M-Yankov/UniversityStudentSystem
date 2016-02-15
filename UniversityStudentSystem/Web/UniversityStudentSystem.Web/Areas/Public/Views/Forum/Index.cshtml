@@ -1,0 +1,63 @@
+﻿@model IList<UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel>
+@{
+    ViewBag.Title = "Forum";
+}
+<h2>Forum posts</h2>
+
+<div class="col-md-6">
+
+@(Html.Kendo()
+    .ListView<UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel>()
+    .Name("accordion")
+    .ClientTemplateId("template")
+    .DataSource(dataSource =>
+    {
+        dataSource.Read(read => read.Action("GetPosts", "Forum"));
+        dataSource.PageSize(10);
+    })
+    .TagName("div")
+    .AutoBind(true)
+    .Pageable()
+    .HtmlAttributes(new { @class = "panel-group" }))
+</div>
+
+<script type="text/x-kendo-tmpl" id="template">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h4 class="panel-title">
+                <a class="" aria-expanded="false" data-toggle="collapse" data-parent="\\#accordion" href="\\#collapse#: ++a#">
+                    #:Title#</a>
+                <i class="text-info">  in #:Category#</i>
+                <span class="pull-right">
+                    #: Comments.length#
+                    <i class="fa fa-comments-o"></i>
+                </span>
+            </h4>
+        </div>
+        <div style="" aria-expanded="false" id="collapse#: a#" class="panel-collapse collapse">
+            <div class="panel-body">
+                #:Content#
+                <div class="row text-center">
+                    <a href="/Public/Forum/Details/#:Id#/#:Title#" class="btn btn-outline btn-sm btn-success">Details</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</script>
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo");    
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-listview")
+    <script>
+                var a = 0;
+    </script>
+}

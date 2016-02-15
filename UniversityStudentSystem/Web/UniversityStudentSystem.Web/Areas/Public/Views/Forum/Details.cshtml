@@ -1,0 +1,61 @@
+﻿@using UniversityStudentSystem.Common.Extensions;
+@model UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel
+
+@{
+    ViewBag.Title = "Forum";
+}
+
+<h2>Forum</h2>
+
+<h3>@Model.Title</h3>
+<p class="text-muted lead"> @Model.CreatedOn.DateTimeAgo()</p>
+
+<div class="row">
+
+<div class="panel panel-default col-md-6">
+    <div class="panel-body">
+        @Model.Content
+    </div>
+</div>
+</div>
+
+<div class="row">
+
+@foreach (var comm in Model.Comments)
+{
+    <div class="row">
+        <div class="col-md-5 col-md-offset-1">
+
+        <div class="panel panel-success ">
+            <div class="panel-heading">
+                <strong>By @comm.Username</strong>
+                <i>@comm.CreatedOn.DateTimeAgo() :</i>
+            </div>
+            <div class="panel-body">
+                @comm.Content
+            </div>
+        </div>
+        </div>
+    </div>
+}
+</div>
+
+<a href="@(Url.Action("Index", "Forum", null))" class="btn btn-outline btn-info">
+    <i class="fa fa-chevron-left "></i>
+    Back to forum
+</a>
+
+@if(this.Request.IsAuthenticated)
+{
+    <div class="row">
+        @using (Html.BeginForm("AddComment", "Forum", new { id = Model.Id}, FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.Partial("_AddComment", new UniversityStudentSystem.Web.Models.Comments.CommentInputModel())
+        }
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

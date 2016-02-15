@@ -203,6 +203,7 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Public\Controllers\AboutController.cs" />
+    <Compile Include="Areas\Public\Controllers\ForumController.cs" />
     <Compile Include="Areas\Public\Controllers\NewsController.cs" />
     <Compile Include="Areas\Public\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
@@ -227,6 +228,7 @@
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Models\Candidates\CandidateInputModel.cs" />
     <Compile Include="Models\Candidates\CandidateViewModel.cs" />
+    <Compile Include="Models\Comments\CommentInputModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Courses\CourseViewModel.cs" />
     <Compile Include="Models\Documents\DocumentViewModel.cs" />
@@ -271,13 +273,14 @@
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\Kendo\jquery.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
+    <Content Include="Scripts\Kendo\kendo.grid.min.js" />
     <Content Include="Scripts\Kendo\kendo.listview.min.js" />
+    <Content Include="Scripts\Kendo\kendo.web.min.js" />
     <Content Include="Users\Common\CVBG.pdf" />
     <Content Include="Users\Common\CVEN.pdf" />
     <Content Include="Users\Common\CVFR.pdf" />
     <Content Include="Areas\Public\Views\web.config" />
     <Content Include="Areas\Public\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Public\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Public\Views\Specialties\Index.cshtml" />
     <Content Include="SBAdminTheme\bower.json" />
     <Content Include="SBAdminTheme\less\mixins.less" />
@@ -288,6 +291,9 @@
     <Content Include="Areas\Public\Views\News\Index.cshtml" />
     <Content Include="Areas\Public\Views\News\Details.cshtml" />
     <Content Include="Areas\Public\Views\About\Index.cshtml" />
+    <Content Include="Areas\Public\Views\Forum\Index.cshtml" />
+    <Content Include="Areas\Public\Views\Forum\Details.cshtml" />
+    <Content Include="Areas\Public\Views\Shared\_AddComment.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

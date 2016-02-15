@@ -58,12 +58,14 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Contracts\ICoursesService.cs" />
+    <Compile Include="Contracts\IForumService.cs" />
     <Compile Include="Contracts\IHomePageService.cs" />
     <Compile Include="Contracts\IMyService.cs" />
     <Compile Include="Contracts\INewsService.cs" />
     <Compile Include="Contracts\ISpecialtiesService.cs" />
     <Compile Include="Contracts\IUserService.cs" />
     <Compile Include="CoursesService.cs" />
+    <Compile Include="ForumService.cs" />
     <Compile Include="HomePageService.cs" />
     <Compile Include="NewsService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

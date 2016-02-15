@@ -18,7 +18,7 @@
                             "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/js-SBAdmin").Include(
-                            "~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
+                            //"~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
                             "~/SBAdminTheme/bower_components/bootstrap/dist/js/bootstrap.min.js",
                             "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.js",
                             "~/SBAdminTheme/bower_components/raphael/raphael-min.js",
@@ -30,6 +30,22 @@
 
             bundles.Add(new StyleBundle("~/bundles/css-social").Include(
                             "~/SBAdminTheme/bower_components/bootstrap-social/bootstrap-social.css"));
+
+            //// ----- Kendo --------
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-jquery").Include(
+                            "~/Scripts/Kendo/jquery.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo").Include(
+                "~/Scripts/Kendo/kendo.web.min.js",
+                "~/Scripts/Kendo/kendo.aspnetmvc.min.js"));
+
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-listview").Include(
+                        "~/Scripts/Kendo/kendo.listview.min.js"));
+
+            //// ------ Default -----
+            bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
+                            "~/Content/Kendo/kendo.common.min.css",
+                            "~/Content/Kendo/kendo.metro.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));

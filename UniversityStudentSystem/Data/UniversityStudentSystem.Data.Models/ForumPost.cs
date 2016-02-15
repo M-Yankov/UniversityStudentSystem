@@ -34,7 +34,7 @@
 
         public virtual Category Categoty { get; set; }
 
-        public ICollection<Comment> Comments
+        public virtual ICollection<Comment> Comments
         {
             get
             {
