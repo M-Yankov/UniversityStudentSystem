@@ -3,24 +3,29 @@
     ViewBag.Title = "Forum";
 }
 <h2>Forum posts</h2>
-
-<div class="col-md-6">
-
-@(Html.Kendo()
-    .ListView<UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel>()
-    .Name("accordion")
-    .ClientTemplateId("template")
-    .DataSource(dataSource =>
-    {
-        dataSource.Read(read => read.Action("GetPosts", "Forum"));
-        dataSource.PageSize(10);
-    })
-    .TagName("div")
-    .AutoBind(true)
-    .Pageable()
-    .HtmlAttributes(new { @class = "panel-group" }))
+<div class="row">
+    <div class="col-md-6">
+    @(Html.Kendo()
+        .ListView<UniversityStudentSystem.Web.Models.ForumPosts.ForumPostViewModel>()
+        .Name("accordion")
+        .ClientTemplateId("template")
+        .DataSource(dataSource =>
+        {
+            dataSource.Read(read => read.Action("GetPosts", "Forum"));
+            dataSource.PageSize(10);
+        })
+        .TagName("div")
+        .AutoBind(true)
+        .Pageable()
+        .HtmlAttributes(new { @class = "panel-group" }))
+    </div>
 </div>
-
+<br />
+<div class="row">
+    <div class="col-md-6">
+        @Html.ActionLink("Create new", "Post", "Forum", null, new { @class = "btn btn-success btn-outline pull-right"})
+    </div>
+</div>
 <script type="text/x-kendo-tmpl" id="template">
     <div class="panel panel-default">
         <div class="panel-heading">

@@ -13,10 +13,12 @@
     public class ForumController : BaseController
     {
         private IForumService forumService;
+        private ICategoryService categoriesService;
 
-        public ForumController(IForumService service)
+        public ForumController(IForumService forumService, ICategoryService categoryService)
         {
-            this.forumService = service;
+            this.forumService = forumService;
+            this.categoriesService = categoryService;
         }
         
         // GET: Public/Forum
@@ -29,7 +31,9 @@
         {
             // TODO: If post doesn't have any comments
             var posts = this.forumService.GetAll()
-                .OrderByDescending(f => f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn)
+                .OrderByDescending(f => f.Comments.Any() 
+                                    ? f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn 
+                                    : f.CreatedOn)
                 .To<ForumPostViewModel>().ToList();
 
             return this.Json(posts.ToDataSourceResult(request));
@@ -56,6 +60,31 @@
             }
 
             this.forumService.PostComment(model.Content, id, this.UserId);
+
+            return this.RedirectToAction("Details", new { id = id });
+        }
+
+        [HttpGet]
+        [Authorize]
+        public ActionResult Post()
+        {
+            return this.View(new ForumInputModel
+            {
+                Categories = this.categoriesService.GetAll().ToList()
+            });
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult Post(ForumInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            int id = this.forumService.Create(model.Title, model.Content, model.CategoryId, this.UserId);
 
             return this.RedirectToAction("Details", new { id = id });
         }

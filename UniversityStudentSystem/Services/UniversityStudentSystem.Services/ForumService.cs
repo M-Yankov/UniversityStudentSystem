@@ -35,5 +35,22 @@
             this.commentRepository.Add(comment);
             this.commentRepository.Save();
         }
+
+        public int Create(string title, string content, int categoryId, string userId)
+        {
+            ForumPost newPost = new ForumPost()
+            {
+                Title = title,
+                Content = content,
+                CategoryId = categoryId,
+                CreatedOn = DateTime.Now,
+                UserId = userId,
+            };
+
+            this.forumRepository.Add(newPost);
+            this.forumRepository.Save();
+
+            return newPost.Id;
+        }
     }
 }

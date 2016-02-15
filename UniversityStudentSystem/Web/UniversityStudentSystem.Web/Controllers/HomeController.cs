@@ -57,7 +57,9 @@
             // TODO: Check if this is working if the Forum post doesn't have any comments.
             IList<ForumPostViewModel> forumPosts = homeService
                 .GetTopForumPosts()
-                .OrderByDescending(f => f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn)
+                .OrderByDescending(f => f.Comments.Any()
+                                    ? f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn
+                                    : f.CreatedOn)
                 .Take(WebConstants.TopForumPostsCount)
                 .To<ForumPostViewModel>()
                 .ToList();
@@ -106,7 +108,8 @@
                 Count = coursesService.GetAll().Count(),
                 Text = "Courses",
                 ColorClass = "panel-yellow",
-                IconClass = "fa-bullhorn"
+                IconClass = "fa-bullhorn",
+                Link = "Courses"
             };
 
             return this.PartialView("_Statistic", model);
@@ -119,8 +122,9 @@
             {
                 Count = homeService.GetTopForumPosts().Count(),
                 Text = "Forum psts",
-                ColorClass = "panel-primary",
-                IconClass = "fa-comments-o"
+                ColorClass = "panel-green",
+                IconClass = "fa-comments-o",
+                Link = "Forum"
             };
 
             return this.PartialView("_Statistic", model);
@@ -136,8 +140,9 @@
                         .GetAll()
                         .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id)).Count(),
                 Text = "Trainers",
-                ColorClass = "panel-green",
-                IconClass = "fa-child"
+                ColorClass = "panel-primary",
+                IconClass = "fa-child",
+                Link = "Trainers",
             };
 
             return this.PartialView("_Statistic", model);
@@ -153,7 +158,8 @@
                         .Count(),
                 Text = "Specialties",
                 ColorClass = "panel-red",
-                IconClass = "fa-rocket"
+                IconClass = "fa-rocket",
+                Link = "Specialties"
             };
 
             return this.PartialView("_Statistic", model);

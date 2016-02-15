@@ -232,6 +232,7 @@
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Courses\CourseViewModel.cs" />
     <Compile Include="Models\Documents\DocumentViewModel.cs" />
+    <Compile Include="Models\ForumPosts\ForumInputModel.cs" />
     <Compile Include="Models\ForumPosts\ForumPostViewModel.cs" />
     <Compile Include="Models\Home\HomeViewModel.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
@@ -294,6 +295,7 @@
     <Content Include="Areas\Public\Views\Forum\Index.cshtml" />
     <Content Include="Areas\Public\Views\Forum\Details.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_AddComment.cshtml" />
+    <Content Include="Areas\Public\Views\Forum\Post.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

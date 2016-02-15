@@ -123,7 +123,6 @@
             }
         }
 
-
         public ICollection<Course> Courses
         {
             get
