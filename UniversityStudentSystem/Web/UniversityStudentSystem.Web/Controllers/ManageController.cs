@@ -1,31 +1,37 @@
-﻿using System;
-using System.IO;
-using System.Linq;
-using System.Threading.Tasks;
-using System.Web;
-using System.Web.Mvc;
-using Microsoft.AspNet.Identity;
-using Microsoft.AspNet.Identity.Owin;
-using Microsoft.Owin.Security;
-using UniversityStudentSystem.Common;
-using UniversityStudentSystem.Data.Models;
-using UniversityStudentSystem.Services.Contracts;
-using UniversityStudentSystem.Web.HelperProviders;
-using UniversityStudentSystem.Web.Models.Manage;
-using UniversityStudentSystem.Web.Models.Users;
-
-namespace UniversityStudentSystem.Web.Controllers
+﻿namespace UniversityStudentSystem.Web.Controllers
 {
+    using System;
+    using System.IO;
+    using System.Linq;
+    using System.Threading.Tasks;
+    using System.Web;
+    using System.Web.Mvc;
+
+    using Microsoft.AspNet.Identity;
+    using Microsoft.AspNet.Identity.Owin;
+    using Microsoft.Owin.Security;
+
+    using UniversityStudentSystem.Common;
+    using UniversityStudentSystem.Data.Models;
+    using UniversityStudentSystem.Services.Contracts;
+    using UniversityStudentSystem.Web.HelperProviders;
+    using UniversityStudentSystem.Web.Models.Candidates;
+    using UniversityStudentSystem.Web.Models.Manage;
+    using UniversityStudentSystem.Web.Models.Users;
+    using UniversityStudentSystem.Web.Infrastructure.Mapping;
+    using Models.Specialties;
     [Authorize]
     public class ManageController : BaseController
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
         private IUserService usersService;
+        private ISpecialtiesService specialtiesService;
 
-        public ManageController(IUserService servce)
+        public ManageController(IUserService servce, ISpecialtiesService specialties)
         {
             this.usersService = servce;
+            this.specialtiesService = specialties;
         }
 
         public ManageController(ApplicationUserManager userManager, ApplicationSignInManager signInManager)
@@ -117,12 +123,63 @@ namespace UniversityStudentSystem.Web.Controllers
             return this.RedirectToAction("Index");
         }
 
+        // POST: /Manage/RemoveAvatar
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult RemoveAvatar()
         {
             this.usersService.ClearAvatar(this.UserId);
             return this.RedirectToAction("Index");
+        }
+
+        // Get: /Mange/Apply
+        [HttpGet]
+        public ActionResult Apply()
+        {
+           var candidates = this.usersService
+                .GetCandidatures(this.UserId)
+                .OrderByDescending(c => c.DateSent)
+                .To<CandidateViewModel>()
+                .ToList();
+
+            return this.View(candidates);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Apply(CandidateInputModel candidature, HttpPostedFileBase file)
+        {
+            if (file == null || !this.ModelState.IsValid)
+            {
+                this.ViewBag.Class = "text-danger";
+                this.ViewBag.Message = "Failed to apply!"; 
+                return this.RedirectToAction("Apply");
+            }
+
+            string path = this.UserManagement.SaveDocument(
+                file, 
+                this.UserId, 
+                $"Apply-for-{ candidature.SpecialtyId }-{ DateTime.Now.ToString("yyyy-MMM-dd")}");
+
+            this.usersService.MakeApply(this.UserId, candidature.SpecialtyId, path);
+
+
+            this.ViewBag.Class = "text-success";
+            this.ViewBag.Message = "Success!";
+            return this.RedirectToAction("Apply");
+        }
+
+        [ChildActionOnly]
+        public ActionResult ApplyForm()
+        {
+            if (this.usersService.CanApply(this.UserId))
+            {
+                CandidateInputModel model = new CandidateInputModel();
+                model.Specialties = this.specialtiesService.GetAll().To<SpecialtyViewModel>().ToList();
+                return this.PartialView("_ApplyForm", model);
+            }
+
+            return new EmptyResult();
         }
 
         //

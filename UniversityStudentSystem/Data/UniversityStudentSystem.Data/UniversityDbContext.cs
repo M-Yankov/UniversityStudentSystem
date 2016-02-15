@@ -54,7 +54,15 @@
         public override int SaveChanges()
         {
             this.ApplyAuditInfoRules();
-            return base.SaveChanges();
+            // EF - should die some day !
+            try
+            {
+                return base.SaveChanges();
+            }
+            catch (Exception ex)
+            {
+                throw;
+            }
         }
 
         private void ApplyAuditInfoRules()

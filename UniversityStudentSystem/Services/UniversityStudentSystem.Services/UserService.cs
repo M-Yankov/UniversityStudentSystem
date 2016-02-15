@@ -1,6 +1,7 @@
 ﻿namespace UniversityStudentSystem.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Common;
     using Contracts;
@@ -12,10 +13,12 @@
     public class UserService : IUserService
     {
         private IRepository<User, string> usersRepository;
+        private IRepository<Candidate> candidatesRepository;
 
-        public UserService(IRepository<User, string> repository)
+        public UserService(IRepository<User, string> users, IRepository<Candidate> candidatures)
         {
-            this.usersRepository = repository;
+            this.usersRepository = users;
+            this.candidatesRepository = candidatures;
         }
 
         public IQueryable<IdentityRole> GetRoles()
@@ -52,6 +55,48 @@
             User user = this.GetById(id);
             user.AvaratUrl = null;
             this.Update(user);
+        }
+
+        public IQueryable<Candidate> GetCandidatures(string id)
+        {
+           return this.candidatesRepository.All().Where(c => c.UserId == id);
+        }
+
+        public bool CanApply(string id)
+        {
+            var candidature = this.candidatesRepository.All()
+                .Where(c => c.UserId == id)
+                .OrderByDescending(c => c.DateSent).FirstOrDefault();
+            if (candidature == null || candidature.IsRejected)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void MakeApply(string userId, int specialtyId, string path)
+        {
+            Candidate candidate = new Candidate()
+            {
+                UserId = userId,
+                SpecialtyId = specialtyId,
+                DateSent = DateTime.Now,
+                IsApproved = false,
+                IsRejected = false,
+                Documents = new HashSet<Document>()
+                {
+                    new Document()
+                    {
+                        DateUploaded = DateTime.Now,
+                        Path = path,
+                        UserId = userId 
+                    }
+                }
+            };
+
+            this.candidatesRepository.Add(candidate);
+            this.candidatesRepository.Save();
         }
     }
 }

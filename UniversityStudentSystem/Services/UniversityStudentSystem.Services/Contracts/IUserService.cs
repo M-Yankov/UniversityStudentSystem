@@ -17,5 +17,11 @@
         void Update(User user);
 
         void ClearAvatar(string id);
+
+        IQueryable<Candidate> GetCandidatures(string id);
+
+        bool CanApply(string id);
+
+        void MakeApply(string userId, int specialtyId, string path);
     }
 }

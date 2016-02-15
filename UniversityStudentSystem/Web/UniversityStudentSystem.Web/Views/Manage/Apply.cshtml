@@ -1,0 +1,53 @@
+﻿@model IList<UniversityStudentSystem.Web.Models.Candidates.CandidateViewModel>
+@{
+    ViewBag.Title = "Apply";
+}
+
+<h2>Apply</h2>
+
+<p class="@ViewBag.Class"> @ViewBag.Message</p>
+
+<table class="table table-bordered table-condensed">
+    <tr>
+        <th>For specialty</th>
+        <th>Date</th>
+        <th>Status</th> 
+            <!-- TODO: confirm/ reject for trainers-->
+    </tr>
+
+@foreach (var canditatude in Model)
+{
+    <tr>
+        <td>@canditatude.SpecialtyName</td>
+        <td>@canditatude.DateSent</td>
+        <td>
+            @{
+                if (canditatude.IsApproved)
+                {
+                    <div style="display: inline-block;" class="alert alert-success">
+                        <strong>Congratulations!</strong>
+                        This candidature is confirmed!
+                    </div>
+                }
+                else if (canditatude.IsRejected)
+                {
+                    <div style="display: inline-block;" class="alert alert-danger">
+                        This candidature is rejected!
+                    </div>
+                }
+                else
+                {
+                    <div style="display: inline-block;" class="alert alert-info">
+                        This candidature is still waiting.
+                    </div>
+                }
+            }
+        </td>
+    </tr>
+}
+
+</table>
+
+@{
+    Html.RenderAction("ApplyForm");
+}

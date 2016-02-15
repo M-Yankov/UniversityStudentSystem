@@ -199,6 +199,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
+    <Compile Include="Areas\Public\Controllers\NewsController.cs" />
     <Compile Include="Areas\Public\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -220,8 +221,11 @@
     <Compile Include="Models\Account\ResetPasswordViewModel.cs" />
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="Models\Candidates\CandidateInputModel.cs" />
+    <Compile Include="Models\Candidates\CandidateViewModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
     <Compile Include="Models\Courses\CourseViewModel.cs" />
+    <Compile Include="Models\Documents\DocumentViewModel.cs" />
     <Compile Include="Models\ForumPosts\ForumPostViewModel.cs" />
     <Compile Include="Models\Home\HomeViewModel.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
@@ -325,10 +329,13 @@
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
     <Content Include="Views\Shared\_Statistic.cshtml" />
+    <Content Include="Views\Manage\Apply.cshtml" />
+    <Content Include="Views\Shared\_ApplyForm.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Areas\Public\Views\News\" />
     <Folder Include="Users\ca8b09c6-3eb0-4402-812e-f01b2955155a\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

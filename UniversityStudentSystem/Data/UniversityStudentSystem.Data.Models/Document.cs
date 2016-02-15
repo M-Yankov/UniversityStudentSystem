@@ -22,7 +22,7 @@ namespace UniversityStudentSystem.Data.Models
         public virtual User User { get; set; }
 
         [Required]
-        [MaxLength(ModelConstants.NameMaxLength)]
+        [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Path { get; set; }
 
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]

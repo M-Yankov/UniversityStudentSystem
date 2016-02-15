@@ -38,6 +38,20 @@
             return this.server.MapPath($"~/Users/{ userId }");
         }
 
+        public string SaveDocument(HttpPostedFileBase file, string userId, string fileName)
+        {
+            int indexOfDot = file.FileName.LastIndexOf('.');
+            string extenssion = file.FileName.Substring(indexOfDot);
+
+            string userDirectory = this.GetCurrentUserDirecotry(userId);
+            string fullFileName = fileName + extenssion;
+            string filePath = Path.Combine(userDirectory, "uploads", fullFileName);
+            this.EnsureFolder(userId);
+            file.SaveAs(filePath);
+
+            return $"~/Users{ userId }/{fullFileName}";
+        }
+
         public SaveImageResult SaveImage(HttpPostedFileBase file, string userId)
         {
             string[] imageExtensions = WebConstants.AcceptImageProfileTypes
