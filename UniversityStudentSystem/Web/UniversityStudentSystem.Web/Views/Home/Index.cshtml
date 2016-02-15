@@ -3,22 +3,30 @@
 }
 
 <div class="row">
-        <div class="container">
+    <div class="container">
 
-            <div class="jumbotron">
-                <div class="pull-right">
-                    <img src="~/Images/university-default-news.png" alt="universityLogo" width="150" />
-                </div>
-                <h1>Welcome to student system</h1>
-                <p>
-                    Easy to learn, latest technologies, job careers at ending of each specialty track -
-                    Diploma as rewards. Manage your task and marks
-                </p>
+        <div class="jumbotron">
+            <div class="pull-right">
+                <img src="~/Images/university-default-news.png" alt="universityLogo" width="150" />
             </div>
+            <h1>Welcome to student system</h1>
+            <p>
+                Easy to learn, latest technologies, job careers at ending of each specialty track -
+                Diploma as rewards. Manage your task and marks
+            </p>
         </div>
+    </div>
 </div>
 
 @{
+    <div class="row">
+        @{
+            Html.RenderAction("CourseStatistic", "Home", null);
+            Html.RenderAction("ForumStatistic", "Home", null);
+            Html.RenderAction("TrainerStatistic", "Home", null);
+            Html.RenderAction("SpecialtiesStatistic", "Home", null);
+        }
+    </div>
     Html.RenderAction("LatestNews", "Home", null);
     Html.RenderAction("LatestForumPosts", "Home", null);
 }

@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Common;
     using Infrastructure.Mapping;
+    using Models;
     using Models.Courses;
     using Models.ForumPosts;
     using Models.NewsModels;
@@ -95,6 +96,67 @@
             }  
 
             return this.PartialView("_SideMenu", sideMenu);
+        }
+
+        [ChildActionOnly]
+        public ActionResult CourseStatistic()
+        {
+            StatisticViewModel model = new StatisticViewModel()
+            {
+                Count = coursesService.GetAll().Count(),
+                Text = "Courses",
+                ColorClass = "panel-yellow",
+                IconClass = "fa-bullhorn"
+            };
+
+            return this.PartialView("_Statistic", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult ForumStatistic()
+        {
+            StatisticViewModel model = new StatisticViewModel()
+            {
+                Count = homeService.GetTopForumPosts().Count(),
+                Text = "Forum psts",
+                ColorClass = "panel-primary",
+                IconClass = "fa-comments-o"
+            };
+
+            return this.PartialView("_Statistic", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult TrainerStatistic()
+        {
+            var trainerRole = usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            StatisticViewModel model = new StatisticViewModel()
+            {
+                Count = usersService
+                        .GetAll()
+                        .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id)).Count(),
+                Text = "Trainers",
+                ColorClass = "panel-green",
+                IconClass = "fa-child"
+            };
+
+            return this.PartialView("_Statistic", model);
+        }
+
+        [ChildActionOnly]
+        public ActionResult SpecialtiesStatistic()
+        {
+            StatisticViewModel model = new StatisticViewModel()
+            {
+                Count = specialtiesService
+                        .GetAll()
+                        .Count(),
+                Text = "Specialties",
+                ColorClass = "panel-red",
+                IconClass = "fa-rocket"
+            };
+
+            return this.PartialView("_Statistic", model);
         }
     }
 }

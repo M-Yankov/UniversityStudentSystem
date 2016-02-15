@@ -235,6 +235,7 @@
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
     <Compile Include="Models\SideMenu\SideMenuViewModel.cs" />
     <Compile Include="Models\Specialties\SpecialtyViewModel.cs" />
+    <Compile Include="Models\StatisticViewModel.cs" />
     <Compile Include="Models\Users\UserInputModel.cs" />
     <Compile Include="Models\Users\UserViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -323,6 +324,7 @@
     <Content Include="Views\Shared\_SideMenu.cshtml" />
     <Content Include="Views\Manage\Edit.cshtml" />
     <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Shared\_Statistic.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
