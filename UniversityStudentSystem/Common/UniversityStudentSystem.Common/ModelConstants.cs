@@ -20,7 +20,6 @@
         public const int MarkMinValue = 2;
         public const int MarkMaxValue = 6;
 
-
         public const int MinAge = 18;
         public const int MaxAge = 100;
 

@@ -205,6 +205,7 @@
     <Compile Include="Areas\Public\Controllers\AboutController.cs" />
     <Compile Include="Areas\Public\Controllers\ForumController.cs" />
     <Compile Include="Areas\Public\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Public\Controllers\ReportController.cs" />
     <Compile Include="Areas\Public\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Public\PublicAreaRegistration.cs" />
     <Compile Include="Controllers\AccountController.cs" />
@@ -226,6 +227,7 @@
     <Compile Include="Models\Account\ResetPasswordViewModel.cs" />
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
+    <Compile Include="Models\BugReportInputModel.cs" />
     <Compile Include="Models\Candidates\CandidateInputModel.cs" />
     <Compile Include="Models\Candidates\CandidateViewModel.cs" />
     <Compile Include="Models\Comments\CommentInputModel.cs" />
@@ -296,6 +298,7 @@
     <Content Include="Areas\Public\Views\Forum\Details.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_AddComment.cshtml" />
     <Content Include="Areas\Public\Views\Forum\Post.cshtml" />
+    <Content Include="Areas\Public\Views\Report\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

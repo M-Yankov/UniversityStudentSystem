@@ -46,6 +46,8 @@
 
         public IDbSet<Test> Tests { get; set; }
 
+        public IDbSet<BugReport> BugReports { get; set; }
+
         public static UniversityDbContext Create()
         {
             return new UniversityDbContext();

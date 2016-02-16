@@ -57,7 +57,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BugReportService.cs" />
     <Compile Include="CategoryService.cs" />
+    <Compile Include="Contracts\IBugReportService.cs" />
     <Compile Include="Contracts\ICategoryService.cs" />
     <Compile Include="Contracts\ICoursesService.cs" />
     <Compile Include="Contracts\IForumService.cs" />
