@@ -1,0 +1,45 @@
+﻿@model UniversityStudentSystem.Web.Areas.Admin.Models.TestInputModel
+
+@for (int i = 0; i < Model.Questions.Count; i++)
+{
+<div class="form-group" id="questions">
+    <div class="panel panel-info">
+        <div class="panel-heading">
+            
+            <h4>  <i class="fa fa-question-circle fa-fw "></i>  @(i + 1)<span>. Question</span>  </h4>
+        </div>
+        <div class="panel-body">
+            @Html.TextAreaFor(model => model.Questions[i].Content, new { @class = "form-control" , placeholder = "Your question here..."})
+            @Html.ValidationMessageFor(model => model.Questions[i].Content, "", new { @class = "text-danger" })
+            <div class="row" style="margin-top: 5px;">
+                @Html.LabelFor(model => model.Questions[i].Points, new { @class = "control-label col-md-1" })
+                <div class="col-md-2">
+                    @Html.EditorFor(model => model.Questions[i].Points, new { htmlAttributes = new { @class = "form-control", min = 0 } })
+                </div>
+            </div>
+            <p class="lead" style="margin-top: 5px;">Answers <span class="text-muted" style="font-size: 14px;">(By default first answer will be marked as correct)</span></p>
+            <div class="row">
+                <div class="col-md-5">
+                    @for (int a = 0; a < Model.Questions[i].Answers.Count; a++)
+                    {
+                        <div class="row" style="margin-bottom: 3px;">
+                            <div class="col-md-12">
+                                <div class="col-md-2">
+                                    <input type="radio" name="Questions[@i].Index" value="@a" class="my-radio" />
+                                </div>
+                                <div class="col-md-9">
+                                    @Html.TextBoxFor(model => model.Questions[i].Answers[a].Content, new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.Questions[i].Answers[a].Content, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                    }
+                    <div class="col-md-11">
+                        <input type="button" class="add-answer btn btn-sm pull-right btn-default btn-outline" value="Add answer" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+}

@@ -312,6 +312,7 @@
     <Content Include="Areas\Admin\Views\Courses\EditorTemplates\IsEnabled.cshtml" />
     <Content Include="Areas\Admin\Views\Courses\EditorTemplates\CheckBoxTemplate.cshtml" />
     <Content Include="Areas\Admin\Views\Courses\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\_Questions.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,4 +1,6 @@
-﻿@model UniversityStudentSystem.Web.Areas.Admin.Models.TestInputModel
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Models;
+
+@model TestInputModel
 
 @{
     ViewBag.Title = "AddTest";
@@ -49,76 +51,11 @@
 
         @if (Model != null && Model.Questions.Any())
         {
-            for (int i = 0; i < Model.Questions.Count; i++)
-            {
-                <div class="form-group">
-                    <div class="panel panel-info">
-                        <div class="panel-heading">
-                            <h4>    @(i + 1)<span>. Question</span></h4>
-                        </div>
-                        <div class="panel-body">
-                            @Html.EditorFor(model => model.Questions[i].Content)
-                            @Html.ValidationMessageFor(model => model.Questions[i].Content, "", new { @class = "text-danger" })
-                            <p class="lead" style="margin-top: 5px;">Answers</p>
-                            <div class="row">
-                                <div class="col-md-5">
-                                    @for (int a = 0; a < Model.Questions[i].Answers.Count; a++)
-                                    {
-                                        <div class="row" style="margin-bottom: 3px;">
-                                            <div class="col-md-12">
-                                                <div class="col-md-2">
-                                                    <input type="radio" name="Model.Questions[@i].Index" value="@a" class="col-md-2 my-radio" />
-                                                </div>
-                                                <div class="col-md-9">
-                                                    @Html.EditorFor(model => model.Questions[i].Answers[a].Content)
-                                                    @Html.ValidationMessageFor(model => model.Questions[i].Answers[a].Content, "", new { @class = "text-danger" })
-                                                </div>
-                                            </div>
-                                        </div>
-                                    }
-                                    <div class="col-md-11">
-                                        <button class="add-answer btn btn-sm pull-right btn-default btn-outline">Add answer</button>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            }
+            @Html.Partial("_Questions", Model);
         }
         else
         {
-            <div class="form-group">
-                <div class="panel panel-info">
-                    <div class="panel-heading">
-                        <h4>1<span>. Question</span></h4>
-                    </div>
-                    <div class="panel-body">
-                        @Html.TextAreaFor(model => model.Questions[0].Content, new { @class = "form-control" })
-                        <p class="lead" style="margin-top: 5px;">Answers</p>
-                        <div class="row">
-                            <div class="col-md-5">
-                                @for (int a = 0; a < 3; a++)
-                                {
-                                    <div class="row" style="margin-bottom: 3px;">
-                                        <div class="col-md-12">
-                                            <div class="col-md-2">
-                                                <input type="radio" name="Model.Questions[0].Index" value="@a" class="col-md-2 my-radio" />
-                                            </div>
-                                            <div class="col-md-9">
-                                                @Html.TextBoxFor(model => model.Questions[0].Answers[a].Content, new { @class = "form-control" })
-                                            </div>
-                                        </div>
-                                    </div>
-                                }
-                                <div class="col-md-11">
-                                    <button class="add-answer btn btn-sm pull-right btn-default btn-outline">Add answer</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @(Html.Partial("_Questions", new  TestInputModel() { Questions = new List<QuestionInputModel>() { new QuestionInputModel() { Answers = new List<AnswerInputModel>() { new AnswerInputModel(), new AnswerInputModel(), new AnswerInputModel() } } } }))
         }
 
         <div class="form-group">
@@ -126,11 +63,54 @@
                 <input type="submit" value="Create" class="btn btn-lg btn-outline btn-info" />
             </div>
             <div class="col-md-9">
-                <button class="btn pull-right btn-outline btn-default">Add question</button>
+                <input type="button" class="btn add-question pull-right btn-outline btn-default" value="Add question" />
             </div>
         </div>
     </div>
 }
+<script>
+    $('body').on('click', '.add-question', function () {
+        var $btn = $(this);
+        var $grantParent = $btn.parent().parent();
+
+        var indexOfNewQuestion = $('#questions').children().length;
+
+        function makeAnswer(questionIndex, value ) {
+            return ($('<div>').addClass('row')
+                        .append($('<div>').addClass('col-md-12')
+                            .append($('<div>').addClass('col-md-2')
+                                .append($('<input>').attr('type', 'radio').attr('name', 'Questions[' + questionIndex + '].Index').attr('value', value).addClass('my-radio')))
+                            .append($('<div>').addClass('col-md-9')
+                                .append($('<input>').addClass('form-control').attr('type', 'text').attr('name', 'Questions[' + questionIndex + '].Answers[' + value + '].Content')))));
+        }
+
+        console.log($grantParent);
+
+        var $result = $('<div>').addClass('panel panel-info')
+                        .append($('<div>').addClass('panel-heading')
+                                .append($('<h4>')
+                                    .append($('<i>').addClass('fa fa-question-circle fa-fw'))
+                                    .append($('<span>').text((indexOfNewQuestion + 1) + '. Question'))))
+                        .append($('<div>').addClass('panel-body')
+                                .append($('<textarea>').addClass('form-control').attr('placeholder', 'Your question here...').attr('name', 'Questions[' + indexOfNewQuestion + '].Content'))
+                                .append($('<div>').addClass('row').attr('style', 'margin-top: 5px;')
+                                    .append($('<label>').addClass('control-label col-md-1').attr('for', 'Q' + indexOfNewQuestion).text('Points'))
+                                    .append($('<div>').addClass('col-md-2')
+                                        .append($('<input>').addClass('form-control').attr('id', 'Q' + indexOfNewQuestion).attr('min', 0).attr('name', 'Questions[' + indexOfNewQuestion + '].Points').attr('type', 'number'))))
+                                .append($('<p>').addClass('lead').text('Answers ')
+                                    .append($('<span>').addClass('text-muted').text('(By default first answer will be marked as correct)').attr('style', 'font-size: 14px;')))
+                                .append($('<div>').addClass('row')
+                                    .append($('<div>').addClass('col-md-5')
+                                        .append(makeAnswer(indexOfNewQuestion, 0))
+                                        .append(makeAnswer(indexOfNewQuestion, 1))
+                                        .append(makeAnswer(indexOfNewQuestion, 2))
+                                        .append($('<div>').addClass('col-md-11')
+                                            .append($('<input>').addClass('add-answer btn btn-sm pull-right btn-default btn-outline').attr('type', 'button').attr('value', 'Add answer'))))));
+        console.log($grantParent);
+        $('#questions').append($result);
+    })
+</script>
+
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
@@ -144,6 +124,24 @@
                 return this.optional(element) || kendo.parseFloat(value) != null;
             }
         });
+    </script>
+    <script>
+        $('#questions').on('click', '.add-answer', function () {
+            var $btn = $(this);
+            var $parent = $btn.parent();
+            var $grantParent = $btn.parent().parent();
+            var indexOfQuestion = $('#questions').children().length - 1;
+
+            var value = $grantParent.children().length - 1;
+            var $result = $('<div>').addClass('row')
+                            .append($('<div>')
+                                .addClass('col-md-12')
+                                .append($('<div>').addClass('col-md-2')
+                                        .append($('<input>').attr('type', 'radio').attr('value', value).attr('name', 'Questions[' + indexOfQuestion + '].Index').addClass('my-radio')))
+                                .append($('<div>').addClass('col-md-9')
+                                        .append($('<input>').attr('type', 'text').attr('name', 'Questions[' + indexOfQuestion + '].Answers[' + value + '].Content').addClass('form-control input-validation-error'))));
+            $result.insertBefore($parent);
+        })
     </script>
 }
 

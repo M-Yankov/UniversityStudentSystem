@@ -9,11 +9,13 @@
     public class TestInputModel
     {
         [Required]
+        [Display(Name = "Start date")]
         [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime StartDate { get; set; }
 
         [Required]
+        [Display(Name = "End date")]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime EndDate { get; set; }
 
@@ -23,6 +25,7 @@
         public string Name { get; set; }
 
         [Required]
+        [Display(Name = "Enabled")]
         public bool? IsEnabled { get; set; }
 
         public int CourseId { get; set; }
