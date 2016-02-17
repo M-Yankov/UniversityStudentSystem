@@ -67,7 +67,9 @@
             var candidature = this.candidatesRepository.All()
                 .Where(c => c.UserId == id)
                 .OrderByDescending(c => c.DateSent).FirstOrDefault();
-            if (candidature == null || candidature.IsRejected)
+            var user = this.usersRepository.GetById(id);
+            
+            if ((candidature == null || candidature.IsRejected) && user.Status != Status.Confirmed)
             {
                 return true;
             }

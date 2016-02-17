@@ -33,5 +33,21 @@
             return File.ReadAllBytes(path);
             
         }
+
+        public void Reject(int candidatureId)
+        {
+            var candidature = this.candidatesRepository.GetById(candidatureId);
+            candidature.IsRejected = true;
+            this.candidatesRepository.Update(candidature);
+            this.candidatesRepository.Save();
+        }
+
+        public void Confirm(int candidatureId)
+        {
+            var candidature = this.candidatesRepository.GetById(candidatureId);
+            candidature.IsApproved = true;
+            this.candidatesRepository.Update(candidature);
+            this.candidatesRepository.Save();
+        }
     }
 }

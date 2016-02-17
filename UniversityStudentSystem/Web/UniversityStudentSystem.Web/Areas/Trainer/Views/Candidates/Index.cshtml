@@ -2,7 +2,7 @@
 
 @{
     ViewBag.Title = "Candidates";
-}s
+}
 
 <h2>Candidates</h2>
 
@@ -18,11 +18,11 @@
             colums.Template(@<text>
                                 @if (item.IsApproved)
                                 {
-                                    <div class="alert alert-success">Confirmed</div>
+                                    <div class="label label-success">Confirmed</div>
                                 }
                                 else if (item.IsRejected)
                                 {
-                                    <div class="alert alert-danger">Rejected</div>
+                                    <div class="label label-danger">Rejected</div>
                                 }
                                 else
                                 {

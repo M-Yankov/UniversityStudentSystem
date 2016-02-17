@@ -44,11 +44,13 @@
         [ValidateAntiForgeryToken]
         public ActionResult Confirm(int id)
         {
+            this.candidateService.Confirm(id);
             return this.RedirectToAction("Index");
         }
 
         public ActionResult Reject(int id)
         {
+            this.candidateService.Reject(id);
             return this.RedirectToAction("Index");
         }
     }
