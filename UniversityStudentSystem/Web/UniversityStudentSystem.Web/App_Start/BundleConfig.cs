@@ -40,6 +40,9 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-datetimepicker").Include(
                             "~/Scripts/Kendo/kendo.datetimepicker.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-grid").Include(
+                            "~/Scripts/Kendo/kendo.grid.min.js"));
+
             //// ------ Default -----
             bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
                             "~/Content/Kendo/kendo.common.min.css",

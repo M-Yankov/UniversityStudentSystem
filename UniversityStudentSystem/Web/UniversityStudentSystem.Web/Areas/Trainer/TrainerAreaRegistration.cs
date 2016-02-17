@@ -1,9 +1,9 @@
-﻿namespace UniversityStudentSystem.Web.Areas.Admin
+﻿namespace UniversityStudentSystem.Web.Areas.Trainer
 {
     using System.Web.Mvc;
     using Constraints;
 
-    public class AdminAreaRegistration : AreaRegistration 
+    public class TrainerAreaRegistration : AreaRegistration 
     {
         public override string AreaName 
         {

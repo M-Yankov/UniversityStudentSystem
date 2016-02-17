@@ -1,0 +1,68 @@
+﻿@model IEnumerable<UniversityStudentSystem.Web.Models.Candidates.CandidateViewModel>
+
+@{
+    ViewBag.Title = "Candidates";
+}s
+
+<h2>Candidates</h2>
+
+@(Html.Kendo()
+        .Grid(Model)
+        .Name("grid")
+        .Columns(colums =>
+        {
+            colums.Bound(c => c.User.Username).Title("Username").Sortable(false);
+            colums.Bound(c => c.User.FullName).Title("Full name").Sortable(false);
+            colums.Bound(c => c.DateSent);
+            colums.Bound(c => c.SpecialtyName);
+            colums.Template(@<text>
+                                @if (item.IsApproved)
+                                {
+                                    <div class="alert alert-success">Confirmed</div>
+                                }
+                                else if (item.IsRejected)
+                                {
+                                    <div class="alert alert-danger">Rejected</div>
+                                }
+                                else
+                                {
+                                    <form style="display: inline" action="/Trainer/Candidates/Confirm/@item.Id" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button type="submit" class="btn btn-success btn-outline">Confirm </button>
+                                    </form>
+                                    
+                                    <form style="display: inline" action="/Trainer/Candidates/Reject/@item.Id" method="post">
+                                        @Html.AntiForgeryToken()
+                                        <button class="btn btn-danger btn-outline">Reject </button>
+                                    </form>
+                                }
+                            </text>
+            ).Title("Options");
+            colums.Template(@<text>
+                                    @foreach (var doc in item.Documents)
+                                    {
+                                        <form action="/Trainer/Candidates/Download/@doc.Id" method="post">
+
+                                            @Html.AntiForgeryToken()
+                                            <button class="btn btn-warning btn-outline">Download </button>
+                                        </form>
+                                    }
+                            </text>
+            ).Title("Documents");
+        })
+        .Pageable()
+        .Sortable())
+
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo");
+}
+
+@section KendoHead{
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}
+

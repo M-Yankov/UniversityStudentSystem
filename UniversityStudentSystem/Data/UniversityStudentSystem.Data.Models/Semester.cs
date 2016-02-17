@@ -26,6 +26,9 @@ namespace UniversityStudentSystem.Data.Models
         public int Fee { get; set; }
 
         [Required]
+        public bool IsActive { get; set; }
+
+        [Required]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime StartDate { get; set; }
 

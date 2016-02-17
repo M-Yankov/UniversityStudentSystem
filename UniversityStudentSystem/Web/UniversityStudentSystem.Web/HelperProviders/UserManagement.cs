@@ -49,7 +49,7 @@
             this.EnsureFolder(userId);
             file.SaveAs(filePath);
 
-            return $"~/Users{ userId }/{fullFileName}";
+            return $"~/Users/{ userId }/Uploads/{fullFileName}";
         }
 
         public SaveImageResult SaveImage(HttpPostedFileBase file, string userId)

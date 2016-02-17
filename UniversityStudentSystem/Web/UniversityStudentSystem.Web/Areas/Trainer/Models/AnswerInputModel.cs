@@ -1,4 +1,4 @@
-﻿namespace UniversityStudentSystem.Web.Areas.Admin.Models
+﻿namespace UniversityStudentSystem.Web.Areas.Trainer.Models
 {
     using System;
     using System.ComponentModel.DataAnnotations;

@@ -52,6 +52,18 @@
       <HintPath>..\..\packages\Castle.Core.3.1.0\lib\net40-client\Castle.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Glimpse.AspNet, Version=1.8.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.AspNet.1.8.0\lib\net45\Glimpse.AspNet.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Core, Version=1.8.6.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.1.8.6\lib\net45\Glimpse.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Glimpse.Mvc5, Version=1.5.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Kendo.Mvc">
       <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
     </Reference>
@@ -202,6 +214,8 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
+    <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
+    <Compile Include="Areas\Trainer\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Trainer\TrainerAreaRegistration.cs" />
     <Compile Include="Areas\Trainer\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Models\AnswerInputModel.cs" />
@@ -219,6 +233,7 @@
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -308,12 +323,12 @@
     <Content Include="Areas\Public\Views\Report\Index.cshtml" />
     <Content Include="Areas\Trainer\Views\web.config" />
     <Content Include="Areas\Trainer\Views\_ViewStart.cshtml" />
-    <Content Include="Areas\Trainer\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\AddTest.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\EditorTemplates\IsEnabled.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\EditorTemplates\CheckBoxTemplate.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Trainer\Views\Shared\_Questions.cshtml" />
+    <Content Include="Areas\Trainer\Views\Candidates\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -374,6 +389,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />
@@ -430,7 +446,7 @@
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>25682</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
-          <IISUrl>http://localhost:25682/</IISUrl>
+          <IISUrl>http://localhost:11122/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>
           <CustomServerUrl>

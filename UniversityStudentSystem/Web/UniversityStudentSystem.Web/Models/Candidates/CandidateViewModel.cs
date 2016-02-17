@@ -8,7 +8,7 @@
     using Specialties;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
-
+    using Users;
     public class CandidateViewModel : IMapFrom<Candidate>, IHaveCustomMappings
     {
         public int Id { get; set; }
@@ -23,6 +23,8 @@
         public bool IsApproved { get; set; }
 
         public bool IsRejected { get; set; }
+
+        public UserViewModel User { get; set; }
 
         public ICollection<SpecialtyViewModel> Specialties { get; set; }
 

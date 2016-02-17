@@ -149,10 +149,8 @@
         [ValidateAntiForgeryToken]
         public ActionResult Apply(CandidateInputModel candidature, HttpPostedFileBase file)
         {
-            if (file == null || !this.ModelState.IsValid)
+            if (file == null || !this.ModelState.IsValid || file.FileName.EndsWith(".exe"))
             {
-                this.ViewBag.Class = "text-danger";
-                this.ViewBag.Message = "Failed to apply!"; 
                 return this.RedirectToAction("Apply");
             }
 
@@ -163,9 +161,6 @@
 
             this.usersService.MakeApply(this.UserId, candidature.SpecialtyId, path);
 
-
-            this.ViewBag.Class = "text-success";
-            this.ViewBag.Message = "Success!";
             return this.RedirectToAction("Apply");
         }
 

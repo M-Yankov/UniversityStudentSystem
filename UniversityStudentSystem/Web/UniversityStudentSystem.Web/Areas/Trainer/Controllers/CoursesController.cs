@@ -1,4 +1,4 @@
-﻿namespace UniversityStudentSystem.Web.Areas.Admin.Controllers
+﻿namespace UniversityStudentSystem.Web.Areas.Trainer.Controllers
 {
     using System;
     using System.Collections.Generic;
@@ -18,7 +18,6 @@
             this.testService = testService;
         }
 
-        // GET: Admin/Courses
         public ActionResult Index()
         {
             return View();

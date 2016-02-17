@@ -203,10 +203,10 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <li>
-                        <a href="@Url.Action("Index", "Manage", null)"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                        <a href="@Url.Action("Index", "Manage", new { area = string.Empty})"><i class="fa fa-user fa-fw"></i> User Profile</a>
                     </li>
                     <li>
-                        <a href="@Url.Action("Apply", "Manage", null)"><i class="fa fa-file-o fa-fw"></i> Apply</a>
+                        <a href="@Url.Action("Apply", "Manage",  new { area = string.Empty})"><i class="fa fa-file-o fa-fw"></i> Apply</a>
                     </li>
                     <li class="divider"></li>
                     <li>
