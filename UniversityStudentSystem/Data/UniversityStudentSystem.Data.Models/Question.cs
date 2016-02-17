@@ -25,6 +25,8 @@
         [Required]
         public int Points { get; set; }
 
+        public int Index { get; set; }
+
         public int TestId { get; set; }
 
         public virtual Test Test { get; set; }

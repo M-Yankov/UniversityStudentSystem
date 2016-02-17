@@ -373,6 +373,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Constraints\" />
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />

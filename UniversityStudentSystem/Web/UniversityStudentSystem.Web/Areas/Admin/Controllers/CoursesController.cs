@@ -1,75 +1,48 @@
-﻿
-namespace UniversityStudentSystem.Web.Areas.Admin.Controllers
+﻿namespace UniversityStudentSystem.Web.Areas.Admin.Controllers
 {
     using System;
     using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
+    using Data.Models;
     using Models;
+    using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
 
     public class CoursesController : BaseController
     {
+        private ITestService testService;
+
+        public CoursesController(ITestService testService)
+        {
+            this.testService = testService;
+        }
+
         // GET: Admin/Courses
         public ActionResult Index()
         {
             return View();
         }
 
-        public ActionResult AddTest()
+        public ActionResult AddTest(int id)
         {
-            TestInputModel model = new TestInputModel()
-            {
-                Name = "Test example",
-                StartDate = DateTime.Now,
-                EndDate = DateTime.Now.AddMinutes(30),
-                IsEnabled = false,
-                Questions = new List<QuestionInputModel>()
-                {
-                    new QuestionInputModel()
-                    {
-                        Points = 20,
-                        Content = "Content of question 1",
-                        Answers = new List<AnswerInputModel>()
-                        {
-                            new AnswerInputModel() {Content = "Answer 1" },
-                            new AnswerInputModel() {Content = "Answer 2" },
-                            new AnswerInputModel() {Content = "Answer 3" }
-                        }
-                    },
-                    new QuestionInputModel()
-                    {
-                        Points = 15,
-                        Content = "Content of question 2",
-                        Answers = new List<AnswerInputModel>()
-                        {
-                            new AnswerInputModel() {Content = "Answer 1 forQuestion 2" },
-                            new AnswerInputModel() {Content = "Answer 2 forQuestion 2" },
-                            new AnswerInputModel() {Content = "Answer 3 forQuestion 2" }
-                        }
-                    },
-
-                    new QuestionInputModel()
-                    {
-                        Points = 10,
-                        Content = "Content of question 3",
-                        Answers = new List<AnswerInputModel>()
-                        {
-                            new AnswerInputModel() {Content = "Third 1" },
-                            new AnswerInputModel() {Content = "Third 2" },
-                            new AnswerInputModel() {Content = "Third 3" }
-                        }
-                    },
-                }
-            };
-
-            // bool? to bool cannot be converted in the template .cshtml :| :(
             return this.View();
         }
 
+        //// id = courseId
         [HttpPost]
-        public ActionResult AddTest(TestInputModel model)
+        [ValidateAntiForgeryToken]
+        public ActionResult AddTest(int id, TestInputModel model)
         {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            // Maaaagic :)
+            var mapp = this.Mapper.Map<Test>(model);
+            this.testService.Create(mapp, id);
+
             return this.View(model);
         }
     }

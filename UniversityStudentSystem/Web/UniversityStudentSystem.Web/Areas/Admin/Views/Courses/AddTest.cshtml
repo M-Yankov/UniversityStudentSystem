@@ -68,48 +68,7 @@
         </div>
     </div>
 }
-<script>
-    $('body').on('click', '.add-question', function () {
-        var $btn = $(this);
-        var $grantParent = $btn.parent().parent();
 
-        var indexOfNewQuestion = $('#questions').children().length;
-
-        function makeAnswer(questionIndex, value ) {
-            return ($('<div>').addClass('row')
-                        .append($('<div>').addClass('col-md-12')
-                            .append($('<div>').addClass('col-md-2')
-                                .append($('<input>').attr('type', 'radio').attr('name', 'Questions[' + questionIndex + '].Index').attr('value', value).addClass('my-radio')))
-                            .append($('<div>').addClass('col-md-9')
-                                .append($('<input>').addClass('form-control').attr('type', 'text').attr('name', 'Questions[' + questionIndex + '].Answers[' + value + '].Content')))));
-        }
-
-        console.log($grantParent);
-
-        var $result = $('<div>').addClass('panel panel-info')
-                        .append($('<div>').addClass('panel-heading')
-                                .append($('<h4>')
-                                    .append($('<i>').addClass('fa fa-question-circle fa-fw'))
-                                    .append($('<span>').text((indexOfNewQuestion + 1) + '. Question'))))
-                        .append($('<div>').addClass('panel-body')
-                                .append($('<textarea>').addClass('form-control').attr('placeholder', 'Your question here...').attr('name', 'Questions[' + indexOfNewQuestion + '].Content'))
-                                .append($('<div>').addClass('row').attr('style', 'margin-top: 5px;')
-                                    .append($('<label>').addClass('control-label col-md-1').attr('for', 'Q' + indexOfNewQuestion).text('Points'))
-                                    .append($('<div>').addClass('col-md-2')
-                                        .append($('<input>').addClass('form-control').attr('id', 'Q' + indexOfNewQuestion).attr('min', 0).attr('name', 'Questions[' + indexOfNewQuestion + '].Points').attr('type', 'number'))))
-                                .append($('<p>').addClass('lead').text('Answers ')
-                                    .append($('<span>').addClass('text-muted').text('(By default first answer will be marked as correct)').attr('style', 'font-size: 14px;')))
-                                .append($('<div>').addClass('row')
-                                    .append($('<div>').addClass('col-md-5')
-                                        .append(makeAnswer(indexOfNewQuestion, 0))
-                                        .append(makeAnswer(indexOfNewQuestion, 1))
-                                        .append(makeAnswer(indexOfNewQuestion, 2))
-                                        .append($('<div>').addClass('col-md-11')
-                                            .append($('<input>').addClass('add-answer btn btn-sm pull-right btn-default btn-outline').attr('type', 'button').attr('value', 'Add answer'))))));
-        console.log($grantParent);
-        $('#questions').append($result);
-    })
-</script>
 
 
 @section Scripts {
@@ -143,6 +102,49 @@
             $result.insertBefore($parent);
         })
     </script>
+    <script>
+        $('body').on('click', '.add-question', function () {
+            var $btn = $(this);
+            var $grantParent = $btn.parent().parent();
+
+            var indexOfNewQuestion = $('#questions').children().length;
+
+            function makeAnswer(questionIndex, value ) {
+                return ($('<div>').addClass('row')
+                            .append($('<div>').addClass('col-md-12')
+                                .append($('<div>').addClass('col-md-2')
+                                    .append($('<input>').attr('type', 'radio').attr('name', 'Questions[' + questionIndex + '].Index').attr('value', value).addClass('my-radio')))
+                                .append($('<div>').addClass('col-md-9')
+                                    .append($('<input>').addClass('form-control').attr('type', 'text').attr('name', 'Questions[' + questionIndex + '].Answers[' + value + '].Content')))));
+            }
+
+            console.log($grantParent);
+
+            var $result = $('<div>').addClass('panel panel-info')
+                            .append($('<div>').addClass('panel-heading')
+                                    .append($('<h4>')
+                                        .append($('<i>').addClass('fa fa-question-circle fa-fw'))
+                                        .append($('<span>').text((indexOfNewQuestion + 1) + '. Question'))))
+                            .append($('<div>').addClass('panel-body')
+                                    .append($('<textarea>').addClass('form-control').attr('placeholder', 'Your question here...').attr('name', 'Questions[' + indexOfNewQuestion + '].Content'))
+                                    .append($('<div>').addClass('row').attr('style', 'margin-top: 5px;')
+                                        .append($('<label>').addClass('control-label col-md-1').attr('for', 'Q' + indexOfNewQuestion).text('Points'))
+                                        .append($('<div>').addClass('col-md-2')
+                                            .append($('<input>').addClass('form-control').attr('id', 'Q' + indexOfNewQuestion).attr('min', 0).attr('name', 'Questions[' + indexOfNewQuestion + '].Points').attr('type', 'number'))))
+                                    .append($('<p>').addClass('lead').text('Answers ')
+                                        .append($('<span>').addClass('text-muted').text('(By default first answer will be marked as correct)').attr('style', 'font-size: 14px;')))
+                                    .append($('<div>').addClass('row')
+                                        .append($('<div>').addClass('col-md-5')
+                                            .append(makeAnswer(indexOfNewQuestion, 0))
+                                            .append(makeAnswer(indexOfNewQuestion, 1))
+                                            .append(makeAnswer(indexOfNewQuestion, 2))
+                                            .append($('<div>').addClass('col-md-11')
+                                                .append($('<input>').addClass('add-answer btn btn-sm pull-right btn-default btn-outline').attr('type', 'button').attr('value', 'Add answer'))))));
+            console.log($grantParent);
+            $('#questions').append($result);
+        })
+    </script>
+
 }
 
 @section KendoCss{

@@ -2,9 +2,12 @@
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class AnswerInputModel
+    using Common;
+    using Data.Models;
+    using Infrastructure.Mapping;
+
+    public class AnswerInputModel: IMapTo<Answer>
     {
         [Required]
         [MaxLength(ModelConstants.NameMaxLength)]

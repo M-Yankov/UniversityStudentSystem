@@ -3,10 +3,13 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
-    using Data.Models.CustomAttributes;
 
-    public class TestInputModel
+    using Common;
+    using Data.Models;
+    using Data.Models.CustomAttributes;
+    using Infrastructure.Mapping;
+
+    public class TestInputModel : IMapTo<Test>
     {
         [Required]
         [Display(Name = "Start date")]

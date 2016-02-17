@@ -3,9 +3,12 @@ namespace UniversityStudentSystem.Web.Areas.Admin.Models
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    using Common;
 
-    public class QuestionInputModel
+    using Common;
+    using Data.Models;
+    using Infrastructure.Mapping;
+
+    public class QuestionInputModel : IMapTo<Question>
     {
         [Required]
         [DataType(DataType.MultilineText)]
