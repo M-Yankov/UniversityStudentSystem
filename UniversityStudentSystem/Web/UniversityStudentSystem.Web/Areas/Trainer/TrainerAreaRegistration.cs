@@ -8,15 +8,15 @@
         {
             get 
             {
-                return "Admin";
+                return "Trainer";
             }
         }
 
         public override void RegisterArea(AreaRegistrationContext context) 
         {
             context.MapRoute(
-                "Admin_default",
-                "Admin/{controller}/{action}/{id}",
+                "Trainer",
+                "Trainer/{controller}/{action}/{id}",
                 new { action = "Index", id = UrlParameter.Optional }
             );
         }
