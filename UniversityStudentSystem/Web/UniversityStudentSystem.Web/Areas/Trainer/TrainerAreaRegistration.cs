@@ -1,6 +1,7 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Admin
 {
     using System.Web.Mvc;
+    using Constraints;
 
     public class AdminAreaRegistration : AreaRegistration 
     {
@@ -17,7 +18,8 @@
             context.MapRoute(
                 "Trainer",
                 "Trainer/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional }
+                new { action = "Index", id = UrlParameter.Optional },
+                new  { isAllowed = new TrainerRouteConstraint() }
             );
         }
     }
