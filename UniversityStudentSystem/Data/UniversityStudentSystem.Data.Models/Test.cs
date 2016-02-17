@@ -33,9 +33,6 @@ namespace UniversityStudentSystem.Data.Models
         [Required]
         public bool IsEnabled { get; set; }
 
-        [Required]
-        public int Points { get; set; }
-
         public int CourseId { get; set; }
 
         public virtual Course Course { get; set; }

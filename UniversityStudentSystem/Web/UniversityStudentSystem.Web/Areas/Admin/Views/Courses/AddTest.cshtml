@@ -1,0 +1,160 @@
+﻿@model UniversityStudentSystem.Web.Areas.Admin.Models.TestInputModel
+
+@{
+    ViewBag.Title = "AddTest";
+}
+
+<h2>Add a new test</h2>
+<hr />
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.StartDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.StartDate)
+                @Html.ValidationMessageFor(model => model.StartDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.EndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.EndDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.EndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.IsEnabled, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-5">
+                <div class="checkbox">
+                    @Html.EditorFor(model => model.IsEnabled, "CheckBoxTemplate")
+                  @*  @Html.ValidationMessageFor(model => model.IsEnabled, "", new { @class = "text-danger" })*@
+                </div>
+            </div>
+        </div>
+
+        @if (Model != null && Model.Questions.Any())
+        {
+            for (int i = 0; i < Model.Questions.Count; i++)
+            {
+                <div class="form-group">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h4>    @(i + 1)<span>. Question</span></h4>
+                        </div>
+                        <div class="panel-body">
+                            @Html.EditorFor(model => model.Questions[i].Content)
+                            @Html.ValidationMessageFor(model => model.Questions[i].Content, "", new { @class = "text-danger" })
+                            <p class="lead" style="margin-top: 5px;">Answers</p>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    @for (int a = 0; a < Model.Questions[i].Answers.Count; a++)
+                                    {
+                                        <div class="row" style="margin-bottom: 3px;">
+                                            <div class="col-md-12">
+                                                <div class="col-md-2">
+                                                    <input type="radio" name="Model.Questions[@i].Index" value="@a" class="col-md-2 my-radio" />
+                                                </div>
+                                                <div class="col-md-9">
+                                                    @Html.EditorFor(model => model.Questions[i].Answers[a].Content)
+                                                    @Html.ValidationMessageFor(model => model.Questions[i].Answers[a].Content, "", new { @class = "text-danger" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                    }
+                                    <div class="col-md-11">
+                                        <button class="add-answer btn btn-sm pull-right btn-default btn-outline">Add answer</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+        else
+        {
+            <div class="form-group">
+                <div class="panel panel-info">
+                    <div class="panel-heading">
+                        <h4>1<span>. Question</span></h4>
+                    </div>
+                    <div class="panel-body">
+                        @Html.TextAreaFor(model => model.Questions[0].Content, new { @class = "form-control" })
+                        <p class="lead" style="margin-top: 5px;">Answers</p>
+                        <div class="row">
+                            <div class="col-md-5">
+                                @for (int a = 0; a < 3; a++)
+                                {
+                                    <div class="row" style="margin-bottom: 3px;">
+                                        <div class="col-md-12">
+                                            <div class="col-md-2">
+                                                <input type="radio" name="Model.Questions[0].Index" value="@a" class="col-md-2 my-radio" />
+                                            </div>
+                                            <div class="col-md-9">
+                                                @Html.TextBoxFor(model => model.Questions[0].Answers[a].Content, new { @class = "form-control" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="col-md-11">
+                                    <button class="add-answer btn btn-sm pull-right btn-default btn-outline">Add answer</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+
+        <div class="form-group">
+            <div class="col-md-3">
+                <input type="submit" value="Create" class="btn btn-lg btn-outline btn-info" />
+            </div>
+            <div class="col-md-9">
+                <button class="btn pull-right btn-outline btn-default">Add question</button>
+            </div>
+        </div>
+    </div>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        jQuery.extend(jQuery.validator.methods, {
+            date: function (value, element) {
+                var res = this.optional(element) || kendo.parseDate(value, "dd/MM/yyyy HH:mm") != null;
+                return res;
+            },
+            number: function (value, element) {
+                return this.optional(element) || kendo.parseFloat(value) != null;
+            }
+        });
+    </script>
+}
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo");
+}
+
+@section KendoHead{
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-datetimepicker")
+}

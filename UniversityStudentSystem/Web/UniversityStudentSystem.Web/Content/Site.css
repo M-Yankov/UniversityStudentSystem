@@ -64,3 +64,8 @@ li .timeline-panel:hover {
 #accordion .panel-heading:hover {
     background-color: #8ebc00
 }
+
+.my-radio {
+    height: 30px;
+    width: 30px;
+}

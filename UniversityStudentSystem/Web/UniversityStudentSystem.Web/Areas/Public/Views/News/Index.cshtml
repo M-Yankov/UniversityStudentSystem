@@ -47,32 +47,9 @@
 }
 
 @section KendoHead{
-
     @Scripts.Render("~/bundles/js-kendo")
 }
 
 @section KendoJs{
     @Scripts.Render("~/bundles/js-kendo-listview")
-
 }
-
-
-
-
-
-
-@*@foreach (var item in Model)
-    {
-        <div class="row">
-            <div class="col-md-6">
-                <h3>@item.Title</h3>
-                <p class="text-muted">@item.CreatedOn.DateTimeAgo()</p>
-                <div class="panel panel-default">
-                    <div class="panel-body">
-                        @item.ShortContent
-                    </div>
-                </div>
-                @Html.ActionLink("Read", "Details", new { id = item.Id, name = item.Title.ToUrl(), area = "Public" }, new { @class = "btn btn-outline btn-success" })
-            </div>
-        </div>
-    }*@
