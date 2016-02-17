@@ -1,8 +1,11 @@
 ﻿namespace UniversityStudentSystem.Web.Models.Users
 {
     using System;
+    using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
+    using Comments;
+    using ForumPosts;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
@@ -10,7 +13,7 @@
     {
         public string Id { get; set; }
 
-        public Genre Genre { get; set; }
+        public string Genre { get; set; }
 
         public string Username { get; set; }
 
@@ -39,10 +42,15 @@
 
         public DateTime DateRegistered { get; set; }
 
+        public ICollection<ForumPostViewModel> ForumPosts { get; set; }
+
+        public ICollection<CommentViewModel> Comments { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<User, UserViewModel>()
-                .ForMember(c => c.FullName, o => o.MapFrom(u => u.FirstName + " " + u.LastName));
+                .ForMember(c => c.FullName, o => o.MapFrom(u => u.FirstName + " " + u.LastName))
+                .ForMember(c => c.Genre, o => o.MapFrom(u => u.Genre.ToString()));
         }
     }
 }

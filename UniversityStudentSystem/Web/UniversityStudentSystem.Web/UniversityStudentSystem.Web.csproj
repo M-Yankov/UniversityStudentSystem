@@ -385,6 +385,8 @@
     <Content Include="Views\Shared\_Statistic.cshtml" />
     <Content Include="Views\Manage\Apply.cshtml" />
     <Content Include="Views\Shared\_ApplyForm.cshtml" />
+    <Content Include="Views\Manage\DisplayTemplates\DisplayPosts.cshtml" />
+    <Content Include="Views\Manage\DisplayTemplates\DisplayComments.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

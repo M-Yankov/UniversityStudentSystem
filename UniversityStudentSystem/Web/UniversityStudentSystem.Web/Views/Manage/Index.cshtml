@@ -69,6 +69,12 @@
                 </div>
                 <div class="panel-body">
                     <!-- TODO: Forum posts -->
+                    @Html.DisplayFor(m => m.ForumPosts.Count, "DisplayPosts")
+                    @Html.DisplayFor(m => m.Comments.Count, "DisplayComments")
+                    <div class="text-center">
+                        @Html.ActionLink("Visit forum", "Index", "Forum", new { area = "Public" }, new { @class = "btn btn-outline btn-success" })
+
+                    </div>
                 </div>
             </div>
         </div>

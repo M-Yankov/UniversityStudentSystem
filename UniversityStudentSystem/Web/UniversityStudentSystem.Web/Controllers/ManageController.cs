@@ -117,7 +117,11 @@
             dbUser.LinkedInProfile = model.LinkedInProfile;
             dbUser.FacebookAccount = model.FacebookAccount;
 
-            dbUser.AvaratUrl = Path.Combine("/Users", this.UserId, defaultAvatarName ?? dbUser.AvaratUrl);
+            if (defaultAvatarName != null || dbUser.AvaratUrl != null)
+            {
+                dbUser.AvaratUrl = Path.Combine("/Users", this.UserId, defaultAvatarName ?? dbUser.AvaratUrl);
+            }
+
             this.usersService.Update(dbUser);
             
             return this.RedirectToAction("Index");
