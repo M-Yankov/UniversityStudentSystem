@@ -6,5 +6,7 @@
     public interface INewsService
     {
         IQueryable<News> GetAll();
+
+        int Create(News modelToSave);
     }
 }

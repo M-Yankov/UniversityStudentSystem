@@ -16,6 +16,14 @@ namespace UniversityStudentSystem.Services
             this.newsRepository = newsRepo;
         }
 
+        public int Create(News modelToSave)
+        {
+            this.newsRepository.Add(modelToSave);
+            this.newsRepository.Save();
+
+            return modelToSave.Id;
+        }
+
         public IQueryable<News> GetAll()
         {
             return this.newsRepository.All();

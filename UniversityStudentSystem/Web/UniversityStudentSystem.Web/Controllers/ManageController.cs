@@ -20,6 +20,7 @@
     using UniversityStudentSystem.Web.Models.Users;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
     using Models.Specialties;
+
     [Authorize]
     public class ManageController : BaseController
     {

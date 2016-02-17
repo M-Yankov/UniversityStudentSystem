@@ -237,6 +237,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="HelperProviders\NewsImageUpload.cs" />
     <Compile Include="HelperProviders\SaveImageResult.cs" />
     <Compile Include="HelperProviders\UserManagement.cs" />
     <Compile Include="Models\Account\ForgotPasswordViewModel.cs" />
@@ -266,6 +267,7 @@
     <Compile Include="Models\Manage\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\NewsModels\NewsInputModel.cs" />
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
     <Compile Include="Models\SideMenu\SideMenuViewModel.cs" />
     <Compile Include="Models\Specialties\SpecialtyViewModel.cs" />
@@ -329,6 +331,8 @@
     <Content Include="Areas\Trainer\Views\Courses\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Trainer\Views\Shared\_Questions.cshtml" />
     <Content Include="Areas\Trainer\Views\Candidates\Index.cshtml" />
+    <Content Include="Areas\Public\Views\News\Create.cshtml" />
+    <Content Include="Areas\Public\Views\News\EditorTemplates\UploadTemplate.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
