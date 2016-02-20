@@ -43,15 +43,22 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-grid").Include(
                             "~/Scripts/Kendo/kendo.grid.min.js"));
 
-            //// ------ SignlaR ------
-            bundles.Add(new ScriptBundle("~/bundles/js-signalr").Include(
-                            "~/Scripts/jquery.signalR-2.2.0.js"));
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-upload").Include(
+                            "~/Scripts/Kendo/kendo.upload.min.js"));
 
-            //// ------ Default -----
             bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
                             "~/Content/Kendo/kendo.common.min.css",
                             "~/Content/Kendo/kendo.metro.min.css"));
 
+            bundles.Add(new StyleBundle("~/bundles/css-kendo-silver").Include(
+                            "~/Content/Kendo/kendo.common.min.css",
+                            "~/Content/Kendo/kendo.silver.min.css"));
+
+            //// ------ SignlaR ------
+            bundles.Add(new ScriptBundle("~/bundles/js-signalr").Include(
+                            "~/Scripts/jquery.signalR-2.2.0.js"));
+            
+            //// ------ Default -----
             bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));
 

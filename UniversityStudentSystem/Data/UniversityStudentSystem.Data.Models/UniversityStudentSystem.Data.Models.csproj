@@ -76,6 +76,7 @@
     <Compile Include="Message.cs" />
     <Compile Include="News.cs" />
     <Compile Include="Question.cs" />
+    <Compile Include="Resource.cs" />
     <Compile Include="Semester.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="Status.cs" />

@@ -12,5 +12,7 @@
         void JoinIn(int courseId, string userId);
 
         void Edit(Course model);
+
+        void AddResourse(string name, string path, int id);
     }
 }

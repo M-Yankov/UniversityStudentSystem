@@ -282,6 +282,7 @@
     <Compile Include="Models\Manage\VerifyPhoneNumberViewModel.cs" />
     <Compile Include="Models\NewsModels\NewsInputModel.cs" />
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
+    <Compile Include="Models\Resources\ResourceInputModel.cs" />
     <Compile Include="Models\SideMenu\SideMenuViewModel.cs" />
     <Compile Include="Models\Specialties\SpecialtyViewModel.cs" />
     <Compile Include="Models\StatisticViewModel.cs" />
@@ -296,6 +297,7 @@
     <Content Include="Content\Kendo\kendo.common.core.min.css" />
     <Content Include="Content\Kendo\kendo.common.min.css" />
     <Content Include="Content\Kendo\kendo.metro.min.css" />
+    <Content Include="Content\Kendo\kendo.silver.min.css" />
     <Content Include="Content\Kendo\textures\kendo.metro.min.css" />
     <Content Include="favicon.png" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
@@ -317,6 +319,7 @@
     <Content Include="Scripts\Kendo\kendo.datetimepicker.min.js" />
     <Content Include="Scripts\Kendo\kendo.grid.min.js" />
     <Content Include="Scripts\Kendo\kendo.listview.min.js" />
+    <Content Include="Scripts\Kendo\kendo.upload.min.js" />
     <Content Include="Scripts\Kendo\kendo.web.min.js" />
     <Content Include="Users\Common\CVBG.pdf" />
     <Content Include="Users\Common\CVEN.pdf" />
@@ -354,6 +357,7 @@
     <Content Include="Areas\Trainer\Views\Courses\AddTask.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\Join.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\Edit.cshtml" />
+    <Content Include="Areas\Trainer\Views\Courses\Upload.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -422,6 +426,8 @@
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />
+    <Folder Include="Content\Kendo\Silver\" />
+    <Folder Include="Resources\" />
     <Folder Include="Users\ca8b09c6-3eb0-4402-812e-f01b2955155a\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>

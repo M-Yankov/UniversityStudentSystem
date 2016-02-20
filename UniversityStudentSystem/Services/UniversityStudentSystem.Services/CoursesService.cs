@@ -54,5 +54,13 @@
             this.coursesRepository.Update(course);
             this.coursesRepository.Save();
         }
+
+        public void AddResourse(string name, string path, int courseId)
+        {
+            var course = this.coursesRepository.GetById(courseId);
+            course.Resources.Add(new Resource() { Name = name, Path = path });
+            this.coursesRepository.Update(course);
+            this.coursesRepository.Save();
+        }
     }
 }

@@ -48,6 +48,8 @@
 
         public IDbSet<BugReport> BugReports { get; set; }
 
+        public IDbSet<Resource> Resources { get; set; }
+
         public static UniversityDbContext Create()
         {
             return new UniversityDbContext();

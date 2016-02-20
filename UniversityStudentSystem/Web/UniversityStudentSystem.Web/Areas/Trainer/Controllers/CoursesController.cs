@@ -11,7 +11,7 @@
     using UniversityStudentSystem.Web.Controllers;
     using Web.Models.Courses;
     using Web.Models.CoursesTask;
-
+    using Web.Models.Resources;
     public class CoursesController : BaseController
     {
         private ITestService testService;
@@ -121,6 +121,30 @@
             this.Mapper.Map(model, modelFromDb);
             this.courseService.Edit(modelFromDb);
 
+            return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
+        }
+
+        
+        public ActionResult Upload(int id)
+        {
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Upload(int id,  ResourceInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            string pathDb = "/Resources/" + model.File.FileName.Replace(" ", "-");
+            string pathFileSystem = this.Server.MapPath("~/Resources/" + model.File.FileName.Replace(" ", "-"));
+
+            model.File.SaveAs(pathFileSystem);
+            this.courseService.AddResourse(model.Name, pathDb, id);
+           
             return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
         }
     }
