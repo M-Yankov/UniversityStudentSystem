@@ -224,6 +224,7 @@
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
+    <Compile Include="Areas\Trainer\Controllers\NotifyController.cs" />
     <Compile Include="Areas\Trainer\Controllers\SemestersController.cs" />
     <Compile Include="Areas\Trainer\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Trainer\TrainerAreaRegistration.cs" />
@@ -282,6 +283,7 @@
     <Compile Include="Models\Manage\ConfigureTwoFactorViewModel.cs" />
     <Compile Include="Models\Manage\SetPasswordViewModel.cs" />
     <Compile Include="Models\Manage\VerifyPhoneNumberViewModel.cs" />
+    <Compile Include="Models\Messages\NotifyInputModel.cs" />
     <Compile Include="Models\NewsModels\NewsInputModel.cs" />
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
     <Compile Include="Models\Resources\ResourceInputModel.cs" />
@@ -365,6 +367,7 @@
     <Content Include="Areas\Public\Views\Specialties\Details.cshtml" />
     <Content Include="Areas\Public\Views\Shared\DisplayTemplates\Name.cshtml" />
     <Content Include="Areas\Public\Views\Shared\DisplayTemplates\Description.cshtml" />
+    <Content Include="Areas\Public\Views\Shared\_NotifyForm.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -429,6 +432,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
+    <Folder Include="Areas\Trainer\Views\Notify\" />
     <Folder Include="Areas\Trainer\Views\Semesters\" />
     <Folder Include="Areas\Trainer\Views\Specialties\" />
     <Folder Include="Content\Kendo\fonts\" />

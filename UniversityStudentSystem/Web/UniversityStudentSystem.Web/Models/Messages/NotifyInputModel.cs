@@ -1,32 +1,27 @@
-﻿namespace UniversityStudentSystem.Data.Models
+﻿
+namespace UniversityStudentSystem.Web.Models.Messages
 {
     using System;
     using System.ComponentModel.DataAnnotations;
-
     using Common;
-    using CommonModels;
-    using CustomAttributes;
+    using Infrastructure.Mapping;
+    using UniversityStudentSystem.Data.Models;
 
-    public class Message : BaseModel<int>
+    public class NotifyInputModel: IMapTo<Message>
     {
         [Required]
-        [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime DateSent { get; set; }
 
         [Required]
         public bool IsViewed { get; set; }
 
         [Required]
+        [DataType(DataType.MultilineText)]
         [MaxLength(ModelConstants.DescriptionMaxLength)]
         public string Content { get; set; }
 
-        [Required]
         public string SenderId { get; set; }
 
-        public virtual User Sender { get; set; }
-
-        public string ReceiverId { get; set; }
-
-        public virtual User Receiver { get; set; }
+        public int SpecialtyId { get; set; }
     }
 }

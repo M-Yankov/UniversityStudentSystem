@@ -1,4 +1,5 @@
 ﻿@using UniversityStudentSystem.Common;
+@using UniversityStudentSystem.Web.Models.Messages;
 
 @model UniversityStudentSystem.Web.Models.Specialties.SpecialtyViewModel
 
@@ -11,6 +12,21 @@
     <div class="col-lg-offset-2 col-md-8">
         @Html.DisplayFor(model => model.Name, "Name", null)
         @Html.DisplayFor(model => model.Description, "Description", null)
+    </div>
+</div>
+
+<div>
+    <div class="col-lg-offset-2 col-md-8">
+        <p class="lead"> Semesters</p>
+        @foreach (var sem in Model.Semesters)
+        {
+            <span style="font-size: 24px;" class="label @(sem.IsActive ? "label-success" : "label-warning")">@sem.Name</span>
+        }
+        <p class="text-muted " style="margin-top: 10px;">
+            <span class="label label-success">■</span> semester is active.
+            <br />
+            <span class="label-warning label">■</span> semester is not active.
+        </p>
     </div>
 </div>
 
@@ -56,6 +72,9 @@
         </div>
     </div>
 
-
-
+    <div class="row">
+        <div class="col-lg-offset-2 col-md-8">
+            @Html.Partial("_NotifyForm", new NotifyInputModel() { SpecialtyId = Model.Id } )
+        </div>
+    </div>
 }
