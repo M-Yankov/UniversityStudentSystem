@@ -17,11 +17,22 @@
             this.specialties = specialtiesService;
         }
 
-        // GET: Public/Specialties
         public ActionResult Index()
         {
             IEnumerable<SpecialtyViewModel> specialties = this.specialties.GetAll().To<SpecialtyViewModel>().ToList();
             return View(specialties);
+        }
+
+        public ActionResult Details(int id)
+        {
+            var specialty = specialties.GetAll().FirstOrDefault(s => s.Id == id);
+            if (specialty == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            var specialtyViewModel = this.Mapper.Map<SpecialtyViewModel>(specialty);
+            return this.View(specialtyViewModel);
         }
     }
 }

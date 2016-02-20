@@ -6,23 +6,25 @@
     using Data.Models;
     using System.Linq;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
-
+    using Semesters;
+    using System.ComponentModel.DataAnnotations;
     public class SpecialtyViewModel : IMapFrom<Specialty>, IHaveCustomMappings
     {
         public int Id { get; set; }
 
+        [UIHint("Name")]
         public string Name { get; set; }
 
+        [UIHint("Description")]
         public string Description { get; set; }
 
-        public ICollection<string> Semesters { get; set; }
+        public ICollection<SemesterViewModel> Semesters { get; set; }
 
         public int StudentsCount { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Specialty, SpecialtyViewModel>()
-                .ForMember(s => s.Semesters, o => o.MapFrom(spec => spec.Semesters.Select(sem => sem.Name)))
                 .ForMember(s => s.StudentsCount, o => o.MapFrom(spec => spec.Students.Count));
         }
     }

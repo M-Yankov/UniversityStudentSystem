@@ -14,5 +14,7 @@
         void Edit(Course model);
 
         void AddResourse(string name, string path, int id);
+
+        string IsAllowed(string userId, int courseId);
     }
 }

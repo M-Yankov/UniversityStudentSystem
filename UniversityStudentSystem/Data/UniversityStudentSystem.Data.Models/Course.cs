@@ -36,7 +36,7 @@ namespace UniversityStudentSystem.Data.Models
 
         public virtual Semester Semester { get; set; }
         
-        public ICollection<Resource> Resources
+        public virtual ICollection<Resource> Resources
         {
             get
             {

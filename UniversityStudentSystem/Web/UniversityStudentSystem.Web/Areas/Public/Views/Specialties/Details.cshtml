@@ -1,0 +1,59 @@
+﻿@using UniversityStudentSystem.Common;
+
+@model UniversityStudentSystem.Web.Models.Specialties.SpecialtyViewModel
+
+@{
+    ViewBag.Title = "Details - " + Model.Name;
+    bool isStaff = this.User.IsInRole(RoleConstants.Admin) || this.User.IsInRole(RoleConstants.Trainer);
+}
+
+<div class="row">
+    <div class="col-lg-offset-2 col-md-8">
+        @Html.DisplayFor(model => model.Name, "Name", null)
+        @Html.DisplayFor(model => model.Description, "Description", null)
+    </div>
+</div>
+
+@if (isStaff)
+{
+    <div class="row">
+        <div class="col-lg-offset-2 col-md-8">
+            <p class="text-center lead">Semesters</p>
+            <table class="table table-bordered">
+                <tr>
+                    <th class="text-center">Name</th>
+                    <th class="text-center">Options</th>
+                </tr>
+                @foreach (var sem in Model.Semesters)
+                {
+                    <tr>
+                        <td>
+                            @sem.Name
+                        </td>
+                        @if (sem.IsActive)
+                        {
+                            using (Html.BeginForm("Deactivate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
+                            {
+                                <td>
+                                    <input type="submit" class="btn btn-danger" value="Deactivate" />
+                                </td>
+                            }
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("Activate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
+                            {
+                                <td>
+                                    <input type="submit" class="btn btn-success" value="Activate" />
+                                </td>
+                            }
+                        }
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+
+
+
+}

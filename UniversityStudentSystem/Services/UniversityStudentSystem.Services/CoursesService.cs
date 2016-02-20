@@ -62,5 +62,22 @@
             this.coursesRepository.Update(course);
             this.coursesRepository.Save();
         }
+
+        public string IsAllowed(string userId, int courseId)
+        {
+            var course = this.coursesRepository.GetById(courseId);
+
+            if (!course.Semester.IsActive)
+            {
+                return "Semester for this course is not active";
+            }
+
+            if (!course.Semester.Specialty.Students.Any(s => s.Id == userId))
+            {
+                return "You are not allowed to view course details. You may send a candidature for " + course.Semester.Specialty.Name + ".";
+            }
+
+            return null;
+        }
     }
 }

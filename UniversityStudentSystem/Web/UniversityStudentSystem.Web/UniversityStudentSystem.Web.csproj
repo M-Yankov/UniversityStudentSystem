@@ -224,6 +224,8 @@
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
+    <Compile Include="Areas\Trainer\Controllers\SemestersController.cs" />
+    <Compile Include="Areas\Trainer\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Trainer\TrainerAreaRegistration.cs" />
     <Compile Include="Areas\Trainer\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Models\AnswerInputModel.cs" />
@@ -283,6 +285,8 @@
     <Compile Include="Models\NewsModels\NewsInputModel.cs" />
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
     <Compile Include="Models\Resources\ResourceInputModel.cs" />
+    <Compile Include="Models\Resources\ResourceViewModel.cs" />
+    <Compile Include="Models\Semesters\SemesterViewModel.cs" />
     <Compile Include="Models\SideMenu\SideMenuViewModel.cs" />
     <Compile Include="Models\Specialties\SpecialtyViewModel.cs" />
     <Compile Include="Models\StatisticViewModel.cs" />
@@ -358,6 +362,9 @@
     <Content Include="Areas\Trainer\Views\Courses\Join.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\Edit.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\Upload.cshtml" />
+    <Content Include="Areas\Public\Views\Specialties\Details.cshtml" />
+    <Content Include="Areas\Public\Views\Shared\DisplayTemplates\Name.cshtml" />
+    <Content Include="Areas\Public\Views\Shared\DisplayTemplates\Description.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -421,8 +428,9 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
-    <Folder Include="Areas\Public\Views\DisplayTemplates\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
+    <Folder Include="Areas\Trainer\Views\Semesters\" />
+    <Folder Include="Areas\Trainer\Views\Specialties\" />
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />

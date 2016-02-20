@@ -2,15 +2,14 @@
 @using UniversityStudentSystem.Common;
 
 @{
-    ViewBag.Title = Model.Name;
+    this.ViewBag.Title = Model.Name;
+    bool isStaff = this.User.IsInRole(RoleConstants.Trainer) || this.User.IsInRole(RoleConstants.Admin);
 }
 
 <div class="row">
     <div class="col-md-8">
-
-
         <h2>@Model.Name</h2>
-        <span class="text-muted">in @Model.Specialty</span>
+        <span class="text-muted">in @(Model.Specialty) - @(Model.Semester.Name)</span>
 
         <p>@Html.DisplayFor(m => m.Description)</p>
     </div>
@@ -26,42 +25,72 @@
 </div>
 
 <div class="row">
-    <div class="col-md-6">
-        <div class="panel panel-default">
-            <div class="panel-heading">
-                Tasks:
-            </div>
-
-            <div class="panel-body">
-                <div class="panel-group" id="accordion">
-                    @{
-                        int i = 1;
-                    }
-                    @foreach (var task in Model.Tasks)
-                    {
-                        <div class="panel panel-default">
-                            <div class="panel-heading task">
-                                <h4 class="panel-title">
-                                    <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">Task #@i</a>
-                                </h4>
-                            </div>
-                            <div style="height: 0px;" aria-expanded="false" id="collapse@(i)" class="panel-collapse collapse">
-                                <div class="panel-body">
-                                    @Html.Raw(task.Requirements)
-                                </div>
-                            </div>
-                        </div>
+    @{
+        if (this.ViewBag.IsAllowed || isStaff)
+        {
+            <div class="col-md-6">
+                <div class="row">
+                    <p class="lead text-center">Resource materials</p>
+                    <table class="table table-bordered">
+                        <tr>
+                            <th class="text-center">Name:</th>
+                            <th class="text-center">Link:</th>
+                        </tr>
+                        @foreach (var res in Model.Resources)
                         {
-                            i++;
+                            <tr>
+                                <td>
+                                    @res.Name
+                                </td>
+                                <td>
+                                    <a href="@res.Path" class="btn btn-info btn-outline">Download</a>
+                                </td>
+                            </tr>
                         }
-                    }
+                    </table>
+                </div>
+
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        Tasks:
+                    </div>
+
+                    <div class="panel-body">
+                        <div class="panel-group" id="accordion">
+                            @{
+                                int i = 1;
+                            }
+                            @foreach (var task in Model.Tasks)
+                            {
+                                <div class="panel panel-default">
+                                    <div class="panel-heading task">
+                                        <h4 class="panel-title">
+                                            <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">Task #@i</a>
+                                        </h4>
+                                    </div>
+                                    <div style="height: 0px;" aria-expanded="false" id="collapse@(i)" class="panel-collapse collapse">
+                                        <div class="panel-body">
+                                            @Html.Raw(task.Requirements)
+                                        </div>
+                                    </div>
+                                </div>
+                                {
+                                    i++;
+                                }
+                            }
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    <div class="col-md-6">
-        @if (this.User.IsInRole(RoleConstants.Trainer) || this.User.IsInRole(RoleConstants.Admin))
+        }
+        else
         {
+            <p class="text-danger"> @this.ViewBag.Message</p>
+        }
+    }
+    @if (isStaff)
+    {
+        <div class="col-md-6">
             <div class="btn-group">
                 <a aria-expanded="false" href="#" class="btn btn-info btn-outline dropdown-toggle" data-toggle="dropdown">
                     <i class="fa fa-fw fa-gear"></i>
@@ -86,9 +115,6 @@
                     </li>
                 </ul>
             </div>
-
-
-        }
-    </div>
+        </div>
+    }
 </div>
-

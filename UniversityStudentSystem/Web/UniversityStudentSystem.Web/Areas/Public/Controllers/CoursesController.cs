@@ -48,6 +48,17 @@
                 return this.RedirectToAction("NotFound");
             }
 
+            string reasonWhenIsNotAllowed = this.courseService.IsAllowed(this.UserId, id);
+            if (reasonWhenIsNotAllowed == null)
+            {
+                this.ViewBag.IsAllowed = true;
+            }
+            else
+            {
+                this.ViewBag.IsAllowed = false;
+                this.ViewBag.Message = reasonWhenIsNotAllowed;
+            }
+
             var viewModel = this.Mapper.Map<CourseViewModel>(course);
             return this.View(viewModel);
         }
