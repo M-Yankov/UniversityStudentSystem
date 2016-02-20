@@ -34,7 +34,7 @@ namespace UniversityStudentSystem.Data.Models
 
         public virtual Semester Semester { get; set; }
 
-        public ICollection<CourseTask> Tasks
+        public virtual ICollection<CourseTask> Tasks
         {
             get
             {
@@ -46,7 +46,7 @@ namespace UniversityStudentSystem.Data.Models
             }
         }
         
-        public ICollection<Test> Tests
+        public virtual ICollection<Test> Tests
         {
             get
             {

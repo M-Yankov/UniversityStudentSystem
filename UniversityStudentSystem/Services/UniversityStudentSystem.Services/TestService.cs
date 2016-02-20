@@ -24,6 +24,11 @@
                 int indexOfCorrectAnswer = questions[i].Index;
                 answers[indexOfCorrectAnswer].IsRight = true;
             }
+
+            testToAdd.CourseId = courseId;
+
+            this.testRepository.Add(testToAdd);
+            this.testRepository.Save();
         }
     }
 }

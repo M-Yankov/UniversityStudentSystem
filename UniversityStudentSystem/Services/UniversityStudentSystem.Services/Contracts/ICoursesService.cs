@@ -6,5 +6,7 @@
     public interface ICoursesService
     {
         IQueryable<Course> GetAll();
+
+        void AddTask(CourseTask task, int id);
     }
 }

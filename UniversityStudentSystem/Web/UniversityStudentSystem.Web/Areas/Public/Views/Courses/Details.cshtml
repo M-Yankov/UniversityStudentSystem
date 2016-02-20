@@ -42,15 +42,18 @@
                         <div class="panel panel-default">
                             <div class="panel-heading">
                                 <h4 class="panel-title">
-                                    <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Task #@i++</a>
+                                    <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">Task #@i</a>
                                 </h4>
                             </div>
-                            <div style="height: 0px;" aria-expanded="false" id="collapseOne" class="panel-collapse collapse">
+                            <div style="height: 0px;" aria-expanded="false" id="collapse@(i)" class="panel-collapse collapse">
                                 <div class="panel-body">
-                                    @task.Requirements
+                                    @Html.Raw(task.Requirements)
                                 </div>
                             </div>
                         </div>
+                        {
+                            i++;
+                        }
                     }
                 </div>
             </div>
@@ -81,7 +84,7 @@
                 </ul>
             </div>
 
-            
+
         }
     </div>
 </div>

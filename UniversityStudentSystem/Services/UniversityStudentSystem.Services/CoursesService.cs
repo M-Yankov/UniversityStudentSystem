@@ -16,6 +16,19 @@ namespace UniversityStudentSystem.Services
             this.coursesRepository = repository;
         }
 
+        public void AddTask(CourseTask task, int id)
+        {
+            var course = this.coursesRepository.GetById(id);
+            if (course == null)
+            {
+                return;
+            }
+
+            course.Tasks.Add(task);
+            coursesRepository.Update(course);
+            coursesRepository.Save();
+        }
+
         public IQueryable<Course> GetAll()
         {
             return this.coursesRepository.All();
