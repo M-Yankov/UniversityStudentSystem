@@ -348,6 +348,7 @@
     <Content Include="Areas\Public\Views\News\EditorTemplates\UploadTemplate.cshtml" />
     <Content Include="Areas\Public\Views\Courses\Index.cshtml" />
     <Content Include="Areas\Public\Views\Shared\_Course.cshtml" />
+    <Content Include="Areas\Public\Views\Courses\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

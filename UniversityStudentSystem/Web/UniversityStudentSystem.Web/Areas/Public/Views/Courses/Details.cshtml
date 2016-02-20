@@ -1,0 +1,88 @@
+﻿@model UniversityStudentSystem.Web.Models.Courses.CourseViewModel
+@using UniversityStudentSystem.Common;
+
+@{
+    ViewBag.Title = Model.Name;
+}
+
+<div class="row">
+    <div class="col-md-8">
+
+
+        <h2>@Model.Name</h2>
+        <span class="text-muted">in @Model.Specialty</span>
+
+        <p>@Html.DisplayFor(m => m.Description)</p>
+    </div>
+    <div class="col-md-4">
+        <h3>Trainers</h3>
+        <ul>
+            @foreach (var trainer in Model.Trainers)
+            {
+                <li>@trainer.FullName</li>
+            }
+        </ul>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-md-6">
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                Tasks:
+            </div>
+
+            <div class="panel-body">
+                <div class="panel-group" id="accordion">
+                    @{
+                        int i = 1;
+                    }
+                    @foreach (var task in Model.Tasks)
+                    {
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h4 class="panel-title">
+                                    <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapseOne">Task #@i++</a>
+                                </h4>
+                            </div>
+                            <div style="height: 0px;" aria-expanded="false" id="collapseOne" class="panel-collapse collapse">
+                                <div class="panel-body">
+                                    @task.Requirements
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6">
+        @if (this.User.IsInRole(RoleConstants.Trainer) || this.User.IsInRole(RoleConstants.Admin))
+        {
+            <div class="btn-group">
+                <a aria-expanded="false" href="#" class="btn btn-info btn-outline dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-fw fa-gear"></i>
+                    Options
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Add Task", "AddTask", new { area = "Trainer", id = Model.Id })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Add Test", "AddTest", new { area = "Trainer", id = Model.Id })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Upload Resource", "UploadResource", new { area = "Trainer", id = Model.Id })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Join ", "AddTask", new { area = "Trainer", id = Model.Id })
+                    </li>
+                </ul>
+            </div>
+
+            
+        }
+    </div>
+</div>
+
