@@ -43,6 +43,10 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-grid").Include(
                             "~/Scripts/Kendo/kendo.grid.min.js"));
 
+            //// ------ SignlaR ------
+            bundles.Add(new ScriptBundle("~/bundles/js-signalr").Include(
+                            "~/Scripts/jquery.signalR-2.2.0.js"));
+
             //// ------ Default -----
             bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
                             "~/Content/Kendo/kendo.common.min.css",

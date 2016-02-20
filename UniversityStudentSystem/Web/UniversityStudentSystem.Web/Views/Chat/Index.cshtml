@@ -1,0 +1,97 @@
+﻿@using UniversityStudentSystem.Common;
+@{
+    ViewBag.Title = "Chat";
+}
+
+<div class="row" style="margin-top: 15px;">
+    <div class="chat-panel panel panel-default">
+        <div class="panel-heading">
+            <i class="fa fa-comments fa-fw"></i>
+            Chat
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default btn-xs dropdown-toggle" data-toggle="dropdown">
+                    <i class="fa fa-chevron-down"></i>
+                </button>
+                <ul class="dropdown-menu slidedown">
+                    <li>
+                        <i class="fa fa-arrow-circle-o-down fa-fw"></i>
+                        <label for="scroll-down">
+                            Scroll down:
+                            <input type="checkbox" value="" style="width: 20px; height:20px; vertical-align:bottom;" id="scroll-down" />
+                        </label>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="panel-body" id="scroller">
+            <ul class="chat" id="messages">
+            </ul>
+        </div>
+        <div class="panel-footer">
+            <div class="input-group">
+                <input id="btn-input" type="text" class="form-control input-sm" placeholder="Type your message here..." />
+                <span class="input-group-btn">
+                    <button class="btn btn-warning btn-sm" id="btn-chat">
+                        Send
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section KendoHead{
+    @Scripts.Render("~/bundles/js-signalr")
+    <script src="~/signalr/hubs" type="text/javascript"></script>
+}
+
+@section Scripts{
+    <script>
+        window.onload = function () {
+            var chat = $.connection.chatter;
+
+            chat.client.addMessage = addMessage;
+
+            $.connection.hub.start().done(function () {
+                $('#btn-chat').click(function () {
+                    var msg = $('#btn-input').val();
+                    chat.server.sendMessage(msg);
+                });
+            });
+        };
+
+        var shouldScrollDown = false;
+
+        $('#scroll-down').on('click', function () {
+            shouldScrollDown = !shouldScrollDown;
+        })
+
+        // pull left?
+        function addMessage(message, userDb) {
+            var user = getUser();
+
+            $('#messages').append($('<li>').addClass(userDb == user ? 'clearfix right' : ' clearfixleft')
+                                .append($('<span>').addClass(userDb == user ? 'chat-img pull-right' : 'chat-img pull-left')
+                                    .append($('<img>').attr('src', '@WebConstants.DefaultImageProfile').addClass('img-circle').attr('alt', 'User avatar').css('width', 50)))
+                                .append($('<div>').addClass(userDb == user ? 'text-right chat-body clearfix' : 'text-left chat-body clearfix ')
+                                    .append($('<div>').addClass(' header')
+                                        .append($('<strong>').addClass('primary-font').text(userDb)))
+                                    .append($('<p>').text(message))));
+
+            if (shouldScrollDown) {
+                var messages = document.getElementById('scroller');
+                messages.scrollTop = messages.scrollHeight;
+            }
+        }
+
+        function getUser() {
+            var key = '@WebConstants.CookieKeyForChar';
+            var start = document.cookie.indexOf(key);
+            var end = document.cookie.indexOf(";", start);
+
+            var username = document.cookie.substring((start + key.length) + 1, end < 0 ? document.cookie.length : end);
+            return username;
+        }
+
+    </script>
+}
