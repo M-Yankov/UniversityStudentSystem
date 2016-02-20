@@ -83,3 +83,7 @@ div.pages a.active {
 div.pages a {
      border-radius: 20px;
 }
+
+#accordion .panel-heading.task:hover {
+    background-color: #5bc0de;
+}

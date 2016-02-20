@@ -30,6 +30,12 @@
             coursesRepository.Save();
         }
 
+        public void Edit(Course model)
+        {
+            this.coursesRepository.Update(model);
+            this.coursesRepository.Save();
+        }
+
         public IQueryable<Course> GetAll()
         {
             return this.coursesRepository.All();

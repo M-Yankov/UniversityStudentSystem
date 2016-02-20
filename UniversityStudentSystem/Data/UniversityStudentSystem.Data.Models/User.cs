@@ -12,8 +12,9 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.EntityFramework;
 
-    public class User : IdentityUser, IIdentifiableEntity<string>, IAuditInfo, IDeletableEntity 
+    public class User : IdentityUser, IIdentifiableEntity<string>, IAuditInfo, IDeletableEntity
     {
+        private ICollection<Candidate> candidatures;
         private ICollection<Diploma> diploms;
         private ICollection<Specialty> specialties;
         private ICollection<Comment> comments;
@@ -23,6 +24,7 @@
 
         public User()
         {
+            this.candidatures = new HashSet<Candidate>();
             this.diploms = new HashSet<Diploma>();
             this.specialties = new HashSet<Specialty>();
             this.comments = new HashSet<Comment>();
@@ -86,6 +88,18 @@
         public bool IsDeleted { get; set; }
 
         public DateTime? DeletedOn { get; set; }
+
+        public ICollection<Candidate> Candidatures
+        {
+            get
+            {
+                return this.candidatures;
+            }
+            set
+            {
+                this.candidatures = value;
+            }
+        }
 
         public virtual ICollection<Diploma> Diploms
         {

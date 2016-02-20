@@ -31,7 +31,6 @@
         public byte[] GetFileContents(string path)
         {
             return File.ReadAllBytes(path);
-            
         }
 
         public void Reject(int candidatureId)

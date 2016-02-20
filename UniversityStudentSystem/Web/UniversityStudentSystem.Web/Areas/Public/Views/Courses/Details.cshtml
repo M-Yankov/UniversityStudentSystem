@@ -40,7 +40,7 @@
                     @foreach (var task in Model.Tasks)
                     {
                         <div class="panel panel-default">
-                            <div class="panel-heading">
+                            <div class="panel-heading task">
                                 <h4 class="panel-title">
                                     <a class="collapsed" aria-expanded="false" data-toggle="collapse" data-parent="#accordion" href="#collapse@(i)">Task #@i</a>
                                 </h4>
@@ -79,7 +79,10 @@
                         @Html.ActionLink("Upload Resource", "UploadResource", new { area = "Trainer", id = Model.Id })
                     </li>
                     <li>
-                        @Html.ActionLink("Join ", "Join", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Join", "Join", new { area = "Trainer", id = Model.Id })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Edit", "Edit", new { area = "Trainer", id = Model.Id })
                     </li>
                 </ul>
             </div>

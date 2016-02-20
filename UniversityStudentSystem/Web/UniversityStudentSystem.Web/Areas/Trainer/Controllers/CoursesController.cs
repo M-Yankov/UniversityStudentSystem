@@ -9,6 +9,7 @@
     using Models;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
+    using Web.Models.Courses;
     using Web.Models.CoursesTask;
 
     public class CoursesController : BaseController
@@ -86,6 +87,40 @@
         public ActionResult JoinIn(int id)
         {
             this.courseService.JoinIn(id, this.UserId);
+            return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
+        }
+
+        public ActionResult Edit(int id)
+        {
+            var courseForEdit = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            if (courseForEdit == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            var modelForEdit = this.Mapper.Map<CourseInputModel>(courseForEdit);
+
+            return this.View(modelForEdit);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult Edit(int id, CourseInputModel model)
+        {
+            if (!this.ModelState.IsValid)
+            {
+                return this.View(model);
+            }
+
+            var modelFromDb = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            if (modelFromDb == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            this.Mapper.Map(model, modelFromDb);
+            this.courseService.Edit(modelFromDb);
+
             return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
         }
     }

@@ -10,5 +10,7 @@
         void AddTask(CourseTask task, int id);
 
         void JoinIn(int courseId, string userId);
+
+        void Edit(Course model);
     }
 }
