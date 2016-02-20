@@ -215,7 +215,6 @@
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
-    <Compile Include="Areas\Trainer\Controllers\DefaultController.cs" />
     <Compile Include="Areas\Trainer\TrainerAreaRegistration.cs" />
     <Compile Include="Areas\Trainer\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Models\AnswerInputModel.cs" />
