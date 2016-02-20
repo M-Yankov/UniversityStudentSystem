@@ -222,6 +222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
+    <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
     <Compile Include="Areas\Trainer\TrainerAreaRegistration.cs" />
     <Compile Include="Areas\Trainer\Controllers\CoursesController.cs" />
@@ -263,6 +264,7 @@
     <Compile Include="Models\Candidates\CandidateViewModel.cs" />
     <Compile Include="Models\Comments\CommentInputModel.cs" />
     <Compile Include="Models\Comments\CommentViewModel.cs" />
+    <Compile Include="Models\CoursesTask\TaskViewModel.cs" />
     <Compile Include="Models\Courses\CourseViewModel.cs" />
     <Compile Include="Models\Documents\DocumentViewModel.cs" />
     <Compile Include="Models\ForumPosts\ForumInputModel.cs" />
@@ -344,6 +346,8 @@
     <Content Include="Areas\Trainer\Views\Candidates\Index.cshtml" />
     <Content Include="Areas\Public\Views\News\Create.cshtml" />
     <Content Include="Areas\Public\Views\News\EditorTemplates\UploadTemplate.cshtml" />
+    <Content Include="Areas\Public\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Public\Views\Shared\_Course.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -407,6 +411,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Areas\Public\Views\DisplayTemplates\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />

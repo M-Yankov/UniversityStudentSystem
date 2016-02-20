@@ -1,0 +1,65 @@
+﻿@model IEnumerable<UniversityStudentSystem.Web.Models.Courses.CourseViewModel>
+
+@{
+    ViewBag.Title = "Courses";
+}
+
+@{
+    var stringPage = this.Request.QueryString["page"];
+    int currentPage = 1;
+    if (stringPage != null)
+    {
+        int.TryParse(stringPage, out currentPage);
+    }
+
+    if (currentPage == 0)
+    {
+        currentPage = 1;
+    }
+}
+
+<h2>Courses</h2>
+
+<div class="row">
+    @foreach (var course in Model)
+    {
+        <div class="col-md-4">
+            @Html.Partial("_Course", course)
+        </div>
+    }
+</div>
+
+<div class="pages">
+    <a href="@Url.Action("Index", new { area = "Public", page = currentPage < 2 ? 1 : currentPage - 1 })"
+        class="btn btn-info btn-outline @(currentPage == 1 ? "disabled" : string.Empty) ">
+        <i class="fa fa-chevron-left fa-fw"></i>
+    </a>
+
+    @{
+        int i = (currentPage - 2);
+        int counter = 0;
+        while (counter < 5)
+        {
+            if (i < 1)
+            {
+                i++;
+                continue;
+            }
+
+            if (i > this.ViewBag.Pages + 1)
+            {
+                break;
+            }
+
+            <a href="@Url.Action("Index", new { area = "Public", page = i})" class="btn btn-info btn-outline @(i == currentPage ? "active" : string.Empty)" >@i</a>
+
+            counter++;
+            i++;
+        }
+    }
+
+    <a href="@Url.Action("Index", new { area = "Public", page = currentPage + 1 })"
+       class="btn btn-info btn-outline @(currentPage == this.ViewBag.Pages + 1 ? "disabled" : string.Empty) ">
+        <i class="fa fa-chevron-right fa-fw"></i>
+    </a>
+</div>

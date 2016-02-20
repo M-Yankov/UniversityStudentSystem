@@ -69,3 +69,17 @@ li .timeline-panel:hover {
     height: 30px;
     width: 30px;
 }
+
+.shadow:hover {
+    -moz-box-shadow: 0 0 9px 0px #0094ff;
+    -webkit-box-shadow: 0 0 9px 0px #0094ff;
+    box-shadow: 0 0 9px 0px #0094ff;
+}
+
+div.pages a.active {
+    color: white;
+}
+
+div.pages a {
+     border-radius: 20px;
+}

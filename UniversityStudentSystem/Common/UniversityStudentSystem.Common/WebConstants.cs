@@ -13,5 +13,7 @@
         public const int HomePageCacheDuration = 10 * 60; // 600 seconds i.e. 10 min
 
         public const string CookieKeyForChar = "client";
+
+        public const int PageSizeCourse = 6;
     }
 }
