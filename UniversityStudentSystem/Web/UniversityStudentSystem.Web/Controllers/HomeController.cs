@@ -120,7 +120,7 @@
             StatisticViewModel model = new StatisticViewModel()
             {
                 Count = homeService.GetTopForumPosts().Count(),
-                Text = "Forum psts",
+                Text = "Forum posts",
                 ColorClass = "panel-green",
                 IconClass = "fa-comments-o",
                 Link = "Forum"
