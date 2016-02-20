@@ -1,0 +1,16 @@
+﻿@{
+    ViewBag.Title = "Join";
+}
+
+<p class="lead" style="margin-top:20px;">Are you sure to join in @(this.ViewBag.CourseName) course ?</p>
+<div class="col-md-6">
+    @using (Html.BeginForm("JoinIn", "Courses", new { id = this.Request.RequestContext.RouteData.Values["id"], area = "Trainer" } , FormMethod.Post))
+    {
+        @Html.AntiForgeryToken()
+        <button type="submit" class="btn btn-success btn-block btn-outline">Confirm</button>
+    }
+</div>
+<div class="col-md-6">
+    @Html.ActionLink("Back", "Details", new { id = this.Request.RequestContext.RouteData.Values["id"], area = "Public" }, new { @class ="btn btn-warning btn-outline" })
+</div>
+

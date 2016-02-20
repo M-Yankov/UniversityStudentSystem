@@ -68,5 +68,25 @@
 
             return this.RedirectToAction("Details", "Courses", new { id = id, area = "Public" });
         }
+
+        public ActionResult Join(int id)
+        {
+            var course = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            if (course == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            this.ViewBag.CourseName = course.Name;
+            return this.View();
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult JoinIn(int id)
+        {
+            this.courseService.JoinIn(id, this.UserId);
+            return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
+        }
     }
 }

@@ -8,5 +8,7 @@
         IQueryable<Course> GetAll();
 
         void AddTask(CourseTask task, int id);
+
+        void JoinIn(int courseId, string userId);
     }
 }

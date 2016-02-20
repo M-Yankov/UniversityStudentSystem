@@ -351,6 +351,7 @@
     <Content Include="Areas\Public\Views\Shared\_Course.cshtml" />
     <Content Include="Areas\Public\Views\Courses\Details.cshtml" />
     <Content Include="Areas\Trainer\Views\Courses\AddTask.cshtml" />
+    <Content Include="Areas\Trainer\Views\Courses\Join.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

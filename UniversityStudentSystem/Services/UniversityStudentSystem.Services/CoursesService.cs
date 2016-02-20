@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Services
+﻿namespace UniversityStudentSystem.Services
 {
     using System;
     using System.Linq;
@@ -10,10 +9,12 @@ namespace UniversityStudentSystem.Services
     public class CoursesService : ICoursesService
     {
         private IRepository<Course> coursesRepository;
+        private IRepository<User, string> trainersRepository;
 
-        public CoursesService(IRepository<Course> repository)
+        public CoursesService(IRepository<Course> coursesRepo, IRepository<User, string> trainersRepo)
         {
-            this.coursesRepository = repository;
+            this.coursesRepository = coursesRepo;
+            this.trainersRepository = trainersRepo;
         }
 
         public void AddTask(CourseTask task, int id)
@@ -32,6 +33,20 @@ namespace UniversityStudentSystem.Services
         public IQueryable<Course> GetAll()
         {
             return this.coursesRepository.All();
+        }
+
+        public void JoinIn(int courseId, string userId)
+        {
+            var course = this.coursesRepository.GetById(courseId);
+            if (course.Trainers.Any(t => t.Id == userId))
+            {
+                return;
+            }
+
+            var trainer = this.trainersRepository.GetById(userId);
+            course.Trainers.Add(trainer);
+            this.coursesRepository.Update(course);
+            this.coursesRepository.Save();
         }
     }
 }
