@@ -17,8 +17,8 @@
         {
             context.MapRoute(
                 "Trainer",
-                "Trainer/{controller}/{action}/{id}",
-                new { action = "Index", id = UrlParameter.Optional },
+                "Trainer/{controller}/{action}/{id}/{name}",
+                new { action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional },
                 new  { isAllowed = new TrainerRouteConstraint() }
             );
         }

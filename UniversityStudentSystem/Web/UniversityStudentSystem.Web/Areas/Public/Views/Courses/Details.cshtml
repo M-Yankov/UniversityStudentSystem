@@ -1,4 +1,5 @@
-﻿@model UniversityStudentSystem.Web.Models.Courses.CourseViewModel
+﻿@using UniversityStudentSystem.Common.Extensions;
+@model UniversityStudentSystem.Web.Models.Courses.CourseViewModel
 @using UniversityStudentSystem.Common;
 
 @{
@@ -99,19 +100,19 @@
                 </a>
                 <ul class="dropdown-menu">
                     <li>
-                        @Html.ActionLink("Add Task", "AddTask", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Add Task", "AddTask", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                     <li>
-                        @Html.ActionLink("Add Test", "AddTest", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Add Test", "AddTest", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                     <li>
-                        @Html.ActionLink("Upload Resource", "Upload", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Upload Resource", "Upload", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                     <li>
-                        @Html.ActionLink("Join", "Join", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Join", "Join", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                     <li>
-                        @Html.ActionLink("Edit", "Edit", new { area = "Trainer", id = Model.Id })
+                        @Html.ActionLink("Edit", "Edit", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                 </ul>
             </div>

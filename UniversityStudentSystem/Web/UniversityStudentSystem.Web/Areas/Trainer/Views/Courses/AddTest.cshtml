@@ -89,8 +89,8 @@
             var $btn = $(this);
             var $parent = $btn.parent();
             var $grantParent = $btn.parent().parent();
-            var indexOfQuestion = $('#questions').children().length - 1;
-
+            var indexOfQuestion = $('#questions').children().index($grantParent.parent().parent().parent()); 
+            
             var value = $grantParent.children().length - 1;
             var $result = $('<div>').addClass('row')
                             .append($('<div>')

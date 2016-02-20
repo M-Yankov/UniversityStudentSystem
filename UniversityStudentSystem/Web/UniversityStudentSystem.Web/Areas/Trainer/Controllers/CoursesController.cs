@@ -47,7 +47,7 @@
             var mapp = this.Mapper.Map<Test>(model);
             this.testService.Create(mapp, id);
 
-            return this.View(model);
+            return this.RedirectToAction("Details", "Courses", new { id = id, area = "Public" });
         }
 
         public ActionResult AddTask(int id)

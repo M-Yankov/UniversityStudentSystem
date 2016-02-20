@@ -34,6 +34,7 @@
                         {
                             using (Html.BeginForm("Deactivate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
                             {
+                                @Html.AntiForgeryToken()
                                 <td>
                                     <input type="submit" class="btn btn-danger" value="Deactivate" />
                                 </td>
@@ -43,6 +44,7 @@
                         {
                             using (Html.BeginForm("Activate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
                             {
+                                @Html.AntiForgeryToken()
                                 <td>
                                     <input type="submit" class="btn btn-success" value="Activate" />
                                 </td>
