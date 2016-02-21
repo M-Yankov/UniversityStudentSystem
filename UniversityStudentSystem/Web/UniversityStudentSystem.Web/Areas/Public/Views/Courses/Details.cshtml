@@ -112,7 +112,6 @@
                         </div>
                     }
                 }
-
             </div>
         }
         else
@@ -147,6 +146,9 @@
                     </li>
                     <li>
                         @Html.ActionLink("Solutions", "Solutions", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Marks", "Marks", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                 </ul>
             </div>

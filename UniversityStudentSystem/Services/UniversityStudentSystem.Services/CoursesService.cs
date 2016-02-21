@@ -103,5 +103,20 @@
 
             return null;
         }
+
+        public void AddMark(int value, string username, int courseId, string reason)
+        {
+            var student = trainersRepository.All().FirstOrDefault(u => u.UserName == username);
+            student.Marks.Add(new Mark()
+            {
+                CourseId = courseId,
+                Reason = reason,
+                Value = value,
+                CreatedOn = DateTime.Now
+            });
+
+            this.trainersRepository.Update(student);
+            this.trainersRepository.Save();
+        }
     }
 }

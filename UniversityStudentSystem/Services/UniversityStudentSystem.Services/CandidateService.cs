@@ -65,7 +65,6 @@
                 return;
             }
 
-            /// TODO: Test!~!!!
             user.Specialties.Add(specialty);
             usersRepository.Update(user);
             usersRepository.Save();

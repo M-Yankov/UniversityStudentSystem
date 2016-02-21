@@ -20,5 +20,7 @@
         void SaveSolution(string path, string userId, int courseId);
 
         string SolutionResult(string userId, int courseId);
+
+        void AddMark(int value, string username, int courseId, string reason);
     }
 }

@@ -3,9 +3,11 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using AutoMapper;
     using Comments;
     using ForumPosts;
+    using Marks;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
@@ -45,6 +47,8 @@
         public ICollection<ForumPostViewModel> ForumPosts { get; set; }
 
         public ICollection<CommentViewModel> Comments { get; set; }
+
+        public ICollection<MarkViewModel> Marks { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

@@ -1,0 +1,23 @@
+﻿@{
+    this.Layout = null;
+    int courseDetailsId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
+}
+
+@(Html.Kendo().AutoComplete()
+          .Name("Username")
+          .Filter(FilterType.StartsWith)
+          .Placeholder("username")
+          .MinLength(3)
+          .Delay(1000)
+          .HtmlAttributes(new { @class = "k-input"})
+          .DataSource(source =>
+          {
+              source.Read(read =>
+              {
+                  read.Action("GetUsernames", "Courses", new { id = courseDetailsId, area = "Trainer" })
+                    .Data("onAdditionalData");
+              })
+              .ServerFiltering(true);
+          }))
+
+

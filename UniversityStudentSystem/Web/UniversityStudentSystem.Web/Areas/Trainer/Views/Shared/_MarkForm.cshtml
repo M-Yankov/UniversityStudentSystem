@@ -1,0 +1,26 @@
+﻿@model UniversityStudentSystem.Web.Models.Marks.MarkInputModel
+
+@{
+    ViewBag.Title = "MarkForm";
+    Layout = null;
+    int courseDetailsId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
+}
+
+@using (Html.BeginForm("GiveMark", "Courses", new { id = courseDetailsId }, FormMethod.Post))
+{
+    Html.AntiForgeryToken();
+
+        <select name="Value" class="form-control">
+            @for (int i = 2; i < 7; i++)
+            {
+                <option value="@i">@i</option>
+            }
+        </select>
+        <p class="block-help">Mark cannot be changed latter!</p>
+    Html.EditorFor(c => c.Reason, new { htmlAttributes = new { @class = "form-control", placeolder = "Reason is not required." } });
+    <input type="submit"  class="btn btn-success" value="Submit"/> 
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

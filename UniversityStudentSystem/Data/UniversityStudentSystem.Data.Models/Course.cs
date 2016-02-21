@@ -14,6 +14,7 @@ namespace UniversityStudentSystem.Data.Models
         private ICollection<CourseTask> tasks;
         private ICollection<Resource> resources;
         private ICollection<Solution> solutions;
+        private ICollection<Mark> marks;
 
         public Course()
         {
@@ -22,6 +23,7 @@ namespace UniversityStudentSystem.Data.Models
             this.tasks = new HashSet<CourseTask>();
             this.resources = new HashSet<Resource>();
             this.solutions = new HashSet<Solution>();
+            this.marks = new HashSet<Mark>();
         }
 
         [Required]
@@ -95,6 +97,18 @@ namespace UniversityStudentSystem.Data.Models
             set
             {
                 this.solutions = value;
+            }
+        }
+
+        public virtual ICollection<Mark> Marks
+        {
+            get
+            {
+                return this.marks;
+            }
+            set
+            {
+                this.marks = value;
             }
         }
     }

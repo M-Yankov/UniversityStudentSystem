@@ -1,0 +1,18 @@
+﻿@model int?
+
+<div class="col-md-2">
+    <select class="form-control" name="Value" style="font-size: 24px;">
+        @for (int i = 2; i < 7; i++)
+        {
+            if (Model == i)
+            {
+                <option value="@i" selected="selected">@i</option>
+            }
+            else
+            {
+                <option value="@i">@i</option>
+            }
+        }
+    </select>
+</div>
+

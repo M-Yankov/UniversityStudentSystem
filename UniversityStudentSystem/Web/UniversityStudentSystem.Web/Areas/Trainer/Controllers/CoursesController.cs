@@ -3,18 +3,23 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Net;
     using System.Web;
     using System.Web.Mvc;
 
     using Data.Models;
     using Infrastructure.Mapping;
+    using Kendo.Mvc.Extensions;
+    using Kendo.Mvc.UI;
     using Models;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
     using Web.Models.Courses;
     using Web.Models.CoursesTask;
+    using Web.Models.Marks;
     using Web.Models.Resources;
     using Web.Models.Solutions;
+    using Web.Models.Users;
     public class CoursesController : BaseController
     {
         private ITestService testService;
@@ -138,7 +143,6 @@
 
             return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
         }
-
         
         public ActionResult Upload(int id)
         {
@@ -161,6 +165,63 @@
             this.courseService.AddResourse(model.Name, pathDb, id);
            
             return this.RedirectToAction("Details", "Courses", new { area = "Public", id = id });
+        }
+
+        public ActionResult Marks(int id)
+        {
+            return this.View();
+        }
+
+        public ActionResult GetMarks(int id, [DataSourceRequest] DataSourceRequest request)
+        {
+            var course = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            if (course == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            var viewModel = course.Marks.AsQueryable().To<MarkInputModel>().ToList();
+
+            return this.Json(viewModel.ToDataSourceResult(request));
+        }
+
+        [AcceptVerbs(HttpVerbs.Post)]
+        public ActionResult AddMark([DataSourceRequest] DataSourceRequest request, int id, MarkInputModel model)
+        {
+            // No idea why id is 0 when path is /Trainer/Courses/AddMark/5;
+            int courseId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
+            var returnResult = this.RedirectToAction("GetMarks", new {  id = id});
+
+            if (!this.ModelState.IsValid)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest, "Bad Request");
+            }
+
+            this.courseService.AddMark(model.Value, model.Username, courseId, model.Reason);
+            return this.Json(new[] { model }.ToDataSourceResult(request, this.ModelState));
+        }
+
+        public ActionResult GetUsernames(int id, [DataSourceRequest] DataSourceRequest request, string text)
+        {
+            // TODO: how to cache this ?
+            var usernames = this.courseService
+                .GetAll()
+                .FirstOrDefault(c => c.Id == id)
+                .Semester
+                .Specialty
+                .Students
+                .Where(u => u.UserName.StartsWith(text))
+                .Select(u => u.UserName)
+                .ToArray();
+             
+            return this.Json(usernames, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult GiveMark(int id)
+        {
+            return this.View();
         }
     }
 }

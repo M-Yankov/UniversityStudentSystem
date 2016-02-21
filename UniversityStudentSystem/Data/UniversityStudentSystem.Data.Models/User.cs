@@ -175,8 +175,6 @@
             }
         }
 
-        
-
         public ICollection<Solution> Solutions
         {
             get

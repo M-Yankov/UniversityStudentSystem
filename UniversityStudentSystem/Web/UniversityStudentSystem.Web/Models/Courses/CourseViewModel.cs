@@ -5,8 +5,10 @@
     using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using CoursesTask;
+    using Marks;
     using Resources;
     using Semesters;
+    using Solutions;
     using Specialties;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
@@ -26,6 +28,10 @@
         public ICollection<TaskViewModel> Tasks { get; set; }
 
         public ICollection<ResourceViewModel> Resources { get; set; }
+
+        public ICollection<SolutionViewModel> Solutions { get; set; }
+
+        public ICollection<MarkViewModel> Marks { get; set; }
 
         public SemesterViewModel Semester { get; set; }
 

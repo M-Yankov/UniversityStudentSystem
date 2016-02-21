@@ -1,0 +1,57 @@
+﻿@using UniversityStudentSystem.Web.Models.Marks;
+
+@{
+    this.ViewBag.Title = "Marks";
+    int courseDetailsId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
+}
+
+<h2>Marks</h2>
+
+@(Html.Kendo()
+            .Grid<MarkInputModel>()
+            .Name("Marks")
+            .Columns(columns =>
+            {
+                columns.Bound(model => model.Username).Title("Username");
+                columns.Bound(model => model.Value).Title("Mark");
+            })
+            .ToolBar(c => c.Create().Text("Add Mark"))
+            .Pageable()
+            .Filterable()
+            .Sortable()
+            .Scrollable()
+            .Editable(editable => editable.Mode(GridEditMode.PopUp))
+            .DataSource(source => source
+                .Ajax()
+                .Model(m => {
+                    m.Id(ma => ma.Id);
+                    m.Field(ma => ma.Value);
+                    m.Field(ma => ma.Username);
+                    })
+                .PageSize(20)
+                .Read(read => read.Action("GetMarks", "Courses", new { id = courseDetailsId, area = "Trainer" }))
+                .Create(create => create.Action("AddMark", "Courses", new { id = courseDetailsId, area = "Trainer" }))
+        ))
+@*  *@
+@section Scripts{
+    <script>
+    function onAdditionalData() {
+        return {
+            text: $("#Username").val()
+        };
+    }
+</script>
+}
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+    @Scripts.Render("~/bundles/js-kendo-autocomplete")
+}
