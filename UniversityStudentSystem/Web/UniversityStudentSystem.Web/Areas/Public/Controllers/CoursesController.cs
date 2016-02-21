@@ -77,7 +77,7 @@
                 "Courses",
                 new { area = "Public", id = id });
 
-            SaveImageResult result = new SaveImageResult();
+            UploadResult result = new UploadResult();
             if (file == null)
             {
                 return redirectResult;

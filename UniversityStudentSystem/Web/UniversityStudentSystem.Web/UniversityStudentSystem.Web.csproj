@@ -222,6 +222,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
+    <Compile Include="Areas\Public\Controllers\CertificatesController.cs" />
     <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Public\Controllers\TrainersController.cs" />
     <Compile Include="Areas\Trainer\Controllers\CandidatesController.cs" />
@@ -314,6 +315,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
+    <Content Include="Images\certificate.jpg" />
     <Content Include="Images\student-default.png" />
     <Content Include="Images\university-default-news.png" />
     <Content Include="SBAdminTheme\dist\css\sb-admin-2.css" />
@@ -447,6 +449,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
+    <Folder Include="Areas\Public\Views\Certificates\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Areas\Trainer\Views\Notify\" />
     <Folder Include="Areas\Trainer\Views\Semesters\" />

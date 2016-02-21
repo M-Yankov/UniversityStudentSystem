@@ -1,8 +1,6 @@
 ﻿namespace UniversityStudentSystem.Web.HelperProviders
 {
-    using System.Collections.Generic;
-
-    public class SaveImageResult
+    public class UploadResult
     {
         public bool HasSucceed { get; set; }
 
