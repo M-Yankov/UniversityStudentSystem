@@ -31,7 +31,11 @@
 
         public ActionResult GetNews([DataSourceRequest] DataSourceRequest request)
         {
-            var news = this.newsService.GetAll().To<NewsViewModel>().ToList();
+            var news = this.newsService
+                .GetAll()
+                .OrderByDescending(n => n.CreatedOn)
+                .To<NewsViewModel>()
+                .ToList();
 
             return this.Json(news.ToDataSourceResult(request));
         }
