@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Data.Models
+﻿namespace UniversityStudentSystem.Data.Models
 {
     using System;
     using System.Collections.Generic;
@@ -20,8 +19,8 @@ namespace UniversityStudentSystem.Data.Models
 
         public virtual User User { get; set; }
 
-        public int TestId { get; set; }
+        public int CourseId { get; set; }
 
-        public virtual Test Test { get; set; }
+        public virtual Course Test { get; set; }
     }
 }
