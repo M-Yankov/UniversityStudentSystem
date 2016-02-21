@@ -1,0 +1,35 @@
+﻿@model IEnumerable<UniversityStudentSystem.Web.Models.Solutions.SolutionViewModel>
+@{
+    ViewBag.Title = "Solutions";
+}
+
+<h2>Solutions</h2>
+
+@(Html.Kendo()
+        .Grid(Model)
+        .Name("Solutions")
+        .Columns(columns =>
+        {
+            columns.Bound(model => model.User.FullName).Title("Full name");
+            columns.Bound(model => model.CreatedOn).Title("Date");
+            columns.Template(@<text>
+                                    <a href="@item.Path" class="btn btn-warning btn-outline">Download</a>
+                            </text>
+                         ).Title("Options");
+        })
+        .Pageable()
+        .Filterable()
+        .Sortable())
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}

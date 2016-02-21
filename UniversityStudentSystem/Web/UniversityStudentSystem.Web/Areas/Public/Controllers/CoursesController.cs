@@ -86,7 +86,7 @@
             result = this.UserManagement.SaveSolution(file, this.UserId, id);
             if (!result.HasSucceed)
             {
-                this.ViewBag.Error = result.Error;
+                this.TempData["Error"] = result.Error;
             }
             else
             {

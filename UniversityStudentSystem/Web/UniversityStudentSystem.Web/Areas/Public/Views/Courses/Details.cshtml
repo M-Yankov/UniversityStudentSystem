@@ -93,8 +93,8 @@
                         @Html.AntiForgeryToken()
                         @Html.Kendo().Upload().Name("File").HtmlAttributes(new { accept = WebConstants.AcceptArchives })
                         <input type="submit" value="Upload" class="btn btn-info btn-outline btn-lg pull-right" />
-                        <p class="help-block text-danger">
-                            @(this.ViewBag.Error)
+                        <p class="text-danger">
+                            @(this.TempData["Error"])
                         </p>
                     }
 
@@ -144,6 +144,9 @@
                     </li>
                     <li>
                         @Html.ActionLink("Edit", "Edit", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
+                    </li>
+                    <li>
+                        @Html.ActionLink("Solutions", "Solutions", new { area = "Trainer", id = Model.Id, name = Model.Name.ToUrl() })
                     </li>
                 </ul>
             </div>

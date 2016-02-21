@@ -6,12 +6,14 @@
     using System.Web.Mvc;
 
     using Data.Models;
+    using Infrastructure.Mapping;
     using Models;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
     using Web.Models.Courses;
     using Web.Models.CoursesTask;
     using Web.Models.Resources;
+    using Web.Models.Solutions;
     public class CoursesController : BaseController
     {
         private ITestService testService;
@@ -31,6 +33,17 @@
         public ActionResult AddTest(int id)
         {
             return this.View();
+        }
+
+        public ActionResult Solutions(int id)
+        {
+            var course = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            var solutions = course.Solutions
+                .AsQueryable()
+                .Distinct(new SolutionEqialityComparer())
+                .To<SolutionViewModel>();
+
+            return this.View(solutions);
         }
 
         //// id = courseId
