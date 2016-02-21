@@ -3,6 +3,7 @@
     using System;
     using System.Linq;
     using System.Web.Mvc;
+
     using Common;
     using Common.Extensions;
     using Data.Models;
@@ -62,6 +63,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = RoleConstants.Admin + ", " + RoleConstants.Trainer)]
         public ActionResult Create(NewsInputModel model)
         {
             if (!this.ModelState.IsValid)
@@ -77,7 +79,6 @@
             var dbNews = this.Mapper.Map<News>(model);
             dbNews.CreatedOn = DateTime.Now;
             int id = this.newsService.Create(dbNews);
-
 
             return this.RedirectToAction("Details", "News", new { id = id, name = model.Title.ToUrl() });
         }

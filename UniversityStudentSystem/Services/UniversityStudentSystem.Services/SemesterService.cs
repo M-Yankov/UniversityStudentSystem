@@ -8,10 +8,12 @@
     public class SemesterService : ISemesterService
     {
         private IRepository<Semester> semestersRepository;
+        private IRepository<Course> coursesRepository;
 
-        public SemesterService(IRepository<Semester> semestersRepo)
+        public SemesterService(IRepository<Semester> semestersRepo, IRepository<Course> coursesRepo)
         {
             this.semestersRepository = semestersRepo;
+            this.coursesRepository = coursesRepo;
         }
 
         public int ChangeStatus(int id)

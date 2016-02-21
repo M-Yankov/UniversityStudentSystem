@@ -6,6 +6,7 @@
 @{
     ViewBag.Title = "Details - " + Model.Name;
     bool isStaff = this.User.IsInRole(RoleConstants.Admin) || this.User.IsInRole(RoleConstants.Trainer);
+    int specialtyId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
 }
 
 <div class="row">
@@ -50,7 +51,7 @@
                         {
                             using (Html.BeginForm("Deactivate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
                             {
-                                @Html.AntiForgeryToken()
+                                @(Html.AntiForgeryToken())
                                 <td>
                                     <input type="submit" class="btn btn-danger" value="Deactivate" />
                                 </td>
@@ -60,7 +61,7 @@
                         {
                             using (Html.BeginForm("Activate", "Semesters", new { id = sem.Id, area = "Trainer" }, FormMethod.Post))
                             {
-                                @Html.AntiForgeryToken()
+                                @(Html.AntiForgeryToken())
                                 <td>
                                     <input type="submit" class="btn btn-success" value="Activate" />
                                 </td>
@@ -74,7 +75,11 @@
 
     <div class="row">
         <div class="col-lg-offset-2 col-md-8">
-            @Html.Partial("_NotifyForm", new NotifyInputModel() { SpecialtyId = Model.Id } )
+            @Html.Partial("_NotifyForm", new NotifyInputModel() { SpecialtyId = Model.Id })
         </div>
+    </div>
+
+    <div class="col-md-10">
+        @Html.ActionLink("Add Course >>", "AddCourse", "Specialties", new { id = specialtyId, area = "Trainer" }, new { @class = "btn btn-success pull-right "})
     </div>
 }

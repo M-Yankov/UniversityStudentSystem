@@ -30,6 +30,21 @@
             coursesRepository.Save();
         }
 
+        public int AddCourse(string name, string description, int semesterId)
+        {
+            var course = new Course()
+            {
+                Name = name,
+                Description = description,
+                SemesterId = semesterId
+            };
+
+            this.coursesRepository.Add(course);
+            this.coursesRepository.Save();
+
+            return course.Id;
+        }
+
         public void Edit(Course model)
         {
             this.coursesRepository.Update(model);

@@ -19,7 +19,7 @@
     using Web.Models.Marks;
     using Web.Models.Resources;
     using Web.Models.Solutions;
-    using Web.Models.Users;
+
     public class CoursesController : BaseController
     {
         private ITestService testService;
@@ -223,5 +223,8 @@
         {
             return this.View();
         }
+
+        
+
     }
 }

@@ -380,6 +380,7 @@
     <Content Include="Areas\Trainer\Views\Shared\EditorTemplates\MarkValue.cshtml" />
     <Content Include="Areas\Trainer\Views\Shared\EditorTemplates\MultiLine.cshtml" />
     <Content Include="Areas\Trainer\Views\Shared\EditorTemplates\UsernameAutoComplete.cshtml" />
+    <Content Include="Areas\Trainer\Views\Specialties\AddCourse.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -446,7 +447,6 @@
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Areas\Trainer\Views\Notify\" />
     <Folder Include="Areas\Trainer\Views\Semesters\" />
-    <Folder Include="Areas\Trainer\Views\Specialties\" />
     <Folder Include="Content\Kendo\fonts\" />
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />
