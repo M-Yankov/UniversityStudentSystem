@@ -46,6 +46,9 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-upload").Include(
                             "~/Scripts/Kendo/kendo.upload.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-editor").Include(
+                            "~/Scripts/Kendo/kendo.editor.min.js"));
+
             bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
                             "~/Content/Kendo/kendo.common.min.css",
                             "~/Content/Kendo/kendo.metro.min.css"));

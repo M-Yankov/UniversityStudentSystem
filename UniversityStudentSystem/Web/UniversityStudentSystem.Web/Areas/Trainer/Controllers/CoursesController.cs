@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
     using Data.Models;
@@ -72,6 +73,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult AddTask(TaskInputModel model, int id)
         {
+            model.Requirements = HttpUtility.HtmlDecode(model.Requirements);
             if (!this.ModelState.IsValid)
             {
                 return this.View(model);

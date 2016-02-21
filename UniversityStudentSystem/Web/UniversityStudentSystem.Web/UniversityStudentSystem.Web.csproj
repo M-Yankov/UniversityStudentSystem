@@ -325,6 +325,7 @@
     <Content Include="Scripts\Kendo\jquery.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\Kendo\kendo.datetimepicker.min.js" />
+    <Content Include="Scripts\Kendo\kendo.editor.min.js" />
     <Content Include="Scripts\Kendo\kendo.grid.min.js" />
     <Content Include="Scripts\Kendo\kendo.listview.min.js" />
     <Content Include="Scripts\Kendo\kendo.upload.min.js" />
