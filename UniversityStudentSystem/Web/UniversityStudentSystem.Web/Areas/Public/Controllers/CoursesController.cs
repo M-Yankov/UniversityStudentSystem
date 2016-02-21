@@ -1,10 +1,12 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Public.Controllers
 {
     using System.Linq;
+    using System.Web;
     using System.Web.Mvc;
 
     using Common;
     using Data.Models;
+    using HelperProviders;
     using Models.Courses;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
@@ -49,6 +51,8 @@
             }
 
             string reasonWhenIsNotAllowed = this.courseService.IsAllowed(this.UserId, id);
+            this.ViewBag.Path = this.courseService.SolutionResult(this.UserId, id);
+
             if (reasonWhenIsNotAllowed == null)
             {
                 this.ViewBag.IsAllowed = true;
@@ -61,6 +65,35 @@
 
             var viewModel = this.Mapper.Map<CourseViewModel>(course);
             return this.View(viewModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult UploadSolution(int id, HttpPostedFileBase file)
+        {
+            ActionResult redirectResult = this.RedirectToAction(
+                "Details",
+                "Courses",
+                new { area = "Public", id = id });
+
+            SaveImageResult result = new SaveImageResult();
+            if (file == null)
+            {
+                return redirectResult;
+            }
+
+            result = this.UserManagement.SaveSolution(file, this.UserId, id);
+            if (!result.HasSucceed)
+            {
+                this.ViewBag.Error = result.Error;
+            }
+            else
+            {
+                this.courseService.SaveSolution(result.Path, this.UserId, id);
+            }
+
+            return redirectResult;
         }
     }
 }

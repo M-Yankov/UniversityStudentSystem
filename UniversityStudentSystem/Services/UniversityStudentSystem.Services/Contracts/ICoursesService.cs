@@ -16,5 +16,9 @@
         void AddResourse(string name, string path, int id);
 
         string IsAllowed(string userId, int courseId);
+
+        void SaveSolution(string path, string userId, int courseId);
+
+        string SolutionResult(string userId, int courseId);
     }
 }

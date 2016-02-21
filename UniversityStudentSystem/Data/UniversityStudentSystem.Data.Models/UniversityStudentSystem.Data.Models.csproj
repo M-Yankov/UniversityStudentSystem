@@ -78,6 +78,7 @@
     <Compile Include="Question.cs" />
     <Compile Include="Resource.cs" />
     <Compile Include="Semester.cs" />
+    <Compile Include="Solution.cs" />
     <Compile Include="Specialty.cs" />
     <Compile Include="Status.cs" />
     <Compile Include="CourseTask.cs" />

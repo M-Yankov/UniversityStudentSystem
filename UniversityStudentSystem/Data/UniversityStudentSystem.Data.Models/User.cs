@@ -21,6 +21,7 @@
         private ICollection<ForumPost> forumPosts;
         private ICollection<Course> courses;
         private ICollection<Mark> marks;
+        private ICollection<Solution> solutions;
 
         public User()
         {
@@ -31,6 +32,7 @@
             this.forumPosts = new HashSet<ForumPost>();
             this.marks = new HashSet<Mark>();
             this.courses = new HashSet<Course>();
+            this.solutions = new HashSet<Solution>();
         }
 
         [Required]
@@ -170,6 +172,20 @@
             set
             {
                 this.marks = value;
+            }
+        }
+
+        
+
+        public ICollection<Solution> Solutions
+        {
+            get
+            {
+                return this.solutions;
+            }
+            set
+            {
+                this.solutions = value;
             }
         }
 

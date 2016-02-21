@@ -79,5 +79,29 @@
 
             return null;
         }
+
+        public void SaveSolution(string path, string userId, int courseId)
+        {
+            var course = this.coursesRepository.GetById(courseId);
+            course.Solutions.Add(new Solution() { UserId = userId, Path = path, CourseId = courseId });
+
+            this.coursesRepository.Update(course);
+            this.coursesRepository.Save();
+        }
+
+        public string SolutionResult(string userId, int courseId)
+        {
+             var course = this.coursesRepository.GetById(courseId);
+             var solution =  course.Solutions
+                .OrderByDescending(s => s.CreatedOn)
+                .FirstOrDefault(s => s.UserId == userId);
+
+            if (solution != null)
+            {
+                return solution.Path;
+            }
+
+            return null;
+        }
     }
 }

@@ -82,6 +82,37 @@
                         </div>
                     </div>
                 </div>
+                @if (Model.Tasks.Count > 0)
+                {
+                    using (Html.BeginForm("UploadSolution", "Courses", new { area = "Public", id = Model.Id }, FormMethod.Post, new { @class = "row" }))
+                    {
+                        <p class="text-muted">
+                            Solve all tasks, wrap into a zip archive and upload it to system. Allowed size @(WebConstants.MaxContentLengthSolution / (1000 * 1000))MB.
+                        </p>
+
+                        @Html.AntiForgeryToken()
+                        @Html.Kendo().Upload().Name("File").HtmlAttributes(new { accept = WebConstants.AcceptArchives })
+                        <input type="submit" value="Upload" class="btn btn-info btn-outline btn-lg pull-right" />
+                        <p class="help-block text-danger">
+                            @(this.ViewBag.Error)
+                        </p>
+                    }
+
+                    <br />
+                    if (this.ViewBag.Path != null)
+                    {
+                        <div class="alert-success alert">
+                            You have uploaded a solution. <a href="@this.ViewBag.Path" class="alert-link">Link</a>
+                        </div>
+                    }
+                    else
+                    {
+                        <div class="alert-warning alert">
+                            You haven't uploaded a solution.
+                        </div>
+                    }
+                }
+
             </div>
         }
         else
@@ -119,3 +150,16 @@
         </div>
     }
 </div>
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-upload")
+}

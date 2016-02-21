@@ -13,6 +13,7 @@ namespace UniversityStudentSystem.Data.Models
         private ICollection<Test> tests;
         private ICollection<CourseTask> tasks;
         private ICollection<Resource> resources;
+        private ICollection<Solution> solutions;
 
         public Course()
         {
@@ -20,6 +21,7 @@ namespace UniversityStudentSystem.Data.Models
             this.tests = new HashSet<Test>();
             this.tasks = new HashSet<CourseTask>();
             this.resources = new HashSet<Resource>();
+            this.solutions = new HashSet<Solution>();
         }
 
         [Required]
@@ -35,7 +37,7 @@ namespace UniversityStudentSystem.Data.Models
         public int SemesterId { get; set; }
 
         public virtual Semester Semester { get; set; }
-        
+
         public virtual ICollection<Resource> Resources
         {
             get
@@ -81,6 +83,18 @@ namespace UniversityStudentSystem.Data.Models
             set
             {
                 this.trainers = value;
+            }
+        }
+
+        public virtual ICollection<Solution> Solutions
+        {
+            get
+            {
+                return this.solutions;
+            }
+            set
+            {
+                this.solutions = value;
             }
         }
     }

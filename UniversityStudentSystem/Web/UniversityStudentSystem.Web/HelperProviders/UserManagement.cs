@@ -49,7 +49,7 @@
             this.EnsureFolder(userId);
             file.SaveAs(filePath);
 
-            return $"~/Users/{ userId }/Uploads/{fullFileName}";
+            return $"~/Users/{ userId }/Uploads/{ fullFileName }";
         }
 
         public SaveImageResult SaveImage(HttpPostedFileBase file, string userId)
@@ -93,6 +93,60 @@
             {
                 HasSucceed = true,
                 Path = defaultAvatarName
+            };
+        }
+
+        public SaveImageResult SaveSolution(HttpPostedFileBase file, string userId, int courseId)
+        {
+            string[] archivesExtensions = WebConstants.AcceptArchives
+                    .Split(new[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries)
+                    .ToArray();
+
+            bool hasCorrectExtenxion = false;
+            foreach (var fileExtension in archivesExtensions)
+            {
+                if (file.FileName.EndsWith(fileExtension))
+                {
+                    hasCorrectExtenxion = true;
+                    break;
+                }
+            }
+
+            if (!hasCorrectExtenxion)
+            {
+                string errorMessage =
+                    $"Only archives with type .{string.Join(" .", archivesExtensions)} are allowed!";
+                return new SaveImageResult()
+                {
+                    Error = errorMessage,
+                    HasSucceed = false
+                };
+            }
+
+            if (file.ContentLength > WebConstants.MaxContentLengthSolution)
+            {
+                string errorMessage = $@"Only archives with size less than { WebConstants.MaxContentLengthSolution / (1000 * 1000)}MB are allowed!";
+
+                return new SaveImageResult()
+                {
+                    Error = errorMessage,
+                    HasSucceed = false
+                };
+            }
+
+            int indexOfDot = file.FileName.IndexOf(".");
+            string extension = file.FileName.Substring(indexOfDot + 1);
+
+            string relativePath = $"/Users/{ userId }/Uploads/Solution-for-{ courseId }.{ extension }";
+            string fileSystemPath = this.server.MapPath(
+                $"~{ relativePath }");
+
+            file.SaveAs(fileSystemPath);
+
+            return new SaveImageResult()
+            {
+                HasSucceed = true,
+                Path = relativePath,
             };
         }
     }

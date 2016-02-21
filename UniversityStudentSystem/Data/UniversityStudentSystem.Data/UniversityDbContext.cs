@@ -50,6 +50,8 @@
 
         public IDbSet<Resource> Resources { get; set; }
 
+        public IDbSet<Solution> Solutions { get; set; }
+
         public static UniversityDbContext Create()
         {
             return new UniversityDbContext();
