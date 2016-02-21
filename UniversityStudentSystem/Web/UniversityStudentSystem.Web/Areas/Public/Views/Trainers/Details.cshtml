@@ -1,0 +1,41 @@
+﻿@using UniversityStudentSystem.Common;
+@model UniversityStudentSystem.Web.Models.Users.UserViewModel
+
+@{
+    ViewBag.Title = Model.FullName;
+}
+
+<div>
+    <h4 class="text-center">@(Model.FullName) (@Model.Username)</h4>
+    <hr />
+    <div class="row">
+        <div class="text-center ">
+            <img src="@(string.IsNullOrEmpty(Model.AvaratUrl) ? WebConstants.DefaultImageProfile : Model.AvaratUrl)" alt="avatar" class="row" style="width:250px;"/>
+            <p class="text-center ">
+                <a class="btn btn-social-icon btn-facebook @(string.IsNullOrEmpty(Model.FacebookAccount) ? "disabled" : string.Empty)">
+                    <i class="fa fa-facebook">
+                    </i>
+                </a>
+
+                <a class="btn btn-social-icon btn-linkedin @(string.IsNullOrEmpty(Model.LinkedInProfile) ? "disabled" : string.Empty)">
+                    <i class="fa fa-linkedin">
+                    </i>
+                </a>
+
+                <a class="btn btn-social-icon btn-twitter @(string.IsNullOrEmpty(Model.SkypeName) ? "disabled" : string.Empty)">
+                    <i class="fa fa-skype">
+                    </i>
+                </a>
+            </p>
+        </div>
+        <div class="panel panel-default">
+            <div class="panel-body text-center">
+                @Html.DisplayFor(m => m.AboutMe)
+            </div>
+        </div>
+    </div>
+</div>
+
+@section SocialStyles{
+    @Styles.Render("~/bundles/css-social")
+}

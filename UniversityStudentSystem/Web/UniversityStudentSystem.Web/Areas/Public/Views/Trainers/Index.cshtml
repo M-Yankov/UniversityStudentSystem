@@ -1,0 +1,20 @@
+﻿@using UniversityStudentSystem.Common.Extensions;
+
+@model IEnumerable<UniversityStudentSystem.Web.Models.Users.UserViewModel>
+
+@{
+    ViewBag.Title = "Trainers";
+}
+
+<h2>Trainers</h2>
+
+<div class="row">
+    @foreach (var trainer in Model)
+    {
+        <div class="col-md-3 ">
+            <div class="panel well text-center">
+                @Html.ActionLink(trainer.FullName, "Details", "Trainers", new { name = trainer.FullName.ToUrl(), id = trainer.Id, area = "Public" }, new { @class = "text-primary" })
+            </div>
+        </div>
+    }
+</div>

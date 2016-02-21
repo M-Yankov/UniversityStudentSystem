@@ -19,7 +19,7 @@
         <ul>
             @foreach (var trainer in Model.Trainers)
             {
-                <li>@trainer.FullName</li>
+                <li>@Html.ActionLink(trainer.FullName, "Details", "Trainers", new { id = trainer.Id, name = trainer.FirstName.ToUrl(), area = "Public" }, null)</li>
             }
         </ul>
     </div>
