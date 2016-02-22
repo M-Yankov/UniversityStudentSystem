@@ -76,6 +76,30 @@
                 </div>
             </div>
         </div>
+        <div class="col-md-3">
+            <div class="panel panel-default">
+                <div class="panel-heading text-center">
+                    Test Results
+                </div>
+                <div class="panel-body">
+                    <ul>
+                        @foreach (var testResult in this.Model.TestResults)
+                        {
+                            <li>
+                                <b>@(testResult.Test)</b>
+                                <i class="text-muted">in @(testResult.Course)</i>
+                                    -
+                                <span>
+                                    @(testResult.Result)
+                                </span>
+                                <span>/</span> @(testResult.Total)
+                            </li>
+                        }
+                    </ul>
+
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -125,7 +149,7 @@
                         <th>Mark</th>
                         <th>Trainers</th>
                     </tr>
-                    @{ 
+                    @{
                         var couter = 1;
                     }
                     @foreach (var mark in Model.Marks)

@@ -9,6 +9,7 @@
     using Comments;
     using ForumPosts;
     using Marks;
+    using Tests;
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
@@ -52,6 +53,8 @@
         public ICollection<MarkViewModel> Marks { get; set; }
 
         public ICollection<CertificateViewModel> Diploms { get; set; }
+
+        public ICollection<TestResultViewModel> TestResults { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
