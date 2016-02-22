@@ -147,7 +147,7 @@
                 t.StartDate < DateTime.Now && 
                 DateTime.Now < t.EndDate && 
                 t.IsEnabled && 
-                (t.TestResults.Any(tr => tr.UserId != userId ) || t.TestResults.Count == 0));
+                (!t.TestResults.Any(tr => tr.UserId == userId) || t.TestResults.Count == 0));
 
             return test;
         }
