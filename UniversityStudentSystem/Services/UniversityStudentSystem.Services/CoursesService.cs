@@ -1,6 +1,7 @@
 ﻿namespace UniversityStudentSystem.Services
 {
     using System;
+    using System.Collections.Generic;
     using System.Linq;
     using Data.Models;
     using Data.Repositories;
@@ -10,11 +11,16 @@
     {
         private IRepository<Course> coursesRepository;
         private IRepository<User, string> trainersRepository;
+        private IRepository<TestResult> testResultsRepository;
 
-        public CoursesService(IRepository<Course> coursesRepo, IRepository<User, string> trainersRepo)
+        public CoursesService(
+            IRepository<Course> coursesRepo,
+            IRepository<User, string> trainersRepo,
+            IRepository<TestResult> testResultRepo )
         {
             this.coursesRepository = coursesRepo;
             this.trainersRepository = trainersRepo;
+            this.testResultsRepository = testResultRepo;
         }
 
         public void AddTask(CourseTask task, int id)
@@ -146,10 +152,45 @@
             return test;
         }
 
-        public int SolveTest(int courseId, string userId, int testId)
+        public TestResult SolveTest(int courseId, string userId, int testId, IList<int> indexAnswers)
         {
-            return 1;
+            var questions = this.coursesRepository
+                .GetById(courseId)
+                .Tests
+                .FirstOrDefault(t => t.Id == testId)
+                .Questions;
 
+            int total = 0;
+            int result = 0;
+            int counter = 0;
+            foreach (var question in questions)
+            {
+                if (question.Index == indexAnswers[counter])
+                {
+                    result += question.Points;
+                }
+
+                total += question.Points;
+                counter++;
+            }
+
+            var testResult = new TestResult()
+            {
+                Result = result,
+                UserId = userId,
+                TestId = testId,
+                Total = total
+            };
+
+            this.testResultsRepository.Add(testResult);
+            this.testResultsRepository.Save();
+
+            return testResult;
+        }
+
+        public TestResult GetResult(int id)
+        {
+            return this.testResultsRepository.GetById(id);
         }
     }
 }

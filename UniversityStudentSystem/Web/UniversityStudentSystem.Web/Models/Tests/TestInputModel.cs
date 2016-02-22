@@ -7,7 +7,7 @@ namespace UniversityStudentSystem.Web.Models.Tests
     public class TestInputModel
     {
         [Required]
-        public ICollection<int?> Questions { get; set; }
+        public IList<int> Questions { get; set; }
        
         [Required]
         public int TestId { get; set; }

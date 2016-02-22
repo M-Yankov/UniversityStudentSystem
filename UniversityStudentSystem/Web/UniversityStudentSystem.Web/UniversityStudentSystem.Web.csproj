@@ -302,6 +302,7 @@
     <Compile Include="Models\Specialties\SpecialtyViewModel.cs" />
     <Compile Include="Models\StatisticViewModel.cs" />
     <Compile Include="Models\Tests\AnswerForStudentModel.cs" />
+    <Compile Include="Models\Tests\TestResultViewModel.cs" />
     <Compile Include="Models\Tests\QuestionForStudentModel.cs" />
     <Compile Include="Models\Tests\TestForStudentModel.cs" />
     <Compile Include="Models\Tests\TestInputModel.cs" />
@@ -396,6 +397,8 @@
     <Content Include="Areas\Public\Views\Certificates\Index.cshtml" />
     <Content Include="Areas\Trainer\Views\Specialties\Students.cshtml" />
     <Content Include="Areas\Public\Views\Courses\MakeTest.cshtml" />
+    <Content Include="Areas\Public\Views\Courses\TestResult.cshtml" />
+    <Content Include="Areas\Public\Views\Courses\NoTests.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />

@@ -1,5 +1,6 @@
 ﻿namespace UniversityStudentSystem.Services.Contracts
 {
+    using System.Collections.Generic;
     using System.Linq;
     using UniversityStudentSystem.Data.Models;
 
@@ -27,6 +28,8 @@
 
         Test GetTestForStudent(int courseId, string userId);
 
-        int SolveTest(int courseId, string userId, int testId);
+        TestResult SolveTest(int courseId, string userId, int testId, IList<int> indexAnswers);
+
+        TestResult GetResult(int id);
     }
 }

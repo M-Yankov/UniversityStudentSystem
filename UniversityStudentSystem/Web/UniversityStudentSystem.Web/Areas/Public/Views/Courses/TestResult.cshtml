@@ -1,0 +1,10 @@
+﻿@model UniversityStudentSystem.Web.Models.Tests.TestResultViewModel
+
+@{
+    ViewBag.Title = "Results - " + Model.Test;
+}
+
+<div class="text-center">
+    <h2>Result</h2>
+    <p class="lead">@(this.Model.Test): @(this.Model.Result) / @(this.Model.Total) </p>
+</div>

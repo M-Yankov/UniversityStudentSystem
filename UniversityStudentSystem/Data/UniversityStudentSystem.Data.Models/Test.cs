@@ -51,7 +51,7 @@ namespace UniversityStudentSystem.Data.Models
             }
         }
 
-        public ICollection<TestResult> TestResults
+        public virtual ICollection<TestResult> TestResults
         {
             get
             {

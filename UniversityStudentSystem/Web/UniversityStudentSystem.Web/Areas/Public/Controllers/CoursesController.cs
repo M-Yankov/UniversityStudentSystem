@@ -101,6 +101,11 @@
         public ActionResult MakeTest(int id)
         {
             var test = this.courseService.GetTestForStudent(id, this.UserId);
+            if (test == null)
+            {
+                return this.View("NoTests");
+            }
+
             var testModel = this.Mapper.Map<TestForStudentModel>(test);
             return this.View(testModel);
         }
@@ -110,7 +115,7 @@
         [ValidateAntiForgeryToken]
         public ActionResult MakeTest(int id, TestInputModel model)
         {
-            var result= this.RedirectToAction("MakeTest", new { id = id });
+            var result = this.RedirectToAction("MakeTest", new { id = id });
             if (!this.ModelState.IsValid)
             {
                 this.TempData["Message"] = "Please check test form again!";
@@ -127,8 +132,16 @@
                 this.TempData["Message"] = "Fill all questions";
                 return result;
             }
-            
-            return result;
+
+            var testResult = this.courseService.SolveTest(id, this.UserId, model.TestId, model.Questions);
+            return this.RedirectToAction("TestResult", "Courses", new { id = testResult.Id, area = "Public" });
+        }
+
+        public ActionResult TestResult(int id)
+        {
+            var result = this.courseService.GetResult(id);
+            var viewModel = this.Mapper.Map<TestResultViewModel>(result);
+            return this.View(viewModel);
         }
     }
 }
