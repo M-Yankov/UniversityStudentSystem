@@ -87,3 +87,28 @@ div.pages a {
 #accordion .panel-heading.task:hover {
     background-color: #5bc0de;
 }
+
+table#student-marks {
+    background-color: #ffc87c;
+    font-family: Consolas;
+    font-size: 23px;
+}
+
+table#student-marks tr:hover {
+    background-color: #d5a96c
+}
+
+table#student-marks th{ 
+    font-weight: bold;
+}
+
+table#student-marks td, table#student-marks th {
+    border-color: #12007e
+}
+
+table#student-marks td:nth-of-type(2n+3) {
+    font-size: 50px;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 2px #333;
+}

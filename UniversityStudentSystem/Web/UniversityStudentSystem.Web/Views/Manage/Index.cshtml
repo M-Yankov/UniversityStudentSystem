@@ -112,6 +112,42 @@
             @Html.ActionLink("Edit profile", "Edit", "Manage", null, new { @class = "btn-outline btn btn-warning" })
         </div>
     </div>
+
+    <br /><br />
+    <div class="row">
+        <div class="panel panel-default">
+            <div class="panel-heading">Marks</div>
+            <div class="panel-body">
+                <table class="table table-bordered table-hover" id="student-marks">
+                    <tr>
+                        <th>№</th>
+                        <th>Course</th>
+                        <th>Mark</th>
+                        <th>Trainers</th>
+                    </tr>
+                    @{ 
+                        var couter = 1;
+                    }
+                    @foreach (var mark in Model.Marks)
+                    {
+                        <tr>
+                            <td>@(couter++)</td>
+                            <td>@mark.Course</td>
+                            <td>@mark.Value</td>
+                            <td>
+                                <ul>
+                                    @foreach (var trainer in mark.Trainers)
+                                    {
+                                        <li>@trainer</li>
+                                    }
+                                </ul>
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+        </div>
+    </div>
 </div>
 
 @section SocialStyles{
