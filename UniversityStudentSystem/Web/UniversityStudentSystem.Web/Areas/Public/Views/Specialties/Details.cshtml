@@ -79,7 +79,11 @@
         </div>
     </div>
 
-    <div class="col-md-10">
-        @Html.ActionLink("Add Course >>", "AddCourse", "Specialties", new { id = specialtyId, area = "Trainer" }, new { @class = "btn btn-success pull-right "})
+    <div class="col-md-6 col-md-offset-2">
+        @Html.ActionLink("Check students", "Students", "Specialties", new { id = specialtyId, area = "Trainer" }, new { @class = "btn btn-primary btn-outline btn-block" })
+    </div>
+
+    <div class="col-md-2">
+        @Html.ActionLink("Add Course >>", "AddCourse", "Specialties", new { id = specialtyId, area = "Trainer" }, new { @class = "btn btn-success pull-right"})
     </div>
 }

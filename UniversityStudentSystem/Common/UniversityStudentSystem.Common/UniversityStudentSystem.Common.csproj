@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CertificateConstants.cs" />
     <Compile Include="CoursersConstants.cs" />
     <Compile Include="ModelConstants.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

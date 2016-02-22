@@ -6,7 +6,7 @@
     using System.Linq;
     using Web.Models.Semesters;
     using Infrastructure.Mapping;
-
+    using Web.Models.Users;
     public class SpecialtiesController : Controller
     {
         private ISpecialtiesService specialtiesService;
@@ -51,6 +51,20 @@
 
             int courseId = this.coursesService.AddCourse(model.Name, model.Description, model.SemesterId);
             return this.RedirectToAction("Details", "Courses", new { area = "Public", id = courseId });
+        }
+
+        public ActionResult Students(int id)
+        {
+            var specialty = this.specialtiesService.GetAll().FirstOrDefault(s => s.Id == id);
+            if (specialty == null)
+            {
+                return this.RedirectToAction("NotFound");
+            }
+
+            this.ViewBag.SpecialtyName = specialty.Name;
+            var students = specialty.Students.AsQueryable().To<UserViewModel>().ToList();
+
+            return this.View(students);
         }
     }
 }

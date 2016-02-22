@@ -91,7 +91,7 @@
 
         public DateTime? DeletedOn { get; set; }
 
-        public ICollection<Candidate> Candidatures
+        public virtual ICollection<Candidate> Candidatures
         {
             get
             {
@@ -139,7 +139,7 @@
             }
         }
 
-        public ICollection<Course> Courses
+        public virtual ICollection<Course> Courses
         {
             get
             {
@@ -175,7 +175,7 @@
             }
         }
 
-        public ICollection<Solution> Solutions
+        public virtual ICollection<Solution> Solutions
         {
             get
             {

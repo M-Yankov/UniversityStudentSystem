@@ -7,32 +7,77 @@
     using Models;
     using System.Drawing;
     using System.Drawing.Imaging;
+    using System;
+    using Models.Certificates;
+    using System.Linq;
     public class CertificatesController : BaseController
     {
-        private IFileService fileService;
+        private ICertificateService certificatesService;
+        private ISpecialtiesService specialtiesService;
 
-        public CertificatesController(IFileService fileService)
+        public CertificatesController(
+            ICertificateService certificatesService, 
+            ISpecialtiesService specialtiesService)
         {
-            this.fileService = fileService;
+            this.certificatesService = certificatesService;
+            this.specialtiesService = specialtiesService;
         }
 
         public ActionResult Index()
         {
-            Bitmap image1 = (Bitmap)Image.FromFile(this.Server.MapPath(WebConstants.PathToCertificate));
-            using (Graphics g = Graphics.FromImage(image1))
-            {
-                g.DrawString("ExampleName", new Font("Arial", 15f, FontStyle.Regular), Brushes.Black, new Point(200, 200));
-                //g.DrawLine(new Pen(Color.Black, 30f), new Point(200, 200), new Point(500, 500));
-            }
-            image1.Save(this.Server.MapPath(WebConstants.PathToCertificate) + "Example.jpg", ImageFormat.Jpeg);
-            var obj = (byte[])new ImageConverter().ConvertTo(image1, typeof(byte[]));
-            //var image = new ImageCertificate()
-            //{
-            //    Data = this.fileService
-            //        .GetFileContents()
-            //};
+            var imageContent = this.certificatesService.MakeCertificate(
+                this.Server.MapPath(WebConstants.PathToCertificate), 
+                "Your names will be here",
+                "Specialty name", 
+                DateTime.Now,
+                DateTime.Now.AddYears(1));
+            
+            return View(new ImageCertificate() { Data = imageContent });
+        }
 
-            return View(new ImageCertificate() { Data = obj });
+        [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin + ", " + RoleConstants.Trainer)]
+        [ValidateAntiForgeryToken]
+        public ActionResult GiveCertificate(CertificateInputModel model)
+        {
+            this.UserManagement.EnsureFolder(model.UserId);
+            string path = this.UserManagement.GetCurrentUserDirecotry(model.UserId);
+
+            this.certificatesService.GiveToPerson(
+                model.UserId,
+                model.SpecialtyId,
+                System.IO.Path.Combine(path, "Uploads"),
+                Server.MapPath(WebConstants.PathToCertificate));
+
+            return this.RedirectToAction(
+                "Students", 
+                "Specialties",
+                new { id = model.SpecialtyId, area = "Trainer" });
+        }
+
+        [HttpPost]
+        [Authorize(Roles = RoleConstants.Admin + ", " + RoleConstants.Trainer)]
+        [ValidateAntiForgeryToken]
+        public ActionResult GiveCertificateToAll(CertificateInputModel model)
+        {
+            var specialty = this.specialtiesService.GetAll().FirstOrDefault(s => s.Id == model.SpecialtyId);
+
+            foreach (var student in specialty.Students)
+            {
+                this.UserManagement.EnsureFolder(student.Id);
+                string path = this.UserManagement.GetCurrentUserDirecotry(student.Id);
+
+                this.certificatesService.GiveToPerson(
+                    student.Id,
+                    specialty.Id,
+                    System.IO.Path.Combine(path, "Uploads"),
+                    Server.MapPath(WebConstants.PathToCertificate));
+            }
+
+            return this.RedirectToAction(
+                "Students", 
+                "Specialties", 
+                new { id = model.SpecialtyId, area = "Trainer" });
         }
     }
 }

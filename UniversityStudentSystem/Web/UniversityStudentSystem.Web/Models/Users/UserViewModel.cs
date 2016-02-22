@@ -5,6 +5,7 @@
     using System.ComponentModel.DataAnnotations;
     using System.Linq;
     using AutoMapper;
+    using Certificates;
     using Comments;
     using ForumPosts;
     using Marks;
@@ -49,6 +50,8 @@
         public ICollection<CommentViewModel> Comments { get; set; }
 
         public ICollection<MarkViewModel> Marks { get; set; }
+
+        public ICollection<CertificateViewModel> Diploms { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {

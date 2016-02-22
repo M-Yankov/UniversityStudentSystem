@@ -1,0 +1,52 @@
+﻿@model IEnumerable<UniversityStudentSystem.Web.Models.Users.UserViewModel>
+
+@{
+    ViewBag.Title = "Students";
+    int specialtyId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
+}
+
+<h2>Students in @this.ViewBag.SpecialtyName </h2>
+
+<div class="row">
+    <div class="col-md-offset-2 col-md-8">
+        <table class="table table-bordered table-hover">
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Status:
+                </th>
+            </tr>
+            @foreach (var student in Model)
+            {
+                <tr>
+                    <td>@student.FullName</td>
+                    <td>
+                        @if (student.Diploms.Any(c => c.Specialty == this.ViewBag.SpecialtyName))
+                        {   
+                            <p>This student has certificate.</p>
+                        }
+                        else
+                        {
+                            using (Html.BeginForm("GiveCertificate", "Certificates", new { area = "Public", id = student.Id }, FormMethod.Post))
+                            {
+                                @(Html.AntiForgeryToken())
+                                <input type="hidden" name="SpecialtyId" value="@specialtyId" class="hidden" />
+                                <input type="hidden" name="UserId" value="@student.Id" class="hidden" />
+                                <button type="submit" class="btn btn-success btn-outline">Award</button>
+                            }
+                        }
+                    </td>
+                </tr>
+            }
+        </table>
+
+        @using (Html.BeginForm("GiveCertificateToAll", "Certificates", new { area = "Public" }, FormMethod.Post))
+        {
+            @(Html.AntiForgeryToken())
+            <input type="hidden" name="SpecialtyId" value="@specialtyId" class="hidden" />
+            <button type="submit" class="btn btn-success btn-block">Award All</button>
+        }
+    </div>
+</div>
