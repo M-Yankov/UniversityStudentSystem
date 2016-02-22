@@ -1,0 +1,21 @@
+﻿@using UniversityStudentSystem.Common.Extensions;
+@model IEnumerable<UniversityStudentSystem.Web.Models.Courses.CourseViewModel>
+
+@{
+    ViewBag.Title = "Your Courses";
+}
+
+<h2>Your Courses</h2>
+
+<div class="row">
+    <div class="col-md-4">
+        <ul type="circle">
+            @foreach (var item in Model)
+            {
+                <li>
+                    @Html.ActionLink(item.Name, "Details", "Courses", new { id = item.Id, area = "Public", name = item.Name.ToUrl() }, null)
+                </li>
+            }
+        </ul>
+    </div>
+</div>

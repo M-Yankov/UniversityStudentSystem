@@ -1,0 +1,39 @@
+﻿@using Microsoft.AspNet.Identity;
+@model IEnumerable<UniversityStudentSystem.Web.Models.Messages.MessageViewModel>
+
+@{
+    ViewBag.Title = "Messages";
+    var userId = this.User.Identity.GetUserId();
+}
+
+<h2>Messages</h2>
+
+<div class="row">
+    <div class="col-md-4  col-md-offset-4">
+        @foreach (var msg in Model)
+        {
+            if (msg.ReceiverId == userId)
+            {
+                <div class="row">
+                    <div class="panel panel-default col-md-6">
+                        <div class="panel-heading">From @msg.Receiver:</div>
+                        <div class="panel-body">
+                            @msg.Content
+                        </div>
+                    </div>
+                </div>
+            }
+            else
+            {
+                <div class="row">
+                    <div class="panel panel-default col-md-offset-6">
+                        <div class="panel-heading">To @msg.Sender:</div>
+                        <div class="panel-body">
+                            @msg.Content
+                        </div>
+                    </div>
+                </div>
+            }
+        }
+    </div>
+</div>

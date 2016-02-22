@@ -2,6 +2,7 @@
 namespace UniversityStudentSystem.Services
 {
     using System;
+    using System.Linq;
     using Data.Models;
     using Data.Repositories;
     using UniversityStudentSystem.Services.Contracts;
@@ -15,6 +16,11 @@ namespace UniversityStudentSystem.Services
         {
             this.messagesRepository = messagesRepo;
             this.specialtiesRepository = specialtiesRepo;
+        }
+
+        public IQueryable<Message> GetMessagesForUser(string userId)
+        {
+            return this.messagesRepository.All().Where(m => m.ReceiverId == userId || m.SenderId == userId);
         }
 
         public void SendToSpecialty(string senderId, int specialtyId, string content)

@@ -6,5 +6,7 @@
     public interface ISpecialtiesService
     {
         IQueryable<Specialty> GetAll();
+
+        IQueryable<Course> GetAllCoursesForUser(string id);
     }
 }
