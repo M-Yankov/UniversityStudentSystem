@@ -24,5 +24,9 @@
         string SolutionResult(string userId, int courseId);
 
         void AddMark(int value, string username, int courseId, string reason);
+
+        Test GetTestForStudent(int courseId, string userId);
+
+        int SolveTest(int courseId, string userId, int testId);
     }
 }

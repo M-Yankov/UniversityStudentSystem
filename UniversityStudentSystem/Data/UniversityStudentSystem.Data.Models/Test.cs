@@ -11,10 +11,12 @@ namespace UniversityStudentSystem.Data.Models
     public class Test : BaseModel<int>
     {
         private ICollection<Question> questions;
+        private ICollection<TestResult> testResults;
 
         public Test()
         {
             this.questions = new HashSet<Question>();
+            this.testResults = new HashSet<TestResult>();
         }
 
         [Required]
@@ -46,6 +48,18 @@ namespace UniversityStudentSystem.Data.Models
             set
             {
                 this.questions = value;
+            }
+        }
+
+        public ICollection<TestResult> TestResults
+        {
+            get
+            {
+                return this.testResults;
+            }
+            set
+            {
+                this.testResults = value;
             }
         }
     }

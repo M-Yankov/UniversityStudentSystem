@@ -112,6 +112,13 @@
                         </div>
                     }
                 }
+                
+                @if (Model.HasActiveTests)
+                {
+                    <div class="row">
+                        @Html.ActionLink("Make Test", "MakeTest", new { id = Model.Id, area = "Public", name = Model.Name.ToUrl() }, new { @class = "btn btn-block btn-primary btn-lg" })
+                    </div>
+                }
             </div>
         }
         else

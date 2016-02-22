@@ -83,6 +83,7 @@
     <Compile Include="Status.cs" />
     <Compile Include="CourseTask.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="TestResult.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

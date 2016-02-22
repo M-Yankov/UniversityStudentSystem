@@ -3,6 +3,7 @@
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
+    using System.Linq;
     using AutoMapper;
     using CoursesTask;
     using Marks;
@@ -35,14 +36,20 @@
 
         public SemesterViewModel Semester { get; set; }
 
+        public bool HasActiveTests { get; set; }
+
         public string Specialty { get; set; }
 
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<Course, CourseViewModel>()
                 .ForMember(
-                c => c.Specialty,
-                o => o.MapFrom(corse => corse.Semester.Specialty.Name));
+                    c => c.Specialty,
+                    o => o.MapFrom(corse => corse.Semester.Specialty.Name))
+                .ForMember(
+                    c => c.HasActiveTests, 
+                    o => o.MapFrom(course => course.Tests.Any(test => 
+                        test.StartDate < DateTime.Now && DateTime.Now < test.EndDate && test.IsEnabled)));
         }
     }
 }

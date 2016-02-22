@@ -133,5 +133,23 @@
             this.trainersRepository.Update(student);
             this.trainersRepository.Save();
         }
+
+        public Test GetTestForStudent(int courseId, string userId)
+        {
+            var course = this.coursesRepository.GetById(courseId);
+            var test = course.Tests.FirstOrDefault(t => 
+                t.StartDate < DateTime.Now && 
+                DateTime.Now < t.EndDate && 
+                t.IsEnabled && 
+                (t.TestResults.Any(tr => tr.UserId != userId ) || t.TestResults.Count == 0));
+
+            return test;
+        }
+
+        public int SolveTest(int courseId, string userId, int testId)
+        {
+            return 1;
+
+        }
     }
 }

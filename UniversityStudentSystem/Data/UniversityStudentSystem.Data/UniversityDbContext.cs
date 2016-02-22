@@ -52,6 +52,8 @@
 
         public IDbSet<Solution> Solutions { get; set; }
 
+        public IDbSet<TestResult> TestResults { get; set; }
+
         public static UniversityDbContext Create()
         {
             return new UniversityDbContext();

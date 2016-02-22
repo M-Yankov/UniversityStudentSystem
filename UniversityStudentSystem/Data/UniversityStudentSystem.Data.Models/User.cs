@@ -22,6 +22,7 @@
         private ICollection<Course> courses;
         private ICollection<Mark> marks;
         private ICollection<Solution> solutions;
+        private ICollection<TestResult> testResults;
 
         public User()
         {
@@ -33,6 +34,7 @@
             this.marks = new HashSet<Mark>();
             this.courses = new HashSet<Course>();
             this.solutions = new HashSet<Solution>();
+            this.testResults = new HashSet<TestResult>();
         }
 
         [Required]
@@ -184,6 +186,18 @@
             set
             {
                 this.solutions = value;
+            }
+        }
+
+        public ICollection<TestResult> TestResults
+        {
+            get
+            {
+                return this.testResults;
+            }
+            set
+            {
+                this.testResults = value;
             }
         }
 

@@ -1,0 +1,64 @@
+﻿@model UniversityStudentSystem.Web.Models.Tests.TestForStudentModel
+
+@{
+    ViewBag.Title = "Test - " + Model.Name;
+}
+
+<h2>@(Model.Name)</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    for (int i = 0; i < Model.Questions.Count; i++)
+    {
+        <div class="form-group" id="questions">
+            <div class="panel panel-info">
+                <div class="panel-heading">
+
+                    <h4>  <i class="fa fa-question-circle fa-fw "></i>  @(i + 1)<span>. Question</span>  </h4>
+                </div>
+                <div class="panel-body">
+                    @Model.Questions[i].Content
+                    <div class="pull-right" style="margin-top: 5px;">
+                        @(Model.Questions[i].Points) Points
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            @for (int a = 0; a < Model.Questions[i].Answers.Count; a++)
+                            {
+                                <div class="row" style="margin-bottom: 3px;">
+                                    <div class="col-md-12">
+                                        <div class="col-md-1">
+                                            @Html.RadioButton("Questions[" + i + "]", a, new { @class = "my-radio" })
+                                            <!-- <input type="radio" name="Questions[@i]" value="@a" class="my-radio" />-->
+                                            <span class="field-validation-valid text-danger" data-valmsg-for="Questions_@(i)_" data-valmsg-replace="true"></span>
+                                        </div>
+                                        <div class="col-md-10" style="font-size: 20px; margin-top: 4px;">
+                                            @(Model.Questions[i].Answers[a].Content)
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+    <div class="text-danger">
+        @(this.TempData["Message"])
+    </div>
+    <input type="hidden" name="TestId" value="@Model.Id" />
+    <div class="row">
+        <div class="col-md-offset-4 col-md-4">
+            <input type="submit" class="btn btn-success btn-block btn-lg" value="Submit" />
+        </div>
+    </div>
+}
+
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

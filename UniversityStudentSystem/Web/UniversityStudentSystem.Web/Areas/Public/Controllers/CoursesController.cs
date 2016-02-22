@@ -11,6 +11,7 @@
     using Services.Contracts;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
     using Web.Controllers;
+    using Web.Models.Tests;
 
     public class CoursesController : BaseController
     {
@@ -94,6 +95,40 @@
             }
 
             return redirectResult;
+        }
+
+        [Authorize]
+        public ActionResult MakeTest(int id)
+        {
+            var test = this.courseService.GetTestForStudent(id, this.UserId);
+            var testModel = this.Mapper.Map<TestForStudentModel>(test);
+            return this.View(testModel);
+        }
+
+        [HttpPost]
+        [Authorize]
+        [ValidateAntiForgeryToken]
+        public ActionResult MakeTest(int id, TestInputModel model)
+        {
+            var result= this.RedirectToAction("MakeTest", new { id = id });
+            if (!this.ModelState.IsValid)
+            {
+                this.TempData["Message"] = "Please check test form again!";
+                return result;
+            }
+
+            var test = this.courseService.GetAll()
+                .FirstOrDefault(c => c.Id == id)
+                .Tests
+                .FirstOrDefault(t => t.Id == model.TestId);
+
+            if (test.Questions.Count != model.Questions.Count)
+            {
+                this.TempData["Message"] = "Fill all questions";
+                return result;
+            }
+            
+            return result;
         }
     }
 }
