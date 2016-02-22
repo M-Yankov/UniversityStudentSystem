@@ -1,12 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Routing;
-using UniversityStudentSystem.Common;
-
-namespace UniversityStudentSystem.Web.Constraints
+﻿namespace UniversityStudentSystem.Web.Constraints
 {
+    using System.Web;
+    using System.Web.Routing;
+    using UniversityStudentSystem.Common;
+
     public class TrainerRouteConstraint : IRouteConstraint
     {
         public bool Match(

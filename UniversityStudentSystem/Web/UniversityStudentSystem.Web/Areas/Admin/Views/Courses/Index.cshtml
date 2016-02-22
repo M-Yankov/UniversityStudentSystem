@@ -1,0 +1,22 @@
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
+@using UniversityStudentSystem.Web.Models.Courses;
+@{
+    string controller = "Courses";
+    ViewBag.Title = controller;
+}
+
+@(Html.FullFeaturedGrid<CourseViewModel>(controller, model => model.Id))
+
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}

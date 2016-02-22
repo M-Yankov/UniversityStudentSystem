@@ -39,7 +39,6 @@
                 }
             }
 
-
             return courses.AsQueryable();
         }
     }
