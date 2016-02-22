@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Services
+﻿namespace UniversityStudentSystem.Services
 {
     using System;
     using Data.Models;
@@ -8,6 +7,7 @@ namespace UniversityStudentSystem.Services
     using UniversityStudentSystem.Common;
     using System.Drawing;
     using System.Drawing.Imaging;
+    using System.Linq;
 
     public class CertificateService : ICertificateService
     {
@@ -30,15 +30,15 @@ namespace UniversityStudentSystem.Services
             this.usersRepository = usersRepo;                        
         }
 
-        public void GiveToAllFromSpecialty(int specialtyId, string pathToUsersFolder, string pathToCertificate)
-        {
-            throw new NotImplementedException();
-        }
-
         public void GiveToPerson(string userId, int specialtyId, string pathToUserFolder, string pathToCertificate)
         {
             var user = this.usersRepository.GetById(userId);
             var specialty = this.specialtiesRepository.GetById(specialtyId);
+
+            if (user.Diploms.Any(d => d.SpecialtyId == specialtyId))
+            {
+                return;
+            }
 
             var image = this.MakeCeritficate(
                 pathToCertificate,

@@ -15,6 +15,9 @@
                     Name:
                 </th>
                 <th>
+                    Username:
+                </th>
+                <th>
                     Status:
                 </th>
             </tr>
@@ -22,10 +25,19 @@
             {
                 <tr>
                     <td>@student.FullName</td>
+                    <td>@student.Username</td>
                     <td>
-                        @if (student.Diploms.Any(c => c.Specialty == this.ViewBag.SpecialtyName))
-                        {   
-                            <p>This student has certificate.</p>
+                        @{
+                            var diploma = student.Diploms.FirstOrDefault(c => c.Specialty == this.ViewBag.SpecialtyName);
+                        }
+                        @if (diploma != null)
+                        {
+                            <p>
+                                This student has certificate.
+                                <span>
+                                    <a href="@diploma.PathToImage"> Link</a>
+                                </span>
+                            </p>
                         }
                         else
                         {

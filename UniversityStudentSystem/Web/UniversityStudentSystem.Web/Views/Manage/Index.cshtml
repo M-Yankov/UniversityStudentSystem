@@ -85,6 +85,27 @@
                 </div>
             </div>
         </div>
+
+        <div class="col-md-4">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    Certificates
+                </div>
+                <div class="panel-body">
+                    @if (Model.Diploms.Any())
+                    {
+                        foreach (var cert in Model.Diploms)
+                        {
+                            <a href="@cert.PathToImage">@cert.Specialty</a>
+                        }
+                    }
+                    else
+                    {
+                        <p>You don't have any certificates yet.</p>
+                    }
+                </div>
+            </div>
+        </div>
     </div>
     <div class="row">
         <div class="col-md-4">
