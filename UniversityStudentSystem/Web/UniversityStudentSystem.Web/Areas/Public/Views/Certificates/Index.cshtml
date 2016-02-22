@@ -1,0 +1,7 @@
+﻿@model ImageCertificate
+@{
+    this.ViewBag.Title = "Certificates";
+}
+
+<h2>Index</h2>
+<img alt="Embedded Image" src="data:image/png;base64,@(Convert.ToBase64String(Model.Data))" />

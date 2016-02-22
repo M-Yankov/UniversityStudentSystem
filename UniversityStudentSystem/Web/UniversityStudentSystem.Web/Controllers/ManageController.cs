@@ -97,7 +97,7 @@
 
             if (file != null)
             {
-                SaveImageResult result = this.UserManagement.SaveImage(file, this.UserId);
+                UploadResult result = this.UserManagement.SaveImage(file, this.UserId);
                 if (!result.HasSucceed)
                 {
                     this.ViewBag.Message = result.Error;

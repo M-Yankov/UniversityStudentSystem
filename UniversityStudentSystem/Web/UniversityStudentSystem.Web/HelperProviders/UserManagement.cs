@@ -52,7 +52,7 @@
             return $"~/Users/{ userId }/Uploads/{ fullFileName }";
         }
 
-        public SaveImageResult SaveImage(HttpPostedFileBase file, string userId)
+        public UploadResult SaveImage(HttpPostedFileBase file, string userId)
         {
             string[] imageExtensions = WebConstants.AcceptImageProfileTypes
                     .Split(new[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -63,7 +63,7 @@
             if (!fileExtension.Contains(fileExtension))
             {
                 string errorMessage = $"Only images with type .{string.Join(" .", imageExtensions)} are allowed!";
-                return new SaveImageResult()
+                return new UploadResult()
                 {
                     Error = errorMessage,
                     HasSucceed = false
@@ -74,7 +74,7 @@
             {
                 string errorMessage = $@"Only images with size less than { WebConstants.MaxContentLengthImage / (1000 * 1000)}MB are allowed!";
 
-                return new SaveImageResult()
+                return new UploadResult()
                 {
                     Error = errorMessage,
                     HasSucceed = false
@@ -89,14 +89,14 @@
             this.EnsureFolder(userId);
             file.SaveAs(imagePath);
 
-            return new SaveImageResult()
+            return new UploadResult()
             {
                 HasSucceed = true,
                 Path = defaultAvatarName
             };
         }
 
-        public SaveImageResult SaveSolution(HttpPostedFileBase file, string userId, int courseId)
+        public UploadResult SaveSolution(HttpPostedFileBase file, string userId, int courseId)
         {
             string[] archivesExtensions = WebConstants.AcceptArchives
                     .Split(new[] { ' ', '.', ',' }, StringSplitOptions.RemoveEmptyEntries)
@@ -116,7 +116,7 @@
             {
                 string errorMessage =
                     $"Only archives with type .{string.Join(" .", archivesExtensions)} are allowed!";
-                return new SaveImageResult()
+                return new UploadResult()
                 {
                     Error = errorMessage,
                     HasSucceed = false
@@ -127,7 +127,7 @@
             {
                 string errorMessage = $@"Only archives with size less than { WebConstants.MaxContentLengthSolution / (1000 * 1000)}MB are allowed!";
 
-                return new SaveImageResult()
+                return new UploadResult()
                 {
                     Error = errorMessage,
                     HasSucceed = false
@@ -143,7 +143,7 @@
 
             file.SaveAs(fileSystemPath);
 
-            return new SaveImageResult()
+            return new UploadResult()
             {
                 HasSucceed = true,
                 Path = relativePath,

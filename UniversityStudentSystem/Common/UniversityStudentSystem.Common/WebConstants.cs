@@ -9,6 +9,8 @@
         public const int MaxContentLengthImage = 1000 * 1000; //1000 = 1 KB => 1000 KB = 1MB
         public const int MaxContentLengthSolution = 2 * 1000 * 1000; // 2MB
 
+        public const string PathToCertificate = "~/Images/certificate.jpg";
+
         public const int NewsShortContentLength = 150;
         public const int TopNewsCount = 6;
         public const int TopForumPostsCount = 10;

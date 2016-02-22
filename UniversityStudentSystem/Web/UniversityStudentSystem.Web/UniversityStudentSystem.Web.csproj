@@ -252,7 +252,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelperProviders\NewsImageUpload.cs" />
-    <Compile Include="HelperProviders\SaveImageResult.cs" />
+    <Compile Include="HelperProviders\UploadResult.cs" />
     <Compile Include="HelperProviders\UserManagement.cs" />
     <Compile Include="Hubs\Chatter.cs" />
     <Compile Include="Models\Account\ForgotPasswordViewModel.cs" />
@@ -277,6 +277,7 @@
     <Compile Include="Models\ForumPosts\ForumInputModel.cs" />
     <Compile Include="Models\ForumPosts\ForumPostViewModel.cs" />
     <Compile Include="Models\Home\HomeViewModel.cs" />
+    <Compile Include="Models\ImageCertificate.cs" />
     <Compile Include="Models\Manage\AddPhoneNumberViewModel.cs" />
     <Compile Include="Models\Manage\ChangePasswordViewModel.cs" />
     <Compile Include="Models\Manage\FactorViewModel.cs" />
@@ -386,6 +387,7 @@
     <Content Include="Areas\Trainer\Views\Specialties\AddCourse.cshtml" />
     <Content Include="Areas\Public\Views\Trainers\Index.cshtml" />
     <Content Include="Areas\Public\Views\Trainers\Details.cshtml" />
+    <Content Include="Areas\Public\Views\Certificates\Index.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -449,7 +451,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Public\Models\" />
-    <Folder Include="Areas\Public\Views\Certificates\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Areas\Trainer\Views\Notify\" />
     <Folder Include="Areas\Trainer\Views\Semesters\" />

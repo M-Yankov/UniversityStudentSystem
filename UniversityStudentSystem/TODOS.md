@@ -21,6 +21,3 @@
                     "Please check the path.");
             }
 ```
-
-
-[DateTime ago](http://www.codeproject.com/Articles/770323/How-to-Convert-a-Date-Time-to-X-minutes-ago-in-Csh)
