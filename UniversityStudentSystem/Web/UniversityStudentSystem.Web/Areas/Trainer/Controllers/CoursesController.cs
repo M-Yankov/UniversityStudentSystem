@@ -151,7 +151,7 @@
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Upload(int id,  ResourceInputModel model)
+        public ActionResult Upload(int id, ResourceInputModel model)
         {
             if (!this.ModelState.IsValid)
             {
@@ -190,7 +190,6 @@
         {
             // No idea why id is 0 when path is /Trainer/Courses/AddMark/5;
             int courseId = int.Parse(this.Request.RequestContext.RouteData.Values["id"].ToString());
-            var returnResult = this.RedirectToAction("GetMarks", new {  id = id});
 
             if (!this.ModelState.IsValid)
             {

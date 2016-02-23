@@ -40,8 +40,7 @@
 
             return this.Json(news.ToDataSourceResult(request));
         }
-
-        // GET: Public/Details
+        
         public ActionResult Details(int id)
         {
             var newsFromDb = this.newsService.GetAll().Where(n => n.Id == id).FirstOrDefault();

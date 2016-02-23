@@ -20,7 +20,6 @@
             this.courseService = courseService;
         }
 
-        // GET: Admin/Courses
         public ActionResult Index()
         {
             return View();
