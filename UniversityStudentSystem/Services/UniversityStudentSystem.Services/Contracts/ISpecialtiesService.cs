@@ -8,5 +8,6 @@
         IQueryable<Specialty> GetAll();
 
         IQueryable<Course> GetAllCoursesForUser(string id);
+        void DeleteById(int id);
     }
 }

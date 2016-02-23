@@ -10,17 +10,18 @@
     using UniversityStudentSystem.Web.Models.Courses;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
+    using Web.Models.ForumPosts;
 
-    public class CoursesController : BaseController
+    public class ForumPostsController : BaseController
     {
-        private ICoursesService courseService;
+        private IForumService forumService;
 
-        public CoursesController(ICoursesService courseService)
+        public ForumPostsController(IForumService forumService)
         {
-            this.courseService = courseService;
+            this.forumService = forumService;
         }
 
-        // GET: Admin/Courses
+
         public ActionResult Index()
         {
             return View();
@@ -28,15 +29,15 @@
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            var courses = this.courseService.GetAll().To<CourseViewModel>().ToList();
+            var courses = this.forumService.GetAll().To<ForumPostViewModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, CourseViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, ForumPostViewModel model)
         {
-            this.courseService.DeleteById(model.Id);
+            this.forumService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();
             return RedirectToAction("Index", routeValues);
         }

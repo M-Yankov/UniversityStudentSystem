@@ -16,6 +16,13 @@
             this.specialtiesRepository = repository;
         }
 
+        public void DeleteById(int id)
+        {
+            var spec = this.specialtiesRepository.GetById(id);
+            this.specialtiesRepository.Delete(spec);
+            this.specialtiesRepository.Save();
+        }
+
         public IQueryable<Specialty> GetAll()
         {
             return this.specialtiesRepository.All();
@@ -30,6 +37,11 @@
                 .FirstOrDefault();
 
             var courses = new List<Course>();
+
+            if (specialty == null)
+            {
+                return courses.AsQueryable();
+            }
 
             foreach (var item in specialty.Semesters)
             {

@@ -52,6 +52,9 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-autocomplete").Include(
                             "~/Scripts/Kendo/kendo.autocomplete.min.js"));
 
+            bundles.Add(new ScriptBundle("~/bundles/js-kendo-globalization").Include(
+                            "~/Scripts/Kendo/kendo.culture.en-US.min.js"));
+
             bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
                             "~/Content/Kendo/kendo.common.min.css",
                             "~/Content/Kendo/kendo.metro.min.css"));

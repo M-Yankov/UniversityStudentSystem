@@ -10,5 +10,7 @@
         void PostComment(string content, int postId, string userId);
 
         int Create(string title, string content, int categoryId, string userId);
+
+        void DeleteById(int id);
     }
 }

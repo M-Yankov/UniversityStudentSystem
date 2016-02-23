@@ -8,5 +8,7 @@
         IQueryable<News> GetAll();
 
         int Create(News modelToSave);
+
+        void DeleteById(int id);
     }
 }

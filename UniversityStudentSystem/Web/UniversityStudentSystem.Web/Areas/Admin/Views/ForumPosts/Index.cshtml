@@ -1,0 +1,28 @@
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
+@using UniversityStudentSystem.Web.Models.ForumPosts;
+@{
+    string controller = "ForumPosts";
+    ViewBag.Title = "Administration - " + controller;
+}
+
+@(Html.FullFeaturedGrid<ForumPostViewModel>(controller, forum => forum.Id, cols =>
+{
+    cols.Bound(forum => forum.Title);
+    cols.Bound(forum => forum.Content);
+    cols.Bound(forum => forum.Category);
+    cols.Bound(forum => forum.CreatedOn);
+    cols.Command(cmd => { cmd.Destroy(); });
+}))
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}

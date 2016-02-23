@@ -224,7 +224,12 @@
     <Compile Include="App_Start\ViewEnginesConfig.cs" />
     <Compile Include="Areas\Admin\AdminAreaRegistration.cs" />
     <Compile Include="Areas\Admin\Controllers\CoursesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\ForumPostsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\NewsController.cs" />
+    <Compile Include="Areas\Admin\Controllers\SpecialtiesController.cs" />
+    <Compile Include="Areas\Admin\Controllers\TestsController.cs" />
     <Compile Include="Areas\Admin\Helpers\GridHelper.cs" />
+    <Compile Include="Areas\Admin\Models\TestAdminModel.cs" />
     <Compile Include="Areas\Public\Controllers\CertificatesController.cs" />
     <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
     <Compile Include="Areas\Public\Controllers\TrainersController.cs" />
@@ -270,6 +275,7 @@
     <Compile Include="Models\Account\SendCodeViewModel.cs" />
     <Compile Include="Models\Account\VerifyCodeViewModel.cs" />
     <Compile Include="Models\BugReportInputModel.cs" />
+    <Compile Include="Models\BugViewModel.cs" />
     <Compile Include="Models\Candidates\CandidateInputModel.cs" />
     <Compile Include="Models\Candidates\CandidateViewModel.cs" />
     <Compile Include="Models\Certificates\CertificateInputModel.cs" />
@@ -344,6 +350,7 @@
     <Content Include="Scripts\Kendo\jquery.min.js" />
     <Content Include="Scripts\Kendo\kendo.aspnetmvc.min.js" />
     <Content Include="Scripts\Kendo\kendo.autocomplete.min.js" />
+    <Content Include="Scripts\Kendo\kendo.culture.en-US.min.js" />
     <Content Include="Scripts\Kendo\kendo.datetimepicker.min.js" />
     <Content Include="Scripts\Kendo\kendo.editor.min.js" />
     <Content Include="Scripts\Kendo\kendo.grid.min.js" />
@@ -409,6 +416,13 @@
     <Content Include="Areas\Admin\Views\_ViewStart.cshtml" />
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Tests\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.cshtml" />
+    <Content Include="Areas\Admin\Views\Specialties\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\ForumPosts\Index.cshtml" />
+    <Content Include="Areas\Admin\Views\News\Index.cshtml" />
+    <Content Include="Areas\Public\Views\Report\All.cshtml" />
+    <Content Include="Areas\Public\Views\Report\Details.cshtml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -473,7 +487,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Areas\Trainer\Views\Notify\" />

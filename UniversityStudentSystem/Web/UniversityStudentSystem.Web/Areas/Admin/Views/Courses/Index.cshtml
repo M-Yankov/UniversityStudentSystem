@@ -2,10 +2,18 @@
 @using UniversityStudentSystem.Web.Models.Courses;
 @{
     string controller = "Courses";
-    ViewBag.Title = controller;
+    ViewBag.Title = "Administration - " + controller;
 }
 
-@(Html.FullFeaturedGrid<CourseViewModel>(controller, model => model.Id))
+@(Html.FullFeaturedGrid<CourseViewModel>(controller, course => course.Id, cols =>
+{
+    cols.Bound(course => course.Name);
+    cols.Bound(course => course.Description);
+    cols.Bound(course => course.Specialty);
+    cols.Bound(course => course.HasActiveTests);
+    cols.Bound(course => course.Semester.Name);
+    cols.Command(cmd => { cmd.Destroy(); });
+}))
 
 
 @section KendoCss{

@@ -1,0 +1,55 @@
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
+@using UniversityStudentSystem.Web.Areas.Admin.Models;
+@{
+    string controller = "Tests";
+    ViewBag.Title = "Administration - " + controller;
+}
+
+@(Html.FullFeaturedGrid<TestAdminModel>(controller, test => test.Id, cols =>
+{
+    cols.Bound(test => test.Name);
+    cols.Bound(test => test.StartDate).Format("{0:dd/MM/yyyy HH:mm}");
+    cols.Bound(test => test.EndDate).Format("{0:dd/MM/yyyy HH:mm}");
+    cols.Bound(test => test.IsEnabled);
+    cols.Command(cmd => { cmd.Destroy(); }); // cmd.Edit();
+}))
+
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}
+
+@{ 
+    var culture = System.Globalization.CultureInfo.CurrentCulture.ToString();
+}
+
+@section Scripts{
+    <script>
+            
+            kendo.culture('@culture');
+        //kendo.ui.validator.rules.mvcdate = function (input) {
+
+        //    //KENDO :(
+        //    //use the custom date format here
+        //    //kendo.parseDate - http://docs.telerik.com/kendo-ui/api/javascript/kendo#methods-parseDate
+
+        //    return input.val() === "" || kendo.parseDate(input.val(), "dd/MM/yyyy HH:mm") !== null;
+        //}
+
+        //kendo.ui.validator.rules.mvcnumber = function (input) {
+        //    return input;
+        //    //kendo.parseDate - http://docs.telerik.com/kendo-ui/api/javascript/kendo#methods-parseDate
+        //}
+
+</script>
+    <script src="@Url.Content("~/Scripts/Kendo/kendo.culture." + culture + ".min.js")"></script>    
+}

@@ -192,5 +192,12 @@
         {
             return this.testResultsRepository.GetById(id);
         }
+
+        public void DeleteById(int id)
+        {
+            var course = this.coursesRepository.GetById(id);
+            this.coursesRepository.Delete(course);
+            this.coursesRepository.Save();
+        }
     }
 }

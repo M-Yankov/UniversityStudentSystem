@@ -1,0 +1,15 @@
+﻿@model BugViewModel
+
+@{
+    ViewBag.Title = "Bug from" + Model.Email;
+}
+
+<h2>From Model.Email</h2>
+
+<div class="row">
+    <div class="panel panel-default">
+        <div class="panel-body">
+            @Model.Content
+        </div>
+    </div>
+</div>

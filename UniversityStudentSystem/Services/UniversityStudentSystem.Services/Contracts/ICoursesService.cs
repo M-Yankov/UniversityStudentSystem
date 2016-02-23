@@ -31,5 +31,7 @@
         TestResult SolveTest(int courseId, string userId, int testId, IList<int> indexAnswers);
 
         TestResult GetResult(int id);
+
+        void DeleteById(int id);
     }
 }

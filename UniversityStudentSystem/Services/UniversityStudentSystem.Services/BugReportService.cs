@@ -31,7 +31,7 @@
 
         public IQueryable<BugReport> GetAll()
         {
-            throw new NotImplementedException();
+            return this.bugsRepository.All();
         }
     }
 }

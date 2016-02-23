@@ -10,17 +10,17 @@
     using UniversityStudentSystem.Web.Models.Courses;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
-
-    public class CoursesController : BaseController
+    using Web.Models.NewsModels;
+    public class NewsController : BaseController
     {
-        private ICoursesService courseService;
+        private INewsService newsService;
 
-        public CoursesController(ICoursesService courseService)
+        public NewsController(INewsService newsService)
         {
-            this.courseService = courseService;
+            this.newsService = newsService;
         }
 
-        // GET: Admin/Courses
+        // GET: Admin/News
         public ActionResult Index()
         {
             return View();
@@ -28,15 +28,15 @@
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            var courses = this.courseService.GetAll().To<CourseViewModel>().ToList();
+            var courses = this.newsService.GetAll().To<NewsViewModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, CourseViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, NewsViewModel model)
         {
-            this.courseService.DeleteById(model.Id);
+            this.newsService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();
             return RedirectToAction("Index", routeValues);
         }

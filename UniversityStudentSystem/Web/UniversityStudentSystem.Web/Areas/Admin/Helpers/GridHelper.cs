@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Web;
-using System.Web.Mvc;
-using Kendo.Mvc.UI;
-using Kendo.Mvc.UI.Fluent;
-
-namespace UniversityStudentSystem.Web.Areas.Admin.Helpers
+﻿namespace UniversityStudentSystem.Web.Areas.Admin.Helpers
 {
+    using System;
+    using System.Collections.Generic;
+    using System.Linq;
+    using System.Linq.Expressions;
+    using System.Web;
+    using System.Web.Mvc;
+    using Kendo.Mvc.UI;
+    using Kendo.Mvc.UI.Fluent;
+
     public static class GridHelper
     {
         public static GridBuilder<T> FullFeaturedGrid<T>(
@@ -35,11 +35,13 @@ namespace UniversityStudentSystem.Web.Areas.Admin.Helpers
                 .Sortable()
                 .Groupable()
                 .Filterable()
+                .Editable(c => c.Mode(GridEditMode.PopUp))
                 .DataSource(data =>
                     data
                         .Ajax()
                         .Model(m => m.Id(modelIdExpression))
                         .Read(read => read.Action("Read", controllerName))
+                        .Update(update => update.Action("Update", controllerName))
                         .Destroy(destroy => destroy.Action("Destroy", controllerName))
                         );
         }

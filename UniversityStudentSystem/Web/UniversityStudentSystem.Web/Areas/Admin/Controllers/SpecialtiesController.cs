@@ -10,33 +10,28 @@
     using UniversityStudentSystem.Web.Models.Courses;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
+    using Web.Models.Specialties;
 
-    public class CoursesController : BaseController
+    public class SpecialtiesController : BaseController
     {
-        private ICoursesService courseService;
+        private ISpecialtiesService specialtiesService;
 
-        public CoursesController(ICoursesService courseService)
+        public SpecialtiesController(ISpecialtiesService specialtiesService)
         {
-            this.courseService = courseService;
-        }
-
-        // GET: Admin/Courses
-        public ActionResult Index()
-        {
-            return View();
+            this.specialtiesService = specialtiesService;
         }
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            var courses = this.courseService.GetAll().To<CourseViewModel>().ToList();
+            var courses = this.specialtiesService.GetAll().To<SpecialtyViewModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, CourseViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, SpecialtyViewModel model)
         {
-            this.courseService.DeleteById(model.Id);
+            this.specialtiesService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();
             return RedirectToAction("Index", routeValues);
         }

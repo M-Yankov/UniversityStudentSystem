@@ -1,0 +1,28 @@
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
+@using UniversityStudentSystem.Web.Models.NewsModels;
+@{
+    string controller = "News";
+    ViewBag.Title = "Administration - " + controller;
+}
+
+@(Html.FullFeaturedGrid<NewsViewModel>(controller, news => news.Id, cols =>
+{
+    cols.Bound(news => news.Title);
+    cols.Bound(news => news.Content);
+    cols.Bound(news => news.CreatedOn);
+    cols.Command(cmd => { cmd.Destroy(); });
+}))
+
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}

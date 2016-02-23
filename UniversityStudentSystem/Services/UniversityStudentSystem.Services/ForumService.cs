@@ -52,5 +52,12 @@
 
             return newPost.Id;
         }
+
+        public void DeleteById(int id)
+        {
+            var forumPost = this.forumRepository.GetById(id);
+            this.forumRepository.Delete(forumPost);
+            this.forumRepository.Save();
+        }
     }
 }

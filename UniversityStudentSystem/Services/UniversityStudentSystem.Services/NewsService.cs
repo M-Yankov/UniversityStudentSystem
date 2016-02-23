@@ -24,6 +24,13 @@ namespace UniversityStudentSystem.Services
             return modelToSave.Id;
         }
 
+        public void DeleteById(int id)
+        {
+            var newsItem = this.newsRepository.GetById(id);
+            this.newsRepository.Delete(newsItem);
+            this.newsRepository.Save();
+        }
+
         public IQueryable<News> GetAll()
         {
             return this.newsRepository.All();

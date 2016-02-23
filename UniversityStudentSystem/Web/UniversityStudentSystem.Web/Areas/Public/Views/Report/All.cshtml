@@ -1,0 +1,22 @@
+﻿@model IEnumerable<BugViewModel>
+
+@{
+    ViewBag.Title = "Reports";
+}
+
+<h2>All</h2>
+
+<div class="row">
+    <div class="col-md-6">
+        <table class="table">
+            @foreach (var bug in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.ActionLink("Report from" + bug.Email, "Details", "Report" , new { id = bug.Id, area = "Public" })
+                    </td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>

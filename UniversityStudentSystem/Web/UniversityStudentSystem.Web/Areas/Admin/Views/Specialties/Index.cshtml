@@ -1,0 +1,27 @@
+﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
+@using UniversityStudentSystem.Web.Models.Specialties;
+@{
+    string controller = "Specialties";
+    ViewBag.Title = "Administration - " + controller;
+}
+
+@(Html.FullFeaturedGrid<SpecialtyViewModel>(controller, spec => spec.Id, cols =>
+{
+    cols.Bound(specialty => specialty.Name);
+    cols.Bound(specialty => specialty.Description);
+    cols.Command(cmd => { cmd.Destroy(); });
+}))
+
+
+@section KendoCss{
+    @Styles.Render("~/bundles/css-kendo-silver")
+}
+
+@section KendoHead{
+
+    @Scripts.Render("~/bundles/js-kendo")
+}
+
+@section KendoJs{
+    @Scripts.Render("~/bundles/js-kendo-grid")
+}
