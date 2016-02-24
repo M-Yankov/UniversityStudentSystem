@@ -12,10 +12,8 @@
         [HiddenInput(DisplayValue = false)]
         public int Id { get; set; }
 
-        [UIHint("DateTime")]
         public DateTime StartDate { get; set; }
 
-        [UIHint("DateTime")]
         public DateTime EndDate { get; set; }
 
         [Required]

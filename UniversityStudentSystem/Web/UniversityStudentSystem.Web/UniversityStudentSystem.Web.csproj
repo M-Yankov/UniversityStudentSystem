@@ -421,7 +421,6 @@
     <Content Include="Areas\Admin\Views\Shared\_Layout.cshtml" />
     <Content Include="Areas\Admin\Views\Courses\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Tests\Index.cshtml" />
-    <Content Include="Areas\Admin\Views\Shared\EditorTemplates\DateTime.cshtml" />
     <Content Include="Areas\Admin\Views\Specialties\Index.cshtml" />
     <Content Include="Areas\Admin\Views\ForumPosts\Index.cshtml" />
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
@@ -492,6 +491,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Areas\Admin\Views\Shared\EditorTemplates\" />
     <Folder Include="Areas\Public\Models\" />
     <Folder Include="Areas\Trainer\Views\Default\" />
     <Folder Include="Areas\Trainer\Views\Notify\" />
