@@ -17,6 +17,11 @@
         {
             get
             {
+                if (this.Title == null)
+                {
+                    return string.Empty;
+                }
+
                 return this.Title.ToUrl();
             }
         }

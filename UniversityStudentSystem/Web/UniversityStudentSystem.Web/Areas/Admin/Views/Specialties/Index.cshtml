@@ -1,5 +1,6 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
 @using UniversityStudentSystem.Web.Models.Specialties;
+
 @{
     string controller = "Specialties";
     ViewBag.Title = "Administration - " + controller;
@@ -7,9 +8,10 @@
 
 @(Html.FullFeaturedGrid<SpecialtyViewModel>(controller, spec => spec.Id, cols =>
 {
-    cols.Bound(specialty => specialty.Name);
+    cols.Bound(specialty => specialty.Name).
+    Width(200);
     cols.Bound(specialty => specialty.Description);
-    cols.Command(cmd => { cmd.Destroy(); });
+    cols.Command(cmd => { cmd.Destroy(); }).Width(200);
 }))
 
 

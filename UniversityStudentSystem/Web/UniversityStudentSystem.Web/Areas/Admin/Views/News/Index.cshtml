@@ -1,15 +1,17 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
 @using UniversityStudentSystem.Web.Models.NewsModels;
+@using UniversityStudentSystem.Web.Areas.Admin.Models;
+
 @{
     string controller = "News";
     ViewBag.Title = "Administration - " + controller;
 }
 
-@(Html.FullFeaturedGrid<NewsViewModel>(controller, news => news.Id, cols =>
+@(Html.FullFeaturedGrid<KendoNewsModel>(controller, news => news.Id, cols =>
 {
-    cols.Bound(news => news.Title);
-    cols.Bound(news => news.Content);
-    cols.Bound(news => news.CreatedOn);
+    cols.Bound(news => news.Title).Width(200);
+    cols.Bound(news => news.Content).Width(550);
+    cols.Bound(news => news.CreatedOn).Format("{0:dd/MM/yyyy HH:mm}").Width(200);
     cols.Command(cmd => { cmd.Destroy(); });
 }))
 

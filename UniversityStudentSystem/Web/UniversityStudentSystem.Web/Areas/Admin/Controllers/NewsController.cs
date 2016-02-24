@@ -11,6 +11,8 @@
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
     using Web.Models.NewsModels;
+    using Models;
+
     public class NewsController : BaseController
     {
         private INewsService newsService;
@@ -28,13 +30,13 @@
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            var courses = this.newsService.GetAll().To<NewsViewModel>().ToList();
+            var courses = this.newsService.GetAll().To<KendoNewsModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, NewsViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, KendoNewsModel model)
         {
             this.newsService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();

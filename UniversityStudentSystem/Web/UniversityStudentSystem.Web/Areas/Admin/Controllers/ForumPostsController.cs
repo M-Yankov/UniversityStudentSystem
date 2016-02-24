@@ -11,6 +11,7 @@
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
     using Web.Models.ForumPosts;
+    using Models;
 
     public class ForumPostsController : BaseController
     {
@@ -21,7 +22,6 @@
             this.forumService = forumService;
         }
 
-
         public ActionResult Index()
         {
             return View();
@@ -29,13 +29,13 @@
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
-            var courses = this.forumService.GetAll().To<ForumPostViewModel>().ToList();
+            var courses = this.forumService.GetAll().To<KendoForumModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
         [AcceptVerbs(HttpVerbs.Post)]
-        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, ForumPostViewModel model)
+        public ActionResult Destroy([DataSourceRequest]DataSourceRequest request, KendoForumModel model)
         {
             this.forumService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();

@@ -19,5 +19,6 @@
         public const string CookieKeyForChar = "client";
 
         public const int PageSizeCourse = 6;
+        public const int MinTextLength = 3;
     }
 }

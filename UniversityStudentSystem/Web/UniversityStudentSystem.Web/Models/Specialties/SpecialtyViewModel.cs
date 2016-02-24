@@ -8,6 +8,7 @@
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
     using Semesters;
     using System.ComponentModel.DataAnnotations;
+
     public class SpecialtyViewModel : IMapFrom<Specialty>, IHaveCustomMappings
     {
         public int Id { get; set; }

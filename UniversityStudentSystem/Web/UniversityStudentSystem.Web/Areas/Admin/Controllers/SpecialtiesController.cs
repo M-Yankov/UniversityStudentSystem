@@ -16,6 +16,11 @@
     {
         private ISpecialtiesService specialtiesService;
 
+        public ActionResult Index()
+        {
+            return this.View();
+        }
+
         public SpecialtiesController(ISpecialtiesService specialtiesService)
         {
             this.specialtiesService = specialtiesService;

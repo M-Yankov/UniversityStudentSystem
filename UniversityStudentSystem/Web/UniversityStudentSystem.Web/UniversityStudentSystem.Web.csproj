@@ -229,6 +229,8 @@
     <Compile Include="Areas\Admin\Controllers\SpecialtiesController.cs" />
     <Compile Include="Areas\Admin\Controllers\TestsController.cs" />
     <Compile Include="Areas\Admin\Helpers\GridHelper.cs" />
+    <Compile Include="Areas\Admin\Models\KendoForumModel.cs" />
+    <Compile Include="Areas\Admin\Models\KendoNewsModel.cs" />
     <Compile Include="Areas\Admin\Models\TestAdminModel.cs" />
     <Compile Include="Areas\Public\Controllers\CertificatesController.cs" />
     <Compile Include="Areas\Public\Controllers\CoursesController.cs" />
@@ -257,6 +259,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="GlimpseSecurityPolicy.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -307,6 +310,7 @@
     <Compile Include="Models\NewsModels\NewsViewModel.cs" />
     <Compile Include="Models\Resources\ResourceInputModel.cs" />
     <Compile Include="Models\Resources\ResourceViewModel.cs" />
+    <Compile Include="Models\SearchResultModel.cs" />
     <Compile Include="Models\Semesters\SemesterViewModel.cs" />
     <Compile Include="Models\SideMenu\SideMenuViewModel.cs" />
     <Compile Include="Models\Solutions\SolutionEqialityComparer.cs" />
@@ -484,6 +488,7 @@
     <Content Include="Views\Chat\Index.cshtml" />
     <Content Include="Views\Profile\Messages.cshtml" />
     <Content Include="Views\Profile\Courses.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
