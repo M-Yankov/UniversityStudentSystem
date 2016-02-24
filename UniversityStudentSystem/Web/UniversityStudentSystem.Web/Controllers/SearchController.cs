@@ -30,6 +30,7 @@ namespace UniversityStudentSystem.Web.Controllers
                 return View(model);
             }
 
+            text = text.ToLower();
             model.Courses = searchService.GetCourses(text).To<CourseViewModel>().ToList();
             model.Trainers = searchService.GetTrainers(text).To<UserViewModel>().ToList();
             model.News = searchService.GetNews(text).To<NewsViewModel>().ToList();

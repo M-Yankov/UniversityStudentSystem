@@ -33,22 +33,30 @@
 
         public IQueryable<Course> GetCourses(string text)
         {
-            return this.coursesRespository.All().Where(c => c.Name.Contains(text) || c.Description.Contains(text));
+            return this.coursesRespository
+                .All()
+                .Where(c => c.Name.ToLower().Contains(text) || c.Description.ToLower().Contains(text));
         }
 
         public IQueryable<ForumPost> GetForumPosts(string text)
         {
-            return this.forumPostsRepository.All().Where(f => f.Title.Contains(text) || f.Content.Contains(text));
+            return this.forumPostsRepository
+                .All()
+                .Where(f => f.Title.ToLower().Contains(text) || f.Content.ToLower().Contains(text));
         }
 
         public IQueryable<News> GetNews(string text)
         {
-            return this.newsRepository.All().Where(n => n.Title.Contains(text) || n.Content.Contains(text));
+            return this.newsRepository
+                .All()
+                .Where(n => n.Title.ToLower().Contains(text) || n.Content.ToLower().Contains(text));
         }
 
         public IQueryable<Specialty> GetSpecialties(string text)
         {
-            return this.specialtiesRepository.All().Where(s => s.Name.Contains(text) || s.Description.Contains(text));
+            return this.specialtiesRepository
+                .All()
+                .Where(s => s.Name.ToLower().Contains(text) || s.Description.ToLower().Contains(text));
         }
 
         public IQueryable<User> GetTrainers(string text)
@@ -61,7 +69,9 @@
                 .All()
                 .Where(u => 
                     u.Roles.Any(r => r.RoleId == trainerRole.Id) && 
-                    (u.FirstName.Contains(text) || u.LastName.Contains(text) || u.UserName.Contains(text)));
+                    (u.FirstName.ToLower().Contains(text) ||
+                    u.LastName.ToLower().Contains(text) ||
+                    u.UserName.ToLower().Contains(text)));
         }
     }
 }
