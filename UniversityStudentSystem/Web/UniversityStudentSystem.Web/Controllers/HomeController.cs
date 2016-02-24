@@ -100,6 +100,7 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult CourseStatistic()
         {
             StatisticViewModel model = new StatisticViewModel()
@@ -115,6 +116,7 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult ForumStatistic()
         {
             StatisticViewModel model = new StatisticViewModel()
@@ -130,6 +132,7 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult TrainerStatistic()
         {
             var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
@@ -148,6 +151,7 @@
         }
 
         [ChildActionOnly]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult SpecialtiesStatistic()
         {
             StatisticViewModel model = new StatisticViewModel()
