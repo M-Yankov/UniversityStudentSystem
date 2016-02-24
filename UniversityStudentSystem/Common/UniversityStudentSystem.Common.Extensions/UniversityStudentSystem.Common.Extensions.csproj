@@ -57,6 +57,14 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ChainOfResponsibility\DaysHandler.cs" />
+    <Compile Include="ChainOfResponsibility\Handler.cs" />
+    <Compile Include="ChainOfResponsibility\HoursHandler.cs" />
+    <Compile Include="ChainOfResponsibility\JustNowHandler.cs" />
+    <Compile Include="ChainOfResponsibility\MinutesHandler.cs" />
+    <Compile Include="ChainOfResponsibility\MonthsHandler.cs" />
+    <Compile Include="ChainOfResponsibility\SecondsHandler.cs" />
+    <Compile Include="ChainOfResponsibility\YearsHandler.cs" />
     <Compile Include="DateTimeExtentions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StringExtensions.cs" />
@@ -75,6 +83,7 @@
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
