@@ -1,7 +1,7 @@
-﻿using System.Web;
-
-namespace UniversityStudentSystem.Web.HelperProviders
+﻿namespace UniversityStudentSystem.Web.HelperProviders
 {
+    using System.Web;
+
     public class NewsImageUploader
     {
         public string Save(HttpServerUtilityBase server, HttpPostedFileBase file)

@@ -1,17 +1,15 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Admin.Controllers
 {
-    using System.Collections.Generic;
     using System.Linq;
     using System.Web.Mvc;
     using System.Web.Routing;
+
     using Infrastructure.Mapping;
     using Kendo.Mvc.Extensions;
     using Kendo.Mvc.UI;
-    using UniversityStudentSystem.Web.Models.Courses;
+    using Models;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
-    using Web.Models.NewsModels;
-    using Models;
 
     public class NewsController : BaseController
     {
@@ -21,17 +19,16 @@
         {
             this.newsService = newsService;
         }
-
-        // GET: Admin/News
+        
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
             var courses = this.newsService.GetAll().To<KendoNewsModel>().ToList();
-            return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return this.Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
@@ -40,7 +37,7 @@
         {
             this.newsService.DeleteById(model.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();
-            return RedirectToAction("Index", routeValues);
+            return this.RedirectToAction("Index", routeValues);
         }
     }
 }

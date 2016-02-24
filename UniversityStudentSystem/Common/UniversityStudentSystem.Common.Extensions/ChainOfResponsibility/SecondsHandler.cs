@@ -8,7 +8,7 @@
         {
             if (span.Seconds > 5)
             {
-                return string.Format("{0} seconds ago", span.Seconds);
+                return $"{ span.Seconds } seconds ago";
             }
             else
             {

@@ -21,13 +21,13 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult Read([DataSourceRequest]DataSourceRequest request)
         {
             var courses = this.testService.GetAll().To<TestAdminModel>().ToList();
-            return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
+            return this.Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);
         }
 
         [ValidateInput(false)]
@@ -36,7 +36,7 @@
         {
             this.testService.DeleteById(test.Id);
             RouteValueDictionary routeValues = this.GridRouteValues();
-            return RedirectToAction("Index", routeValues);
+            return this.RedirectToAction("Index", routeValues);
         }
 
         [AcceptVerbs(HttpVerbs.Post)]
@@ -47,12 +47,12 @@
                 this.testService.Update(test.Id, test.StartDate, test.EndDate, test.Name, test.IsEnabled);
 
                 RouteValueDictionary routeValues = this.GridRouteValues();
-                return RedirectToAction("Index", routeValues);
+                return this.RedirectToAction("Index", routeValues);
             }
 
             /*var courses = this.testService.GetAll().To<TestAdminModel>().ToList();
             return Json(courses.ToDataSourceResult(request), JsonRequestBehavior.AllowGet);*/
-            return RedirectToAction("Index");
+            return this.RedirectToAction("Index");
         }
     }
 }

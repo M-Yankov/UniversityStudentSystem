@@ -8,7 +8,7 @@ namespace UniversityStudentSystem.Data.Models
     using CommonModels;
     using CustomAttributes;
 
-    public class Semester: BaseModel<int>
+    public class Semester : BaseModel<int>
     {
         private ICollection<Course> courses;
 
@@ -20,7 +20,7 @@ namespace UniversityStudentSystem.Data.Models
         [Required]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string Name { get; set; }
-        
+
         [Required]
         [Range(0, double.MaxValue)]
         public int Fee { get; set; }
@@ -46,6 +46,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.courses;
             }
+
             set
             {
                 this.courses = value;

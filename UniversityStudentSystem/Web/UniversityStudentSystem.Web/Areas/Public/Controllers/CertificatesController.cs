@@ -1,15 +1,13 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Public.Controllers
 {
-    using System.Web.Mvc;
-    using Services.Contracts;
-    using UniversityStudentSystem.Web.Controllers;
-    using UniversityStudentSystem.Common;
-    using Models;
-    using System.Drawing;
-    using System.Drawing.Imaging;
     using System;
-    using Models.Certificates;
     using System.Linq;
+    using System.Web.Mvc;
+    using Models;
+    using Models.Certificates;
+    using Services.Contracts;
+    using UniversityStudentSystem.Common;
+    using UniversityStudentSystem.Web.Controllers;
 
     public class CertificatesController : BaseController
     {
@@ -33,7 +31,7 @@
                 DateTime.Now,
                 DateTime.Now.AddYears(1));
             
-            return View(new ImageCertificate() { Data = imageContent });
+            return this.View(new ImageCertificate() { Data = imageContent });
         }
 
         [HttpPost]

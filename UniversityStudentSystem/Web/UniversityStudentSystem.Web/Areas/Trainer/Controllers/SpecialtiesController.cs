@@ -1,12 +1,14 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Trainer.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
+
+    using Infrastructure.Mapping;
     using Services.Contracts;
     using Web.Models.Courses;
-    using System.Linq;
     using Web.Models.Semesters;
-    using Infrastructure.Mapping;
     using Web.Models.Users;
+
     public class SpecialtiesController : Controller
     {
         private ISpecialtiesService specialtiesService;
@@ -20,7 +22,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult AddCourse(int id)

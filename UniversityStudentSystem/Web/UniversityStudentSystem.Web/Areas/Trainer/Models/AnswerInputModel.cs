@@ -7,7 +7,7 @@
     using Data.Models;
     using Infrastructure.Mapping;
 
-    public class AnswerInputModel: IMapTo<Answer>
+    public class AnswerInputModel : IMapTo<Answer>
     {
         [Required]
         [MaxLength(ModelConstants.NameMaxLength)]

@@ -34,10 +34,12 @@
         {
             get
             {
-                int lastSpace = this.Content.LastIndexOf(' ',
-                    this.Content.Length > WebConstants.NewsShortContentLength ?
+                int length = this.Content.Length > WebConstants.NewsShortContentLength ?
                     WebConstants.NewsShortContentLength :
-                    this.Content.Length - 1);
+                    this.Content.Length - 1;
+
+                int lastSpace = this.Content.LastIndexOf(' ', length);
+
                 string shortContent = this.Content.Substring(0, lastSpace);
                 return $"{shortContent} ...";
             }

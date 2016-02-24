@@ -19,8 +19,7 @@
                 "Admin_default",
                 "Admin/{controller}/{action}/{id}/{name}",
                 new { action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional },
-                new { isAllowed = new AdminRouteContraint() }
-            );
+                new { isAllowed = new AdminRouteContraint() });
         }
     }
 }

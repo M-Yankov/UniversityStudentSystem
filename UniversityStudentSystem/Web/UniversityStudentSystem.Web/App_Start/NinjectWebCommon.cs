@@ -4,22 +4,19 @@
 namespace UniversityStudentSystem.Web
 {
     using System;
+    using System.Data.Entity;
     using System.Web;
 
-    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
-
-    using Ninject;
-    using Ninject.Modules;
-    using Ninject.Web.Common;
-    using Ninject.Extensions.Conventions;
     using Data;
-    using System.Data.Entity;
     using Data.Repositories;
-    using Data.Models;
-    using Data.Models.CommonModels;
+    using Microsoft.Web.Infrastructure.DynamicModuleHelper;
+    using Ninject;
+    using Ninject.Extensions.Conventions;
+    using Ninject.Web.Common;
+
     public static class NinjectWebCommon 
     {
-        private static readonly Bootstrapper bootstrapper = new Bootstrapper();
+        private static readonly Bootstrapper Bootstrapper = new Bootstrapper();
 
         /// <summary>
         /// Starts the application
@@ -28,7 +25,7 @@ namespace UniversityStudentSystem.Web
         {
             DynamicModuleUtility.RegisterModule(typeof(OnePerRequestHttpModule));
             DynamicModuleUtility.RegisterModule(typeof(NinjectHttpModule));
-            bootstrapper.Initialize(CreateKernel);
+            Bootstrapper.Initialize(CreateKernel);
         }
         
         /// <summary>
@@ -36,7 +33,7 @@ namespace UniversityStudentSystem.Web
         /// </summary>
         public static void Stop()
         {
-            bootstrapper.ShutDown();
+            Bootstrapper.ShutDown();
         }
         
         /// <summary>
@@ -67,11 +64,9 @@ namespace UniversityStudentSystem.Web
         /// <param name="kernel">The kernel.</param>
         private static void RegisterServices(IKernel kernel)
         {
-            
             kernel.Bind<DbContext>().To<UniversityDbContext>().InRequestScope();
-            // <> to <,int>
+            
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>));
-
             kernel.Bind(typeof(IRepository<,>)).To(typeof(EfRepository<,>));
 
             var h = kernel.GetBindings(typeof(IRepository<>));

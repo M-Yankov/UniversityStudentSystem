@@ -1,8 +1,8 @@
 ﻿namespace UniversityStudentSystem.Services.Contracts
 {
-    using UniversityStudentSystem.Data.Models;
     using System.Linq;
-    using System.Collections.Generic;
+
+    using UniversityStudentSystem.Data.Models;
 
     public interface IMessageService
     {

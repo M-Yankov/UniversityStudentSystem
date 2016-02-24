@@ -10,7 +10,7 @@
 
     public class SpecialtiesController : BaseController
     {
-        public ISpecialtiesService specialties;
+        private ISpecialtiesService specialties;
 
         public SpecialtiesController(ISpecialtiesService specialtiesService)
         {
@@ -20,12 +20,12 @@
         public ActionResult Index()
         {
             IEnumerable<SpecialtyViewModel> specialties = this.specialties.GetAll().To<SpecialtyViewModel>().ToList();
-            return View(specialties);
+            return this.View(specialties);
         }
 
         public ActionResult Details(int id)
         {
-            var specialty = specialties.GetAll().FirstOrDefault(s => s.Id == id);
+            var specialty = this.specialties.GetAll().FirstOrDefault(s => s.Id == id);
             if (specialty == null)
             {
                 return this.RedirectToAction("NotFound");

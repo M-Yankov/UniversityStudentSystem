@@ -9,6 +9,7 @@
     using UniversityStudentSystem.Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
     using Users;
+
     public class CandidateViewModel : IMapFrom<Candidate>, IHaveCustomMappings
     {
         public int Id { get; set; }

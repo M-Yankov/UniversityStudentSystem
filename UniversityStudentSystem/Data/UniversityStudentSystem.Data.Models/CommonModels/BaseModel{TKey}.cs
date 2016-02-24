@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Data.Models.CommonModels
+﻿namespace UniversityStudentSystem.Data.Models.CommonModels
 {
     using System;
     using System.ComponentModel.DataAnnotations;

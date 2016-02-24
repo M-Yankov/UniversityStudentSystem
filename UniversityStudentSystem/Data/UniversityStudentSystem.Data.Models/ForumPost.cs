@@ -40,6 +40,7 @@
             {
                 return this.comments;
             }
+
             set
             {
                 this.comments = value;

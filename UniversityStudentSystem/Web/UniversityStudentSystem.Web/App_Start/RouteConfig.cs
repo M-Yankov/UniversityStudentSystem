@@ -12,14 +12,12 @@
             routes.MapRoute(
                 name: "Error",
                 url: "Error/{action}",
-                defaults: new { controller = "Error", action = "NotFound" }
-            );
+                defaults: new { controller = "Error", action = "NotFound" });
 
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional });
         }
     }
 }

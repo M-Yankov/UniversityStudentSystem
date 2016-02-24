@@ -31,7 +31,7 @@
 
         public IQueryable<User> GetAll()
         {
-            return usersRepository.All();
+            return this.usersRepository.All();
         }
 
         public long GetLastFacultyNumber()

@@ -1,9 +1,9 @@
-using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
-using Microsoft.Owin.Security;
-
 namespace UniversityStudentSystem.Web.Models.Manage
 {
+    using System.Collections.Generic;
+    using Microsoft.AspNet.Identity;
+    using Microsoft.Owin.Security;
+
     public class ManageLoginsViewModel
     {
         public IList<UserLoginInfo> CurrentLogins { get; set; }

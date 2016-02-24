@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace UniversityStudentSystem.Web.Models.Manage
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class ChangePasswordViewModel
     {
         [Required]

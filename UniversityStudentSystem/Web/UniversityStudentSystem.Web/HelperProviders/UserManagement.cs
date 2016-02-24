@@ -2,12 +2,14 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using System.IO;
     using System.Linq;
     using System.Web;
     using System.Web.Mvc;
     using Common;
 
+    [SuppressMessage("", "SA0102")]
     public class UserManagement
     {
         private HttpServerUtilityBase server;
@@ -62,7 +64,7 @@
 
             if (!fileExtension.Contains(fileExtension))
             {
-                string errorMessage = $"Only images with type .{string.Join(" .", imageExtensions)} are allowed!";
+                string errorMessage = $"Only images with type .{ string.Join(" .", imageExtensions) } are allowed!";
                 return new UploadResult()
                 {
                     Error = errorMessage,

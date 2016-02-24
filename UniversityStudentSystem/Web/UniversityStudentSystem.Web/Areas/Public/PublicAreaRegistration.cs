@@ -17,8 +17,7 @@
             context.MapRoute(
                 "Public_default",
                 "Public/{controller}/{action}/{id}/{name}",
-                new { controller = "News", action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional }
-            );
+                new { controller = "News", action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional });
         }
     }
 }

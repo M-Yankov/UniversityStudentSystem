@@ -1,8 +1,7 @@
-﻿
-namespace UniversityStudentSystem.Services
+﻿namespace UniversityStudentSystem.Services
 {
-    using System;
     using System.Linq;
+
     using Contracts;
     using Data.Models;
     using UniversityStudentSystem.Data.Repositories;

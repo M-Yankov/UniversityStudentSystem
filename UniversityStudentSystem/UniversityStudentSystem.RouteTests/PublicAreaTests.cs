@@ -1,18 +1,16 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace UniversityStudentSystem.RouteTests
+﻿namespace UniversityStudentSystem.RouteTests
 {
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using System.Web.Routing;
-    using MvcRouteTester;
-
-    using UniversityStudentSystem.Web.Areas.Public.Controllers;
-    using UniversityStudentSystem.Web.Areas.Public;
-    using Web;
     using System.Web.Mvc;
-    using Web.Models.NewsModels;
-    using Web.Models.Certificates;
+    using System.Web.Routing;
+
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using MvcRouteTester;
+    using UniversityStudentSystem.Web.Areas.Public;
+    using UniversityStudentSystem.Web.Areas.Public.Controllers;
+    using Web;
     using Web.Models;
+    using Web.Models.Certificates;
+
     [TestClass]
     public class PublicAreaTests
     {
@@ -24,23 +22,23 @@ namespace UniversityStudentSystem.RouteTests
             var areaRegistration = new PublicAreaRegistration();
             this.routeCollection = new RouteCollection();
 
-            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, routeCollection);
+            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, this.routeCollection);
             areaRegistration.RegisterArea(areaRegistrationContext);
-            RouteConfig.RegisterRoutes(routeCollection);
+            RouteConfig.RegisterRoutes(this.routeCollection);
         }
 
         [TestMethod]
         public void ShouldMapToAboutControllerInPublicArea()
         {
             const string Url = "/Public/About";
-            routeCollection.ShouldMap(Url).To<AboutController>(c => c.Index());
+            this.routeCollection.ShouldMap(Url).To<AboutController>(c => c.Index());
         }
 
         [TestMethod]
         public void ShouldMapToDefaultControllerInPublicArea()
         {
             string url = "/Public/";
-            routeCollection.ShouldMap(url).To<NewsController>(c => c.Index());
+            this.routeCollection.ShouldMap(url).To<NewsController>(c => c.Index());
         }
 
         [TestMethod]
@@ -50,7 +48,7 @@ namespace UniversityStudentSystem.RouteTests
             const string UserId = "1DFA-126DAC-91E3F-AB918";
             var certificate = new CertificateInputModel() { SpecialtyId = SpecId, UserId = UserId };
 
-            routeCollection
+            this.routeCollection
                 .ShouldMap("/Public/Certificates/GiveCertificate")
                 .WithFormUrlBody($"SpecialtyId={ SpecId }&userId={ UserId }")
                 .To<CertificatesController>(c => c.GiveCertificate(certificate));
@@ -61,7 +59,7 @@ namespace UniversityStudentSystem.RouteTests
         {
             string url = "/Public/Report";
 
-            routeCollection
+            this.routeCollection
                 .ShouldMap(url)
                 .To<ReportController>(c => c.Index());
         }
@@ -79,7 +77,7 @@ namespace UniversityStudentSystem.RouteTests
                 Email = EmailOfTheBug
             };
 
-            routeCollection
+            this.routeCollection
                 .ShouldMap(url)
                 .WithFormUrlBody($"Content={ ContentOfTheBug }&Email={ EmailOfTheBug }")
                 .To<ReportController>(c => c.Index(report));

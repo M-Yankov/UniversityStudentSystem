@@ -16,7 +16,7 @@
         public CoursesService(
             IRepository<Course> coursesRepo,
             IRepository<User, string> trainersRepo,
-            IRepository<TestResult> testResultRepo )
+            IRepository<TestResult> testResultRepo)
         {
             this.coursesRepository = coursesRepo;
             this.trainersRepository = trainersRepo;
@@ -32,8 +32,8 @@
             }
 
             course.Tasks.Add(task);
-            coursesRepository.Update(course);
-            coursesRepository.Save();
+            this.coursesRepository.Update(course);
+            this.coursesRepository.Save();
         }
 
         public int AddCourse(string name, string description, int semesterId)
@@ -112,10 +112,10 @@
 
         public string SolutionResult(string userId, int courseId)
         {
-             var course = this.coursesRepository.GetById(courseId);
-             var solution =  course.Solutions
-                .OrderByDescending(s => s.CreatedOn)
-                .FirstOrDefault(s => s.UserId == userId);
+            var course = this.coursesRepository.GetById(courseId);
+            var solution = course.Solutions
+               .OrderByDescending(s => s.CreatedOn)
+               .FirstOrDefault(s => s.UserId == userId);
 
             if (solution != null)
             {
@@ -127,7 +127,7 @@
 
         public void AddMark(int value, string username, int courseId, string reason)
         {
-            var student = trainersRepository.All().FirstOrDefault(u => u.UserName == username);
+            var student = this.trainersRepository.All().FirstOrDefault(u => u.UserName == username);
             student.Marks.Add(new Mark()
             {
                 CourseId = courseId,
@@ -143,10 +143,10 @@
         public Test GetTestForStudent(int courseId, string userId)
         {
             var course = this.coursesRepository.GetById(courseId);
-            var test = course.Tests.FirstOrDefault(t => 
-                t.StartDate < DateTime.Now && 
-                DateTime.Now < t.EndDate && 
-                t.IsEnabled && 
+            var test = course.Tests.FirstOrDefault(t =>
+                t.StartDate < DateTime.Now &&
+                DateTime.Now < t.EndDate &&
+                t.IsEnabled &&
                 (!t.TestResults.Any(tr => tr.UserId == userId) || t.TestResults.Count == 0));
 
             return test;

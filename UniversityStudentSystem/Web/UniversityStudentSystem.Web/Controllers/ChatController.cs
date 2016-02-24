@@ -7,11 +7,10 @@
     [Authorize]
     public class ChatController : BaseController
     {
-        // GET: Chat
         public ActionResult Index()
         {
             this.Response.Cookies.Add(new HttpCookie(WebConstants.CookieKeyForChar, this.User.Identity.Name));
-            return View();
+            return this.View();
         }
     }
 }

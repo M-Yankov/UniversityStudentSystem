@@ -33,7 +33,7 @@
 
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult AddTest(int id)
@@ -84,8 +84,8 @@
                 return this.View(model);
             }
 
-            var dbCourseTask = this.Mapper.Map<CourseTask>(model);
-            this.courseService.AddTask(dbCourseTask, id);
+            var databaseCourseTask = this.Mapper.Map<CourseTask>(model);
+            this.courseService.AddTask(databaseCourseTask, id);
 
             return this.RedirectToAction("Details", "Courses", new { id = id, area = "Public" });
         }
@@ -222,8 +222,5 @@
         {
             return this.View();
         }
-
-        
-
     }
 }

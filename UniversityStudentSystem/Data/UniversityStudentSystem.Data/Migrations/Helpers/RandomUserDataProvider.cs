@@ -7,8 +7,8 @@
     /// </summary>
     public class RandomUserDataProvider
     {
-        private UserData userData;
         private static Random random = new Random();
+        private UserData userData;
 
         public RandomUserDataProvider()
         {

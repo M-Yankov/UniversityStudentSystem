@@ -9,13 +9,13 @@
     public class UserInputModel : IMapFrom<User>
     {
         [Required]
-        [Display(Name ="First name")]
+        [Display(Name = "First name")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string FirstName { get; set; }
 
         [Required]
-        [Display(Name ="Lat name")]
+        [Display(Name = "Lat name")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         public string LastName { get; set; }
@@ -28,21 +28,21 @@
         [Range(ModelConstants.MinAge, ModelConstants.MaxAge)]
         public int Age { get; set; }
 
-        [Display(Name ="Facebook")]
+        [Display(Name = "Facebook")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
-        [RegularExpression(ModelConstants.FacebookProfileRegularExpression, 
+        [RegularExpression(ModelConstants.FacebookProfileRegularExpression,
             ErrorMessage = ModelConstants.ErrorMessageProfile)]
         public string FacebookAccount { get; set; }
 
-        [Display(Name ="Skype")]
+        [Display(Name = "Skype")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         [RegularExpression(ModelConstants.SkypeNameRegularexpression,
             ErrorMessage = ModelConstants.ErrorMessageProfile)]
         public string SkypeName { get; set; }
 
-        [Display(Name ="LinkedIn")]
+        [Display(Name = "LinkedIn")]
         [MinLength(ModelConstants.NameMinLength)]
         [MaxLength(ModelConstants.NameMaxLength)]
         [RegularExpression(ModelConstants.LinkedInProfileRegularExpression,

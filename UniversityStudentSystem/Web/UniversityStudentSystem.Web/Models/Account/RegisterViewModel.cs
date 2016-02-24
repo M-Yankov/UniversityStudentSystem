@@ -1,9 +1,9 @@
-using System.ComponentModel.DataAnnotations;
-using UniversityStudentSystem.Common;
-using UniversityStudentSystem.Data.Models;
-
 namespace UniversityStudentSystem.Web.Models.Account
 {
+    using System.ComponentModel.DataAnnotations;
+    using UniversityStudentSystem.Common;
+    using UniversityStudentSystem.Data.Models;
+
     public class RegisterViewModel
     {
         [Required]

@@ -34,6 +34,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.candidatures;
             }
+
             set
             {
                 this.candidatures = value;

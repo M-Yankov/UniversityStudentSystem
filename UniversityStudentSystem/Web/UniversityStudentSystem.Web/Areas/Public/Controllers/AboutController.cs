@@ -7,7 +7,7 @@
         // GET: Public/About
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
     }
 }

@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Web.Models.Tests
+﻿namespace UniversityStudentSystem.Web.Models.Tests
 {
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;

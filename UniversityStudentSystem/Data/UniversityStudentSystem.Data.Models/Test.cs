@@ -45,6 +45,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.questions;
             }
+
             set
             {
                 this.questions = value;
@@ -57,6 +58,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.testResults;
             }
+
             set
             {
                 this.testResults = value;

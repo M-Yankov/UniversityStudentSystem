@@ -1,8 +1,8 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Admin.Models
 {
-    using UniversityStudentSystem.Web.Infrastructure.Mapping;
-    using UniversityStudentSystem.Data.Models;
     using System;
+    using UniversityStudentSystem.Data.Models;
+    using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
     public class KendoNewsModel : IMapFrom<News>
     {

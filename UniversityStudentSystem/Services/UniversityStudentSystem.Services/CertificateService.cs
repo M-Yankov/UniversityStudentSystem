@@ -1,33 +1,34 @@
 ﻿namespace UniversityStudentSystem.Services
 {
     using System;
-    using Data.Models;
-    using Data.Repositories;
-    using UniversityStudentSystem.Services.Contracts;
-    using UniversityStudentSystem.Common;
     using System.Drawing;
     using System.Drawing.Imaging;
     using System.Linq;
 
+    using Data.Models;
+    using Data.Repositories;
+    using UniversityStudentSystem.Common;
+    using UniversityStudentSystem.Services.Contracts;
+
     public class CertificateService : ICertificateService
     {
-        private IRepository<Diploma> diplomsRepository;
-        private IRepository<Specialty> specialtiesRepository;
-        private IRepository<User, string> usersRepository;
-
         private readonly Point studentNamesPosition = new Point(363, 363);
         private readonly Point specialtyNamePosition = new Point(370, 500);
         private readonly Point awardedOnPositon = new Point(225, 600);
         private readonly Point expiresOnPostion = new Point(700, 600);
 
+        private IRepository<Diploma> diplomsRepository;
+        private IRepository<Specialty> specialtiesRepository;
+        private IRepository<User, string> usersRepository;
+
         public CertificateService(
-            IRepository<Diploma> diplomsRepo, 
-            IRepository<Specialty> specialtiesRepo, 
+            IRepository<Diploma> diplomsRepo,
+            IRepository<Specialty> specialtiesRepo,
             IRepository<User, string> usersRepo)
         {
-            this.diplomsRepository = diplomsRepo;                        
-            this.specialtiesRepository = specialtiesRepo;                        
-            this.usersRepository = usersRepo;                        
+            this.diplomsRepository = diplomsRepo;
+            this.specialtiesRepository = specialtiesRepo;
+            this.usersRepository = usersRepo;
         }
 
         public void GiveToPerson(string userId, int specialtyId, string pathToUserFolder, string pathToCertificate)
@@ -42,15 +43,15 @@
 
             var image = this.MakeCeritficate(
                 pathToCertificate,
-                user.FirstName + " " + user.LastName, 
-                specialty.Name , 
-                DateTime.Now, 
+                user.FirstName + " " + user.LastName,
+                specialty.Name,
+                DateTime.Now,
                 DateTime.Now.AddYears(1));
 
             string certificatePath = System.IO.Path.Combine(pathToUserFolder, "Certificate-" + specialty.Name + ".jpg");
-            certificatePath  = certificatePath.Replace(" ", "-");
+            certificatePath = certificatePath.Replace(" ", "-");
             image.Save(certificatePath, ImageFormat.Jpeg);
-            string dbPath = this.GetUserFolderPath(certificatePath);
+            string databasePath = this.GetUserFolderPath(certificatePath);
 
             this.diplomsRepository.Add(new Diploma()
             {
@@ -58,21 +59,15 @@
                 Name = user.FirstName + " " + user.LastName + " - " + specialty.Name,
                 UserId = user.Id,
                 SpecialtyId = specialty.Id,
-                PathToImage = dbPath
+                PathToImage = databasePath
             });
 
             this.diplomsRepository.Save();
         }
 
-        private string GetUserFolderPath(string path)
-        {
-            int index = path.LastIndexOf("\\Users");
-            return path.Substring(index);
-        }
-
         public byte[] MakeCertificate(
             string pathToImage,
-            string studentName, 
+            string studentName,
             string specialtyName,
             DateTime awardedOn,
             DateTime expiresOn)
@@ -84,7 +79,6 @@
                  awardedOn,
                  expiresOn);
 
-            //image1.Save(this.Server.MapPath(WebConstants.PathToCertificate) + "Example.jpg", ImageFormat.Jpeg);
             return (byte[])new ImageConverter().ConvertTo(certificate, typeof(byte[]));
         }
 
@@ -127,14 +121,21 @@
 
                 graphics.DrawString(
                     expiresOn.ToString(CertificateConstants.DateFormat),
-                    new Font(CertificateConstants.DefaultFontFamily,
-                    CertificateConstants.FontSizeSmaller,
-                    FontStyle.Regular),
-                    Brushes.Black,
-                    this.expiresOnPostion);
+                    new Font(
+                        CertificateConstants.DefaultFontFamily,
+                        CertificateConstants.FontSizeSmaller,
+                        FontStyle.Regular),
+                        Brushes.Black,
+                        this.expiresOnPostion);
             }
 
             return image;
+        }
+
+        private string GetUserFolderPath(string path)
+        {
+            int index = path.LastIndexOf("\\Users");
+            return path.Substring(index);
         }
     }
 }

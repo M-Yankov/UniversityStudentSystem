@@ -3,24 +3,23 @@
     using System.Web.Mvc;
     using Constraints;
 
-    public class TrainerAreaRegistration : AreaRegistration 
+    public class TrainerAreaRegistration : AreaRegistration
     {
-        public override string AreaName 
+        public override string AreaName
         {
-            get 
+            get
             {
                 return "Trainer";
             }
         }
 
-        public override void RegisterArea(AreaRegistrationContext context) 
+        public override void RegisterArea(AreaRegistrationContext context)
         {
             context.MapRoute(
                 "Trainer",
                 "Trainer/{controller}/{action}/{id}/{name}",
                 new { action = "Index", id = UrlParameter.Optional, name = UrlParameter.Optional },
-                new  { isAllowed = new TrainerRouteConstraint() }
-            );
+                new { isAllowed = new TrainerRouteConstraint() });
         }
     }
 }

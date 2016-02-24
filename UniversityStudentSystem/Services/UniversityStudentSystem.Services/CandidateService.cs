@@ -33,7 +33,7 @@
 
         public Document GetDocument(int id)
         {
-            return documentsRepository.GetById(id);
+            return this.documentsRepository.GetById(id);
         }
 
         public byte[] GetFileContents(string path)
@@ -66,8 +66,8 @@
             }
 
             user.Specialties.Add(specialty);
-            usersRepository.Update(user);
-            usersRepository.Save();
+            this.usersRepository.Update(user);
+            this.usersRepository.Save();
         }
     }
 }

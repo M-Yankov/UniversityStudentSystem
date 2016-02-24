@@ -24,7 +24,7 @@
         // GET: Public/Forum
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult GetPosts([DataSourceRequest] DataSourceRequest request)
@@ -45,6 +45,7 @@
             {
                 return this.Redirect("NotFound");
             }
+
             var forumViewModel = this.Mapper.Map<ForumPostViewModel>(forum);
             return this.View(forumViewModel);
         }

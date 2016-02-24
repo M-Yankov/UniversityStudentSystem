@@ -19,28 +19,28 @@
 
         public ActionResult Index()
         {
-            var trainerRole = usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
 
-            var trainers = usersService
+            var trainers = this.usersService
                        .GetAll()
                        .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id))
                        .To<UserViewModel>()
                        .ToList();
 
-            return View(trainers);
+            return this.View(trainers);
         }
 
         public ActionResult Details(string id)
         {
-            var trainerRole = usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
 
-            var trainerDetails = usersService
+            var trainerDetails = this.usersService
                        .GetAll()
                        .FirstOrDefault(u => u.Roles.Any(r => r.RoleId == trainerRole.Id) && u.Id == id);
 
             var viewModel = this.Mapper.Map<UserViewModel>(trainerDetails);
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
     }
 }

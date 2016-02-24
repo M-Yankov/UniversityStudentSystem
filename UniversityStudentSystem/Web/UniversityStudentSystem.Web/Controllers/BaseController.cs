@@ -16,7 +16,7 @@
             }
         }
 
-        public virtual string UserId
+        protected string UserId
         {
             get
             {

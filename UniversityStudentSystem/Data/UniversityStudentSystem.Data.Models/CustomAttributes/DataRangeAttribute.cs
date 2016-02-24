@@ -5,9 +5,9 @@ namespace UniversityStudentSystem.Data.Models.CustomAttributes
 
     public class DataRangeAttribute : ValidationAttribute
     {
+        private const string DefaultErrorMessage = "'{0}' must be a date between {1:d} and {2:d}.";
         private DateTime minDateRange;
         private DateTime maxDateRange;
-        private const string DefaultErrorMessage = "'{0}' must be a date between {1:d} and {2:d}.";
 
         /// <summary>
         /// Initialize a DataRange attribute.
@@ -23,7 +23,7 @@ namespace UniversityStudentSystem.Data.Models.CustomAttributes
         public override bool IsValid(object value)
         {
             DateTime dateToValidate = Convert.ToDateTime(value);
-            return minDateRange <= dateToValidate && dateToValidate <= maxDateRange;
+            return this.minDateRange <= dateToValidate && dateToValidate <= this.maxDateRange;
         }
     }
 }

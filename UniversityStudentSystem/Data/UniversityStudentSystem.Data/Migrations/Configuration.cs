@@ -186,8 +186,8 @@
                 return;
             }
 
-            // Keep unique usernames
-            HashSet<string> dbUsernames = new HashSet<string>();
+            //// Keep unique usernames
+            HashSet<string> dataUsernames = new HashSet<string>();
             List<Specialty> specialties = context.Speciallties.ToList();
 
             Document[] initialDocuments = new Document[]
@@ -203,7 +203,7 @@
             {
                 // Ensure Usernames will not duplicate! db throws an exception.
                 string currentUsername = this.randomProvider.ProvideRandomUsername();
-                while (dbUsernames.Contains(currentUsername))
+                while (dataUsernames.Contains(currentUsername))
                 {
                     currentUsername = this.randomProvider.ProvideRandomUsername();
                 }
@@ -232,7 +232,7 @@
                         "Candidates cannot be added! " + string.Join(" ", result.Errors));
                 }
 
-                dbUsernames.Add(currentUsername);
+                dataUsernames.Add(currentUsername);
                 candidateStudents.Add(candidateStudent);
             }
 
@@ -263,15 +263,15 @@
                 return;
             }
 
-            // Keep unique usernames --too many queries :(
-            HashSet<string> dbUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
+            //// Keep unique usernames -- too many queries :(
+            HashSet<string> dataUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
             int currentFacultyNumber = (int)context.Users.Select(c => c.FacultyNumber).Max();
 
             for (int i = 0; i < SeedConstants.TrainersCount; i++)
             {
-                // Ensure Usernames will not duplicate! db throws an exception.
+                //// Ensure Usernames will not duplicate! db throws an exception.
                 string currentUsername = this.randomProvider.ProvideRandomUsername();
-                while (dbUsernames.Contains(currentUsername))
+                while (dataUsernames.Contains(currentUsername))
                 {
                     currentUsername = this.randomProvider.ProvideRandomUsername();
                 }
@@ -307,7 +307,7 @@
                         "Trainer cannot be added to it' role! " + string.Join(" ", result.Errors));
                 }
 
-                dbUsernames.Add(currentUsername);
+                dataUsernames.Add(currentUsername);
             }
 
             context.SaveChanges();
@@ -322,7 +322,7 @@
                 return;
             }
 
-            HashSet<string> dbUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
+            HashSet<string> dataUsernames = new HashSet<string>(context.Users.Select(u => u.UserName));
             int currentFacultyNumber = (int)context.Users.Select(c => c.FacultyNumber).Max();
 
             for (int z = 0; z < specialties.Count; z++)
@@ -330,7 +330,7 @@
                 for (int i = 0; i < SeedConstants.StudentsPerSpecialty; i++)
                 {
                     string currentUsername = this.randomProvider.ProvideRandomUsername();
-                    while (dbUsernames.Contains(currentUsername))
+                    while (dataUsernames.Contains(currentUsername))
                     {
                         currentUsername = this.randomProvider.ProvideRandomUsername();
                     }
@@ -359,7 +359,7 @@
                     }
 
                     specialties[z].Students.Add(student);
-                    dbUsernames.Add(student.UserName);
+                    dataUsernames.Add(student.UserName);
                 }
 
                 context.SaveChanges();
@@ -612,7 +612,7 @@
                 return;
             }
 
-            string[] categoryNames = new string[] 
+            string[] categoryNames = new string[]
             {
                 "Forum",
                 "Courses",
@@ -705,7 +705,7 @@
             }
         }
 
-        private Course GetCourse(string name , IList<User> trainers)
+        private Course GetCourse(string name, IList<User> trainers)
         {
             return new Course()
             {

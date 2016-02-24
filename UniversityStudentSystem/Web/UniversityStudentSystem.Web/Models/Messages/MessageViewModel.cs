@@ -1,9 +1,9 @@
 ﻿namespace UniversityStudentSystem.Web.Models.Messages
 {
-    using UniversityStudentSystem.Web.Infrastructure.Mapping;
-    using UniversityStudentSystem.Data.Models;
     using System;
     using AutoMapper;
+    using UniversityStudentSystem.Data.Models;
+    using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
     public class MessageViewModel : IMapFrom<Message>, IHaveCustomMappings
     {

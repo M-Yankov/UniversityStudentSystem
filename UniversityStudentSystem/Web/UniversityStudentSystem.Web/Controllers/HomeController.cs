@@ -39,10 +39,10 @@
         }
 
         [ChildActionOnly]
-        // [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult LatestNews()
         {
-            IList<NewsViewModel> news = homeService
+            IList<NewsViewModel> news = this.homeService
                 .GetTopNews()
                 .OrderByDescending(n => n.CreatedOn)
                 .Take(WebConstants.TopNewsCount)
@@ -51,10 +51,10 @@
         }
 
         [ChildActionOnly]
-        // [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult LatestForumPosts()
         {
-            IList<ForumPostViewModel> forumPosts = homeService
+            IList<ForumPostViewModel> forumPosts = this.homeService
                 .GetTopForumPosts()
                 .OrderByDescending(f => f.Comments.Any()
                                     ? f.Comments.OrderByDescending(c => c.CreatedOn).FirstOrDefault().CreatedOn
@@ -66,28 +66,28 @@
         }
 
         [ChildActionOnly]
-        // [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
+        [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult SideMenu()
         {
             SideMenuViewModel sideMenu = new SideMenuViewModel();
-            sideMenu.Courses = coursesService
+            sideMenu.Courses = this.coursesService
                 .GetAll()
                 .OrderByDescending(c => c.CreatedOn)
                 .Take(5)
                 .To<CourseViewModel>()
                 .ToList();
 
-            sideMenu.Specialties = specialtiesService
+            sideMenu.Specialties = this.specialtiesService
                 .GetAll()
                 .OrderByDescending(c => c.CreatedOn)
                 .Take(5)
                 .To<SpecialtyViewModel>()
                 .ToList();
 
-            var trainerRole = usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
             if (trainerRole != null)
             {
-                sideMenu.Trainers = usersService
+                sideMenu.Trainers = this.usersService
                         .GetAll()
                         .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id))
                         .OrderByDescending(c => c.CreatedOn)
@@ -104,7 +104,7 @@
         {
             StatisticViewModel model = new StatisticViewModel()
             {
-                Count = coursesService.GetAll().Count(),
+                Count = this.coursesService.GetAll().Count(),
                 Text = "Courses",
                 ColorClass = "panel-yellow",
                 IconClass = "fa-bullhorn",
@@ -119,7 +119,7 @@
         {
             StatisticViewModel model = new StatisticViewModel()
             {
-                Count = homeService.GetTopForumPosts().Count(),
+                Count = this.homeService.GetTopForumPosts().Count(),
                 Text = "Forum posts",
                 ColorClass = "panel-green",
                 IconClass = "fa-comments-o",
@@ -132,10 +132,10 @@
         [ChildActionOnly]
         public ActionResult TrainerStatistic()
         {
-            var trainerRole = usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
             StatisticViewModel model = new StatisticViewModel()
             {
-                Count = usersService
+                Count = this.usersService
                         .GetAll()
                         .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id)).Count(),
                 Text = "Trainers",
@@ -152,7 +152,7 @@
         {
             StatisticViewModel model = new StatisticViewModel()
             {
-                Count = specialtiesService
+                Count = this.specialtiesService
                         .GetAll()
                         .Count(),
                 Text = "Specialties",

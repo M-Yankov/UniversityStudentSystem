@@ -1,14 +1,11 @@
 ﻿namespace UniversityStudentSystem.Web.Models.Marks
 {
-    using System;
-    using System.Collections;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
+    using System.Linq;
+
     using AutoMapper;
     using Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
-    using Users;
-    using System.Linq;
 
     public class MarkViewModel : IMapFrom<Mark>, IHaveCustomMappings
     {

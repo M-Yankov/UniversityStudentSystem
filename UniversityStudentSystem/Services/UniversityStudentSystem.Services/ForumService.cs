@@ -11,7 +11,6 @@
         private IRepository<ForumPost> forumRepository;
         private IRepository<Comment> commentRepository;
 
-
         public ForumService(IRepository<ForumPost> forumRepo, IRepository<Comment> commentRepo)
         {
             this.forumRepository = forumRepo;

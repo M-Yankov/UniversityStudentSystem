@@ -37,6 +37,7 @@
             {
                 return this.diploms;
             }
+
             set
             {
                 this.diploms = value;
@@ -47,11 +48,12 @@
         {
             get
             {
-                return students;
+                return this.students;
             }
+
             set
             {
-                students = value;
+                this.students = value;
             }
         }
 
@@ -59,11 +61,12 @@
         {
             get
             {
-                return semesters;
+                return this.semesters;
             }
+
             set
             {
-                semesters = value;
+                this.semesters = value;
             }
         }
     }

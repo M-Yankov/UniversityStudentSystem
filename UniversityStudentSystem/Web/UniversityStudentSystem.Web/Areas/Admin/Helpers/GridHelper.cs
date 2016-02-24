@@ -42,8 +42,7 @@
                         .Model(m => m.Id(modelIdExpression))
                         .Read(read => read.Action("Read", controllerName))
                         .Update(update => update.Action("Update", controllerName))
-                        .Destroy(destroy => destroy.Action("Destroy", controllerName))
-                        );
+                        .Destroy(destroy => destroy.Action("Destroy", controllerName)));
         }
     }
 }

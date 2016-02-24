@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Web.Models.Comments
+﻿namespace UniversityStudentSystem.Web.Models.Comments
 {
     using System.ComponentModel.DataAnnotations;
     using Common;

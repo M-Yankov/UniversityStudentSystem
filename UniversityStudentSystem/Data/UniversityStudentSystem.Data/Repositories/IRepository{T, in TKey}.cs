@@ -1,13 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using UniversityStudentSystem.Data.Models.CommonModels;
-
-namespace UniversityStudentSystem.Data.Repositories
+﻿namespace UniversityStudentSystem.Data.Repositories
 {
-    public interface IRepository <T, TKey>
+    using System.Linq;
+    using UniversityStudentSystem.Data.Models.CommonModels;
+
+    public interface IRepository<T, TKey>
         where T : class, IAuditInfo, IDeletableEntity, IIdentifiableEntity<TKey>
     {
         IQueryable<T> All();

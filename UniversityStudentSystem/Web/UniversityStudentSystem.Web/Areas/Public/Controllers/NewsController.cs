@@ -23,11 +23,10 @@
         {
             this.newsService = news;
         }
-
-        // GET: Public/News
+        
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         public ActionResult GetNews([DataSourceRequest] DataSourceRequest request)
@@ -51,7 +50,7 @@
 
             var newsDetails = this.Mapper.Map<NewsViewModel>(newsFromDb);
 
-            return View(newsDetails);
+            return this.View(newsDetails);
         }
 
         [Authorize(Roles = RoleConstants.Admin + ", " + RoleConstants.Trainer)]
@@ -75,9 +74,9 @@
                 model.PhotoPath = new NewsImageUploader().Save(this.Server, model.File);
             }
 
-            var dbNews = this.Mapper.Map<News>(model);
-            dbNews.CreatedOn = DateTime.Now;
-            int id = this.newsService.Create(dbNews);
+            var databaseNews = this.Mapper.Map<News>(model);
+            databaseNews.CreatedOn = DateTime.Now;
+            int id = this.newsService.Create(databaseNews);
 
             return this.RedirectToAction("Details", "News", new { id = id, name = model.Title.ToUrl() });
         }

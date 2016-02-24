@@ -12,7 +12,7 @@
         public const int ForumPostCount = 25;
         public const int CommentsPerPost = 3;
 
-        // Semesters
+        //// Semesters
         public const string FirstNameModule = "First module";
         public const string SecondModule = "Second module";
         public const string ThirdModule = "Third module";
@@ -20,6 +20,5 @@
         public const int FirstModuleFee = 500;
         public const int SecondModuleFee = 750;
         public const int ThirdModuleFee = 1000;
-
     }
 }

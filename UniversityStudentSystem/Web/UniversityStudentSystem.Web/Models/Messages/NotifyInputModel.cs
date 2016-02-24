@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Web.Models.Messages
+﻿namespace UniversityStudentSystem.Web.Models.Messages
 {
     using System;
     using System.ComponentModel.DataAnnotations;
@@ -7,7 +6,7 @@ namespace UniversityStudentSystem.Web.Models.Messages
     using Infrastructure.Mapping;
     using UniversityStudentSystem.Data.Models;
 
-    public class NotifyInputModel: IMapTo<Message>
+    public class NotifyInputModel : IMapTo<Message>
     {
         [Required]
         public DateTime DateSent { get; set; }

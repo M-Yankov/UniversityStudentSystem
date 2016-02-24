@@ -8,8 +8,8 @@
         {
             if (span.Hours > 0)
             {
-                return string.Format("{0} {1} ago",
-                    span.Hours, span.Hours == 1 ? "hour" : "hours");
+                timeString = span.Hours == 1 ? "hour" : "hours";
+                return $"{ span.Hours } { timeString } ago";
             }
             else
             {

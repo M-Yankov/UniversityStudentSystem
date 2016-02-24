@@ -1,5 +1,4 @@
-﻿
-namespace UniversityStudentSystem.Web.Models.CoursesTask
+﻿namespace UniversityStudentSystem.Web.Models.CoursesTask
 {
     using Infrastructure.Mapping;
     using UniversityStudentSystem.Data.Models;

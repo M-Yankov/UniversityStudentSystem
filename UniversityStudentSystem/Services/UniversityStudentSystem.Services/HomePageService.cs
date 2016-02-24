@@ -1,9 +1,9 @@
 ﻿namespace UniversityStudentSystem.Services
 {
-    using System;
     using System.Linq;
-    using Data.Repositories;
+
     using Data.Models;
+    using Data.Repositories;
     using UniversityStudentSystem.Services.Contracts;
 
     public class HomePageService : IHomePageService

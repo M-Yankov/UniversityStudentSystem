@@ -1,15 +1,16 @@
 ﻿namespace UniversityStudentSystem.Services
 {
-    using System;
-    using System.Linq;
-    using Data.Repositories;
-    using Data.Models;
-    using UniversityStudentSystem.Services.Contracts;
     using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Linq;
+
+    using Data.Models;
+    using Data.Repositories;
+    using UniversityStudentSystem.Services.Contracts;
+
     public class SpecialtiesService : ISpecialtiesService
     {
-        public IRepository<Specialty> specialtiesRepository;
+        private IRepository<Specialty> specialtiesRepository;
 
         public SpecialtiesService(IRepository<Specialty> repository)
         {

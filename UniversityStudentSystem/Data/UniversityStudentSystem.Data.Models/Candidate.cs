@@ -39,6 +39,7 @@
             {
                 return this.documents;
             }
+
             set
             {
                 this.documents = value;

@@ -1,29 +1,24 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-namespace UniversityStudentSystem.ControllerTests
+﻿namespace UniversityStudentSystem.ControllerTests
 {
-    using System;
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
-    using TestStack.FluentMVCTesting;
-    using Moq;
-
-    using UniversityStudentSystem.Web.Areas.Trainer.Controllers;
-    using Web.Infrastructure.Mapping;
-    using Services.Contracts;
-    using Web.Models.Marks;
+    using System.Collections.Generic;
+    using System.Linq;
     using System.Net;
+    using System.Web;
     using System.Web.Mvc;
     using System.Web.Routing;
-    using System.Web;
-    using Kendo.Mvc.UI;
-    using Web.Models.Resources;
-    using System.Linq;
+
     using Data.Models;
-    using System.Collections.Generic;
+    using Kendo.Mvc.UI;
+    using Microsoft.VisualStudio.TestTools.UnitTesting;
+    using Moq;
+    using Services.Contracts;
+    using TestStack.FluentMVCTesting;
+    using UniversityStudentSystem.Web.Areas.Trainer.Controllers;
+    using Web.Infrastructure.Mapping;
     using Web.Models.Courses;
-    using Web.Controllers;
-    using Microsoft.AspNet.Identity;
-    using System.Security.Principal;
-    using System.Security.Claims;
+    using Web.Models.Marks;
+    using Web.Models.Resources;
+
     [TestClass]
     public class TrainerAreaCoursesControllerTests
     {

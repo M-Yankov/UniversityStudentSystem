@@ -1,8 +1,8 @@
-using System.Collections.Generic;
-using Microsoft.AspNet.Identity;
-
 namespace UniversityStudentSystem.Web.Models.Manage
 {
+    using System.Collections.Generic;
+    using Microsoft.AspNet.Identity;
+
     public class IndexViewModel
     {
         public bool HasPassword { get; set; }

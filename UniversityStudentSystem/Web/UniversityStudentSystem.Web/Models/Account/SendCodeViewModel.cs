@@ -1,7 +1,7 @@
-using System.Collections.Generic;
-
 namespace UniversityStudentSystem.Web.Models.Account
 {
+    using System.Collections.Generic;
+
     public class SendCodeViewModel
     {
         public string SelectedProvider { get; set; }

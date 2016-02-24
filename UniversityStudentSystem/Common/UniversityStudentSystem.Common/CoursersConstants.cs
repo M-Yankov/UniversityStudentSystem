@@ -3,17 +3,17 @@
     public class CoursersConstants
     {
         /* Software */
-        // Module 1
+        //// Module 1
         public const string CSharp = "C# Basics";
         public const string CPlusPlus = "C++";
         public const string OOP = "Object oriented programming";
 
-        // Module 2
+        //// Module 2
         public const string JSBasic = "JS Basic";
         public const string JSDom = "JS Dom";
         public const string JSAdvanced = "JS Advanced";
 
-        // Module 3
+        //// Module 3
         public const string ASPMVC = "ASP.NET MVC";
         public const string ASPWebForms = "ASP.NET Web Forms";
         public const string ASPWebApi = "ASP.NET Web Api";

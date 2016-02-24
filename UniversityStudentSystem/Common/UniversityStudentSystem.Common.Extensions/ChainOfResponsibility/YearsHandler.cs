@@ -1,14 +1,14 @@
-﻿using System;
-
-namespace UniversityStudentSystem.Common.Extensions.ChainOfResponsibility
+﻿namespace UniversityStudentSystem.Common.Extensions.ChainOfResponsibility
 {
+    using System;
+
     internal class YearsHandler : Handler
     {
         public override string HandleDateSpan(TimeSpan span, string timeAsSting)
         {
             if (span.Days > 365)
             {
-                int years = (span.Days / 365);
+                int years = span.Days / 365;
                 if (span.Days % 365 != 0)
                 {
                     years += 1;

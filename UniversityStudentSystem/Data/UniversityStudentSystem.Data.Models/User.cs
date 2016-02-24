@@ -99,6 +99,7 @@
             {
                 return this.candidatures;
             }
+
             set
             {
                 this.candidatures = value;
@@ -111,6 +112,7 @@
             {
                 return this.diploms;
             }
+
             set
             {
                 this.diploms = value;
@@ -123,6 +125,7 @@
             {
                 return this.specialties;
             }
+
             set
             {
                 this.specialties = value;
@@ -135,6 +138,7 @@
             {
                 return this.comments;
             }
+
             set
             {
                 this.comments = value;
@@ -147,6 +151,7 @@
             {
                 return this.courses;
             }
+
             set
             {
                 this.courses = value;
@@ -159,6 +164,7 @@
             {
                 return this.forumPosts;
             }
+
             set
             {
                 this.forumPosts = value;
@@ -171,6 +177,7 @@
             {
                 return this.marks;
             }
+
             set
             {
                 this.marks = value;
@@ -183,6 +190,7 @@
             {
                 return this.solutions;
             }
+
             set
             {
                 this.solutions = value;
@@ -195,6 +203,7 @@
             {
                 return this.testResults;
             }
+
             set
             {
                 this.testResults = value;
@@ -203,9 +212,9 @@
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<User> manager)
         {
-            // Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
+            //// Note the authenticationType must match the one defined in CookieAuthenticationOptions.AuthenticationType
             var userIdentity = await manager.CreateIdentityAsync(this, DefaultAuthenticationTypes.ApplicationCookie);
-            // Add custom user claims here
+            //// Add custom user claims here
             return userIdentity;
         }
     }

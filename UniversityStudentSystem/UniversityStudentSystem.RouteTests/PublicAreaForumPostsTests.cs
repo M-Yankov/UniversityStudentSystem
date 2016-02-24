@@ -21,16 +21,16 @@
             var areaRegistration = new PublicAreaRegistration();
             this.routeCollection = new RouteCollection();
 
-            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, routeCollection);
+            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, this.routeCollection);
             areaRegistration.RegisterArea(areaRegistrationContext);
-            RouteConfig.RegisterRoutes(routeCollection);
+            RouteConfig.RegisterRoutes(this.routeCollection);
         }
 
         [TestMethod]
         public void ShouldMapToForumPostForm()
         {
             const string Url = "/Public/Forum/Post";
-            routeCollection.ShouldMap(Url).To<ForumController>(c => c.Post());
+            this.routeCollection.ShouldMap(Url).To<ForumController>(c => c.Post());
         }
 
         [TestMethod]
@@ -48,7 +48,7 @@
                 Content = ForumPostContent
             };
 
-            routeCollection.ShouldMap(Url)
+            this.routeCollection.ShouldMap(Url)
                 .WithFormUrlBody(
                     $"Title={ ForumPostTitle }&Content={ ForumPostContent }&CategoryId={ ForumCategoryId }")
                 .To<ForumController>(c => c.Post(model));
@@ -64,7 +64,7 @@
                 Content = CommentContent
             };
 
-            routeCollection.ShouldMap($"/Public/Forum/AddComment/{ ForumPostId }")
+            this.routeCollection.ShouldMap($"/Public/Forum/AddComment/{ ForumPostId }")
                 .WithFormUrlBody($"Content={ CommentContent }")
                 .To<ForumController>(c => c.AddComment(ForumPostId, model));
         }

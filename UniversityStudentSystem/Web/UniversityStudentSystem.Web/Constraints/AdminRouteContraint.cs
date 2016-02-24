@@ -13,7 +13,7 @@
            RouteValueDictionary values,
            RouteDirection routeDirection)
         {
-            return (httpContext.User.IsInRole(RoleConstants.Admin));
+            return httpContext.User.IsInRole(RoleConstants.Admin);
         }
     }
 }

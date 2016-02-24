@@ -8,7 +8,6 @@
     using Data.Models;
     using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
-
     public class MarkInputModel : IMapFrom<Mark>, IHaveCustomMappings
     {
         [HiddenInput(DisplayValue = false)]

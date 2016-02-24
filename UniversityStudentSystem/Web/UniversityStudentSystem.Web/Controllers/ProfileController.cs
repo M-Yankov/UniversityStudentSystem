@@ -26,7 +26,7 @@
         public ActionResult Messages()
         {
             var messages = this.messageService.GetMessagesForUser(this.UserId).To<MessageViewModel>().ToList();
-            return View(messages);
+            return this.View(messages);
         }
 
         public ActionResult Courses()

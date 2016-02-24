@@ -4,7 +4,7 @@
 
     public class BundleConfig
     {
-        // For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
+        //// For more information on bundling, visit http://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new StyleBundle("~/bundles/css-SBAdmin").Include(
@@ -16,7 +16,7 @@
                             "~/SBAdminTheme/bower_components/font-awesome/css/font-awesome.min.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/js-SBAdmin").Include(
-                            //"~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
+                            //// "~/SBAdminTheme/bower_components/jquery/dist/jquery.min.js",
                             "~/SBAdminTheme/bower_components/bootstrap/dist/js/bootstrap.min.js",
                             "~/SBAdminTheme/bower_components/metisMenu/dist/metisMenu.min.js",
                             "~/SBAdminTheme/bower_components/raphael/raphael-min.js",

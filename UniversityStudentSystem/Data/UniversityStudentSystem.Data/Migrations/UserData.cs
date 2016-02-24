@@ -1,10 +1,10 @@
-﻿
-namespace UniversityStudentSystem.Data.Migrations
+﻿namespace UniversityStudentSystem.Data.Migrations
 {
     using System;
     using System.Collections.Generic;
     using System.IO;
     using System.Linq;
+
     internal class UserData
     {
         private const string LastNamesFile = "LNames.txt";
@@ -53,7 +53,6 @@ namespace UniversityStudentSystem.Data.Migrations
             }
         }
 
-
         public IList<string> Emais
         {
             get
@@ -61,7 +60,6 @@ namespace UniversityStudentSystem.Data.Migrations
                 return this.emais;
             }
         }
-
 
         public IList<string> Usernames
         {

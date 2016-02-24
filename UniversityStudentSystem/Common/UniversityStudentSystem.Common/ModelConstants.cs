@@ -11,6 +11,7 @@
 
         public const string FacebookProfileRegularExpression = 
             "((http|https):\\/\\/|)(www\\.|)facebook\\.com\\/[a-zA-Z0-9.]{1,}";
+
         public const string SkypeNameRegularexpression = "^$|[a-zA-Z][a-zA-Z0-9_\\-\\,\\.]{5,31}";
         public const string LinkedInProfileRegularExpression = 
             "(?i)^$|^((http|https)?(\\://)?(www\\.)?linkedin.com/)(.)+$";

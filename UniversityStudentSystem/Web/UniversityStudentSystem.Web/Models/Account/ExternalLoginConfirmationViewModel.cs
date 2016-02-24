@@ -1,7 +1,7 @@
-using System.ComponentModel.DataAnnotations;
-
 namespace UniversityStudentSystem.Web.Models.Account
 {
+    using System.ComponentModel.DataAnnotations;
+
     public class ExternalLoginConfirmationViewModel
     {
         [Required]

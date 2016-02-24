@@ -46,6 +46,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.resources;
             }
+
             set
             {
                 this.resources = value;
@@ -58,6 +59,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.tasks;
             }
+
             set
             {
                 this.tasks = value;
@@ -70,6 +72,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.tests;
             }
+
             set
             {
                 this.tests = value;
@@ -82,6 +85,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.trainers;
             }
+
             set
             {
                 this.trainers = value;
@@ -94,6 +98,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.solutions;
             }
+
             set
             {
                 this.solutions = value;
@@ -106,6 +111,7 @@ namespace UniversityStudentSystem.Data.Models
             {
                 return this.marks;
             }
+
             set
             {
                 this.marks = value;

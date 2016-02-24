@@ -24,7 +24,7 @@
 
         public ActionResult Index(int page = 1)
         {
-            IQueryable<Course> courses = courseService.GetAll();
+            IQueryable<Course> courses = this.courseService.GetAll();
             if (page < 1)
             {
                 page = 1;
@@ -39,12 +39,12 @@
                 .To<CourseViewModel>()
                 .ToList();
 
-            return View(viewModel);
+            return this.View(viewModel);
         }
 
         public ActionResult Details(int id)
         {
-            var course = courseService.GetAll().FirstOrDefault(c => c.Id == id);
+            var course = this.courseService.GetAll().FirstOrDefault(c => c.Id == id);
 
             if (course == null)
             {

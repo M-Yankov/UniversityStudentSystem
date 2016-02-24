@@ -1,12 +1,12 @@
 ﻿namespace UniversityStudentSystem.RouteTests
 {
-    using System;
     using System.Web.Mvc;
     using System.Web.Routing;
+
     using Microsoft.VisualStudio.TestTools.UnitTesting;
     using MvcRouteTester;
-    using UniversityStudentSystem.Web.Areas.Public.Controllers;
     using UniversityStudentSystem.Web.Areas.Public;
+    using UniversityStudentSystem.Web.Areas.Public.Controllers;
     using Web;
 
     [TestClass]
@@ -20,9 +20,9 @@
             var areaRegistration = new PublicAreaRegistration();
             this.routeCollection = new RouteCollection();
 
-            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, routeCollection);
+            var areaRegistrationContext = new AreaRegistrationContext(areaRegistration.AreaName, this.routeCollection);
             areaRegistration.RegisterArea(areaRegistrationContext);
-            RouteConfig.RegisterRoutes(routeCollection);
+            RouteConfig.RegisterRoutes(this.routeCollection);
         }
 
         [TestMethod]
@@ -30,7 +30,7 @@
         {
             const int CourseId = 2;
 
-            routeCollection
+            this.routeCollection
                 .ShouldMap($"/Public/Courses/Details/{ CourseId }/My-NewCourse")
                 .To<CoursesController>(c => c.Details(2));
         }
@@ -41,7 +41,7 @@
             const int Page = 3;
             string url = $"/Public/Courses/Index?page={ Page }";
 
-            routeCollection.ShouldMap(url).To<CoursesController>(c => c.Index(Page));
+            this.routeCollection.ShouldMap(url).To<CoursesController>(c => c.Index(Page));
         }
 
         [TestCleanup]

@@ -8,8 +8,8 @@
         {
             if (span.Days > 0)
             {
-                return string.Format("{0} {1} ago",
-               span.Days, span.Days == 1 ? "day" : "days");
+                timeString = span.Days == 1 ? "day" : "days";
+                return $"{ span.Days } { timeString } ago";
             }
             else
             {

@@ -8,14 +8,14 @@
         {
             if (span.Days > 30)
             {
-                int months = (span.Days / 30);
+                int months = span.Days / 30;
                 if (span.Days % 31 != 0)
                 {
                     months += 1;
                 }
 
-                return string.Format("{0} {1} ago",
-                months, months == 1 ? "month" : "months");
+                timeString = months == 1 ? "month" : "months";
+                return $"{ months } { timeString } ago";
             }
             else
             {

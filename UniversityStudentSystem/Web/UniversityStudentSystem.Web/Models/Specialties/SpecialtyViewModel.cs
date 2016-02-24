@@ -1,13 +1,11 @@
 ﻿namespace UniversityStudentSystem.Web.Models.Specialties
 {
-    using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     using AutoMapper;
     using Data.Models;
-    using System.Linq;
-    using UniversityStudentSystem.Web.Infrastructure.Mapping;
     using Semesters;
-    using System.ComponentModel.DataAnnotations;
+    using UniversityStudentSystem.Web.Infrastructure.Mapping;
 
     public class SpecialtyViewModel : IMapFrom<Specialty>, IHaveCustomMappings
     {

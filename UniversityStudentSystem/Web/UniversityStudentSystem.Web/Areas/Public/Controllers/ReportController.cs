@@ -16,11 +16,10 @@
         {
             this.reportService = bugReportService;
         }
-
-        // GET: Public/Report
+        
         public ActionResult Index()
         {
-            return View();
+            return this.View();
         }
 
         [HttpPost]
@@ -29,7 +28,7 @@
         {
             if (!this.ModelState.IsValid)
             {
-                return View(model);
+                return this.View(model);
             }
 
             this.reportService.Create(model.Content, model.Email);

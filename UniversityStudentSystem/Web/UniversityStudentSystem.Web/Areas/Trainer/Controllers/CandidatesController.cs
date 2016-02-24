@@ -1,14 +1,12 @@
 ﻿namespace UniversityStudentSystem.Web.Areas.Trainer.Controllers
 {
+    using System.Linq;
     using System.Web.Mvc;
+    using Infrastructure.Mapping;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
-    using System.Linq;
-    using System;
-    using Infrastructure.Mapping;
     using Web.Models.Candidates;
-    using Kendo.Mvc.UI;
-    using Kendo.Mvc.Extensions;
+
     public class CandidatesController : BaseController
     {
         private ICandidateService candidateService;
@@ -37,7 +35,7 @@
             var contents = this.candidateService.GetFileContents(Server.MapPath(documentDetails.Path));
 
             string fileName = documentDetails.Path.Substring(documentDetails.Path.LastIndexOf("/") + 1);
-            return File(contents, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
+            return this.File(contents, System.Net.Mime.MediaTypeNames.Application.Octet, fileName);
         }
 
         [HttpPost]
