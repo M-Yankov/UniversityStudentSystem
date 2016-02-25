@@ -6,7 +6,9 @@
     <p class="text-muted">
       in @Model.Specialty
     </p>
-    @Html.DisplayFor(model => model.Description)
+    <div style="height:100px; overflow-y: auto;">
+        @Html.DisplayFor(model => model.Description)
+    </div>
     <hr />
     <div class="text-center">
             @Html.ActionLink("Details", "Details", new { id = Model.Id, name = Model.Name.ToUrl(), area = "Public"}, new { @class = "btn btn-info btn-outline" })

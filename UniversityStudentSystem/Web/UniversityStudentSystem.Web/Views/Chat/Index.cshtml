@@ -56,6 +56,7 @@
                 $('#btn-chat').click(function () {
                     var msg = $('#btn-input').val();
                     chat.server.sendMessage(msg);
+                    $('#btn-input').val('');
                 });
             });
         };

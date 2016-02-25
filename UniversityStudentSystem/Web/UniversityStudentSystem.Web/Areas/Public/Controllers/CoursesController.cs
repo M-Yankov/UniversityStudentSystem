@@ -84,6 +84,7 @@
                 return redirectResult;
             }
 
+            this.UserManagement.EnsureFolder(this.UserId);
             result = this.UserManagement.SaveSolution(file, this.UserId, id);
             if (!result.HasSucceed)
             {
