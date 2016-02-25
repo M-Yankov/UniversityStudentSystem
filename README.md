@@ -28,9 +28,40 @@ Students of the this system will have easy access to resources and information a
 
   <img src="./Images/homepage.png" width="350" />
 
+* Here are more screenshots from the application:
+<table border="1">
+    <tr>
+        <td>
+            <img src="./Images/forum.png" width="350" />
+        </td>
+        <td>
+            <img src="./Images/tests.png" width="350" />
+        </td>
+        <td>
+            <img src="./Images/course.png" width="350" />
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <img src="./Images/chat.png" width="350" />
+        </td>
+        <td>
+            <img src="./Images/TaskAddEditor.png" width="350" />
+        </td>
+        <td>
+            <img src="./Images/forum_index.png" width="350" />
+        </td>
+    </tr>
+</table>
+
+* _Note_: elements of the home page and the left side menu are cached for 10 min.
+So if you add a new course check the all courses page. Same for the other component
+
+* The application doesn't have some functionality for editing models (for example in the admin area). 
+
 ## The Life cycle of a student
 
-* Each student can apply a candidature for a specialty. Wait a approvement and can check your favorite courses. 
+* First of all registration. Then each student can apply a candidature for a specialty. Wait an approvement and can check your favorite courses. 
 * Each course has task and tests. Solve them get good marks. 
 * You can check your marks in the profile page.
 * For solving the tasks for the course you should wrap all solutions in a single .zip archive less than 2Mb.
@@ -48,3 +79,4 @@ Students of the this system will have easy access to resources and information a
 * And finally give certificates to students in the specialty. 
 	
 
+<strong>This project is made for education purposes for the [Telerik Academy](http://telerikacademy.com/) ASP .NET MVC Course - Project</strong>
