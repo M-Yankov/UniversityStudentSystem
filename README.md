@@ -26,6 +26,7 @@ Students of the this system will have easy access to resources and information a
 ## Start
 * When application is ready. You should see this home page:
 
+  <img src="./Images/homepage.png" width="350" />
 
 ## The Life cycle of a student
 
