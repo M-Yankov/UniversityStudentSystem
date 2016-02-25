@@ -58,7 +58,7 @@
             colletion = data.GetData()
                 .Split(
                     new string[] { Environment.NewLine },
-                    StringSplitOptions.RemoveEmptyEntries )
+                    StringSplitOptions.RemoveEmptyEntries)
                 .ToList();
         }
     }
