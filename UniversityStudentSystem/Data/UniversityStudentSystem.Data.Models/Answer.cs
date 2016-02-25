@@ -7,7 +7,7 @@ namespace UniversityStudentSystem.Data.Models
     public class Answer : BaseModel<int>
     {
         [Required]
-        [MaxLength(ModelConstants.NameMaxLength)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string Content { get; set; }
 
         [Required]

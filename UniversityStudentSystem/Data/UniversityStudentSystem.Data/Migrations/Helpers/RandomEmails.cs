@@ -1,4 +1,10 @@
-alexandra.schГ¶n@example.com
+﻿namespace UniversityStudentSystem.Data.Migrations.Helpers
+{
+    public class RandomEmails : IRandomData
+    {
+        public string GetData()
+        {
+            return @"alexandra.schГ¶n@example.com
 dominik.wahl@example.com
 lydia.mГјnch@example.com
 marta.walter@example.com
@@ -1998,3 +2004,7 @@ sandra.schneider@example.com
 darius.schwab@example.com
 melanie.engelhardt@example.com
 arne.vogt@example.com
+";
+        }
+    }
+}

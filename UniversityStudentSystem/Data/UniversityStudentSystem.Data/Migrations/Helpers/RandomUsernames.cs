@@ -1,4 +1,10 @@
-biggoose738
+﻿namespace UniversityStudentSystem.Data.Migrations.Helpers
+{
+    public class RandomUsernames : IRandomData
+    {
+        public string GetData()
+        {
+            return @"biggoose738
 purpleleopard887
 blackpanda285
 beautifulkoala430
@@ -1998,3 +2004,7 @@ bluelion706
 lazycat763
 yellowpeacock630
 blackgoose781
+";
+        }
+    }
+}

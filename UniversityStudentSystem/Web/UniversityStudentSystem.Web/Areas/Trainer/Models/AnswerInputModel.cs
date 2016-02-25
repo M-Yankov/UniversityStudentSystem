@@ -10,7 +10,7 @@
     public class AnswerInputModel : IMapTo<Answer>
     {
         [Required]
-        [MaxLength(ModelConstants.NameMaxLength)]
+        [MaxLength(ModelConstants.ContentMaxLength)]
         public string Content { get; set; }
 
         [Required]

@@ -1,4 +1,10 @@
-alexandra
+﻿namespace UniversityStudentSystem.Data.Migrations.Helpers
+{
+    public class RandomFirstNames : IRandomData
+    {
+        public string GetData()
+        {
+            return @"alexandra
 dominik
 lydia
 marta
@@ -1997,4 +2003,7 @@ eduard
 sandra
 darius
 melanie
-arne
+arne";
+        }
+    }
+}

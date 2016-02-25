@@ -63,7 +63,12 @@
   <ItemGroup>
     <Compile Include="IUniversityDbContext.cs" />
     <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Migrations\Helpers\RandomData.cs" />
+    <Compile Include="Migrations\Helpers\RandomEmails.cs" />
+    <Compile Include="Migrations\Helpers\RandomFirstNames.cs" />
+    <Compile Include="Migrations\Helpers\RandomLastNames.cs" />
     <Compile Include="Migrations\Helpers\RandomUserDataProvider.cs" />
+    <Compile Include="Migrations\Helpers\RandomUsernames.cs" />
     <Compile Include="Migrations\UserData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\EfRepository{T}.cs" />

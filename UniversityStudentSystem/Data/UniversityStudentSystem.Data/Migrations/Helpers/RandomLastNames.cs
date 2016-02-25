@@ -1,4 +1,10 @@
-schГ¶n
+﻿namespace UniversityStudentSystem.Data.Migrations.Helpers
+{
+    public class RandomLastNames : IRandomData
+    {
+        public string GetData()
+        {
+            return @"schГ¶n
 wahl
 mГјnch
 walter
@@ -1997,4 +2003,7 @@ pohl
 schneider
 schwab
 engelhardt
-vogt
+vogt";
+        }
+    }
+}
