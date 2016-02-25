@@ -85,5 +85,5 @@ and the profile information:
 	
 
 <strong>This project is made for education purposes for the [Telerik Academy](http://telerikacademy.com/) ASP .NET MVC Course - Project</strong>
-
-<p> If you find a bug, problem or something is not right - make a new issue on this [page](https://github.com/M-Yankov/UniversityStudentSystem/issues/new)</p>
+ 
+<p> If you find a bug, problem or something is not right - make a new issue on this <a href="https://github.com/M-Yankov/UniversityStudentSystem/issues/new/">page</a> .</p>
