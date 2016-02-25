@@ -59,6 +59,11 @@ So if you add a new course check the all courses page. Same for the other compon
 
 * The application doesn't have some functionality for editing models (for example in the admin area). 
 
+* __Profile page__ - on the profile page each user/student can check his marks, certifications, results from tests, comments and posts in the forum 
+and the profile information: 
+
+<img src="./Images/profile.png" width="450" />
+
 ## The Life cycle of a student
 
 * First of all registration. Then each student can apply a candidature for a specialty. Wait an approvement and can check your favorite courses. 
@@ -80,3 +85,5 @@ So if you add a new course check the all courses page. Same for the other compon
 	
 
 <strong>This project is made for education purposes for the [Telerik Academy](http://telerikacademy.com/) ASP .NET MVC Course - Project</strong>
+
+<p> If you find a bug, problem or something is not right - make a new issue on this [page](https://github.com/M-Yankov/UniversityStudentSystem/issues/new)</p>
