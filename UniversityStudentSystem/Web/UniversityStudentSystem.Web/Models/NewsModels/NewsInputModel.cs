@@ -8,6 +8,8 @@
 
     public class NewsInputModel : IMapTo<News>
     {
+        [Required]
+        [MinLength(ModelConstants.NameMinLength)]
         public string Title { get; set; }
 
         [Required]
