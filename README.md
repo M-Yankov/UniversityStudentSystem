@@ -54,6 +54,10 @@ Students of the this system will have easy access to resources and information a
     </tr>
 </table>
 
+* Friendly urls:
+ 
+<img src="./Images/location-bar.png"  >
+
 * _Note_: elements of the home page and the left side menu are cached for 10 min.
 So if you add a new course check the all courses page. Same for the other component
 
