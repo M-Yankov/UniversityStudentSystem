@@ -15,7 +15,7 @@ Students of the this system will have easy access to resources and information a
     * Sb admin theme based on bootsrap - can be found here [http://startbootstrap.com/template-overviews/sb-admin/](http://startbootstrap.com/template-overviews/sb-admin/)
     * SinganlR - for the live chat
     * __Kendo UI MVC - If you want to run the project ensure you have installed Kendo UI MVC__  link: [Installation](http://docs.telerik.com/kendo-ui/aspnet-mvc/asp-net-mvc-5) 
-    * Glimpse - statistics for the application (runs on admin accound only)
+    * Glimpse - statistics for the application (runs on admin account only)
     * JQuery 
 
 * Users: by default accounts are configured to have password equal to the username. 
