@@ -3,7 +3,7 @@ Students of the this system will have easy access to resources and information a
 
 ## Introduction 
 
-* For seeding data are used `Lorem.NET` and [https://randomuser.me/](https://randomuser.me/) for random user data, news and forum content.
+* For seeding data are used `Lorem.NET` and [https://randomuser.me/](https://randomuser.me/) for random user data, news and forum content. You can check this [project](https://github.com/M-Yankov/RandomUserData) for gather users data 
 * Technologies used
     * ASP.NET MVC 5
     * MS SQL Server (database)
