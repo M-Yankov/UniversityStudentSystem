@@ -17,11 +17,12 @@ Students of the this system will have easy access to resources and information a
     * __Kendo UI MVC - If you want to run the project ensure you have installed Kendo UI MVC__  link: [Installation](http://docs.telerik.com/kendo-ui/aspnet-mvc/asp-net-mvc-5) 
     * Glimpse - statistics for the application (runs on admin account only)
     * JQuery 
-
 * Users: by default accounts are configured to have password equal to the username. 
     * Some examples:
         * _username:_ admin _pass:_ admin
         * _username:_ beautifulbird746 _pass:_ beautifulbird746
+* Required software - __Visual Studio 2015 with Update 1__
+	* C# 6.0 is used. 	
 
 ## Start
 * When application is ready. You should see this home page:
