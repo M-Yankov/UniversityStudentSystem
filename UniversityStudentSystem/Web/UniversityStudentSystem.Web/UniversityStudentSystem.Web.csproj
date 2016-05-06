@@ -260,7 +260,7 @@
     <Compile Include="Controllers\ChatController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\ManageController.cs" >
+    <Compile Include="Controllers\ManageController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Controllers\ManageMessageId.cs" />
@@ -272,7 +272,7 @@
     </Compile>
     <Compile Include="HelperProviders\NewsImageUpload.cs" />
     <Compile Include="HelperProviders\UploadResult.cs" />
-    <Compile Include="HelperProviders\UserManagement.cs" >
+    <Compile Include="HelperProviders\UserManagement.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
     <Compile Include="Hubs\Chatter.cs" />
@@ -434,6 +434,7 @@
     <Content Include="Areas\Admin\Views\News\Index.cshtml" />
     <Content Include="Areas\Public\Views\Report\All.cshtml" />
     <Content Include="Areas\Public\Views\Report\Details.cshtml" />
+    <None Include="Properties\PublishProfiles\UniversitySystemMVC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
     <Content Include="Scripts\jquery-1.10.2.min.js" />
@@ -446,9 +447,9 @@
     <Content Include="Scripts\respond.js" />
     <Content Include="Scripts\respond.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Users\579c1395-bf70-432c-b777-a2aab1e3a334\avatar.jpeg" />
-    <Content Include="Users\579c1395-bf70-432c-b777-a2aab1e3a334\avatar.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -509,7 +510,6 @@
     <Folder Include="Content\Kendo\Metro\" />
     <Folder Include="Content\Kendo\Silver\" />
     <Folder Include="Resources\" />
-    <Folder Include="Users\ca8b09c6-3eb0-4402-812e-f01b2955155a\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>

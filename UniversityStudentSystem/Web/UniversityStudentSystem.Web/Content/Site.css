@@ -1,42 +1,4 @@
-﻿/*body {
-    padding-top: 50px;
-    padding-bottom: 20px;
-}
-
-// Set padding to keep content from hitting the edges 
-.body-content {
-    padding-left: 15px;
-    padding-right: 15px;
-}
-
-// Override the default bootstrap behavior where horizontal description lists 
-//   will truncate terms that are too long to fit in the left column 
-
-.dl-horizontal dt {
-    white-space: normal;
-}
-
-// Set width on the form input elements since they're 100% wide by default 
-input,
-select,
-textarea {
-    max-width: 280px;
-}
-*/
-
-
-/*
-
-a {
-    color: #369c0f;
-}
-
-a:focus, a:hover {
-    color: #276b0d;
-}
-*/
-
-#page-wrapper {
+﻿#page-wrapper {
     padding-top: 100px;
 }
 
@@ -62,7 +24,7 @@ li .timeline-panel:hover {
 }
 
 #accordion .panel-heading:hover {
-    background-color: #8ebc00
+    background-color: #8ebc00;
 }
 
 .my-radio {
@@ -81,7 +43,7 @@ div.pages a.active {
 }
 
 div.pages a {
-     border-radius: 20px;
+    border-radius: 20px;
 }
 
 #accordion .panel-heading.task:hover {
@@ -94,21 +56,21 @@ table#student-marks {
     font-size: 23px;
 }
 
-table#student-marks tr:hover {
-    background-color: #d5a96c
-}
+    table#student-marks tr:hover {
+        background-color: #d5a96c;
+    }
 
-table#student-marks th{ 
-    font-weight: bold;
-}
+    table#student-marks th {
+        font-weight: bold;
+    }
 
-table#student-marks td, table#student-marks th {
-    border-color: #12007e
-}
+    table#student-marks td, table#student-marks th {
+        border-color: #12007e;
+    }
 
-table#student-marks td:nth-of-type(2n+3) {
-    font-size: 50px;
-    text-align: center;
-    color: white;
-    text-shadow: 2px 2px 2px #333;
-}
+        table#student-marks td:nth-of-type(2n+3) {
+            font-size: 50px;
+            text-align: center;
+            color: white;
+            text-shadow: 2px 2px 2px #333;
+        }
