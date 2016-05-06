@@ -68,7 +68,7 @@
                             "~/Scripts/jquery.signalR-2.2.0.js"));
             
             //// ------ Default -----
-            bundles.Add(new ScriptBundle("~/bundles/css-site").Include(
+            bundles.Add(new StyleBundle("~/bundles/css-site").Include(
                             "~/Content/Site.css"));
 
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
