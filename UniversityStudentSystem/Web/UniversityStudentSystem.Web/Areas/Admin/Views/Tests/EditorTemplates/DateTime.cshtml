@@ -1,0 +1,3 @@
+@model DateTime?
+
+@(Html.Kendo().DateTimePickerFor(m => m).Culture(System.Threading.Thread.CurrentThread.CurrentCulture.Name).Format("dd/MM/yyyy HH:mm").TimeFormat("HH:mm"))

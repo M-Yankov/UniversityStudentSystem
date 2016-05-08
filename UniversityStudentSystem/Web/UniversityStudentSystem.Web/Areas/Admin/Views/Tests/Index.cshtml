@@ -11,7 +11,7 @@
     cols.Bound(test => test.StartDate).Format("{0:dd/MM/yyyy HH:mm}");
     cols.Bound(test => test.EndDate).Format("{0:dd/MM/yyyy HH:mm}");
     cols.Bound(test => test.IsEnabled);
-    cols.Command(cmd => { cmd.Destroy(); }); //// cmd.Edit();
+    cols.Command(cmd => { cmd.Destroy(); cmd.Edit(); }); //// cmd.Edit();
 }))
 
 
@@ -33,17 +33,50 @@
 }
 
 @section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
     <script>
-            
-            kendo.culture('@culture');
-        //kendo.ui.validator.rules.mvcdate = function (input) {
 
-        //    //KENDO :(
-        //    //use the custom date format here
-        //    //kendo.parseDate - http://docs.telerik.com/kendo-ui/api/javascript/kendo#methods-parseDate
+        $(document).ready(function () {
+            var kendoGrid = $('#grid').getKendoGrid();
+            console.log(kendoGrid);
 
-        //    return input.val() === "" || kendo.parseDate(input.val(), "dd/MM/yyyy HH:mm") !== null;
-        //}
+            kendoGrid.dataSource.transport.parameterMap = function (data, type) {
+                if (type == 'update') {
+
+                    var startDate = data.StartDate.getDate() + '/' + (data.StartDate.getMonth() + 1) + '/' + data.StartDate.getFullYear() + ' ' + data.StartDate.getHours() + ':' + data.StartDate.getMinutes();
+                    var endDate = data.EndDate.getDate() + '/' + (data.EndDate.getMonth() + 1) + '/' + data.EndDate.getFullYear() + ' ' + data.EndDate.getHours() + ':' + data.EndDate.getMinutes();
+
+                    return {
+                        Id: data.Id,
+                        Name: data.Name,
+                        IsEnabled: data.IsEnabled,
+                        StartDate: startDate,
+                        EndDate: endDate
+                    }
+                }
+            };
+        })
+
+        jQuery.extend(jQuery.validator.methods, {
+            date: function (value, element) {
+                var res = this.optional(element) || kendo.parseDate(value, "dd/MM/yyyy HH:mm") != null;
+                return res;
+            },
+            number: function (value, element) {
+                return this.optional(element) || kendo.parseFloat(value) != null;
+            }
+        });
+
+        kendo.ui.validator.rules.mvcdate = function (input) {
+            if ($(input).attr('data-role') !== 'datetimepicker') {
+                return true;
+            }
+            //KENDO :(
+            //use the custom date format here
+            //kendo.parseDate - http://docs.telerik.com/kendo-ui/api/javascript/kendo#methods-parseDate
+
+            return input.val() === "" || kendo.parseDate(input.val(), "dd/MM/yyyy HH:mm") !== null;
+        }
 
         //kendo.ui.validator.rules.mvcnumber = function (input) {
         //    return input;

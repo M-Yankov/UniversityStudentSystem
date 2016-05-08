@@ -7,4 +7,5 @@
 <div class="text-center">
     <h2>Result</h2>
     <p class="lead">@(this.Model.Test): @(this.Model.Result) / @(this.Model.Total) </p>
+    @Html.ActionLink("Back to course", "Details", "Courses", new { id = this.Model.CourseId, name = this.Model.Course }, new { @class = "btn btn-info btn-outline" })
 </div>

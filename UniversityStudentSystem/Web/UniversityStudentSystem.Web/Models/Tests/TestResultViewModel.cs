@@ -21,9 +21,12 @@
 
         public string Course { get; set; }
 
+        public int CourseId { get; set; }
+
         public void CreateMappings(IMapperConfiguration configuration)
         {
             configuration.CreateMap<TestResult, TestResultViewModel>()
+                .ForMember(c => c.CourseId, o => o.MapFrom(t => t.Test.Course.Id))
                 .ForMember(c => c.Course, o => o.MapFrom(t => t.Test.Course.Name))
                 .ForMember(c => c.Test, o => o.MapFrom(t => t.Test.Name))
                 .ForMember(c => c.User, o => o.MapFrom(t => t.User.FirstName + " " + t.User.LastName));
