@@ -1,6 +1,32 @@
 # UniversityStudentSystem
 Students of the this system will have easy access to resources and information about education. 
 
+## Setup project
+
+You must have installed 
+
+* .NET 4.6 Framework Installed
+* ASP .NET
+* SQL Server (Optional)
+* Visual Studio 2015
+* Set connections string in Web.config
+
+To run the project without SQL Server
+
+* Open the project in Visual Studio
+* Expand Web folder and new Item in `UniversityStudentSystem.Web`
+* The item must be added in _`App_Data`_ folder
+* Right click, Add, New item, Click on Data category and select `SQL Server Database` **.mdf** file.
+* Open `Server Explorer` tab in Visual studio
+* Check `Database.mdf`, Right click properties
+* Copy the connection string 
+* Paste the connection string in Web.Config
+* The above steps are already done (just to be described)
+
+By default project will run with (local) database.mdf file, if you want to use SQL server just change the connection string.
+
+**Run the project** through Visual Studio using **F5 or Ctrl + F5**
+
 ## Introduction 
 
 * For seeding data are used `Lorem.NET` and [https://randomuser.me/](https://randomuser.me/) for random user data, news and forum content. You can check this [project](https://github.com/M-Yankov/RandomUserData) for gather users data 
