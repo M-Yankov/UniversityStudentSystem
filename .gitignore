@@ -235,3 +235,4 @@ _Pvt_Extensions
 # FAKE - F# Make
 .fake/
 
+/UniversityStudentSystem/Web/UniversityStudentSystem.Web/Users

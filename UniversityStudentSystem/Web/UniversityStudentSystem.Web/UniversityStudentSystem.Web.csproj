@@ -64,8 +64,9 @@
       <HintPath>..\..\packages\Glimpse.Mvc5.1.5.3\lib\net45\Glimpse.Mvc5.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Kendo.Mvc">
-      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Telerik\UI for ASP.NET MVC Q1 2016\wrappers\aspnetmvc\Binaries\Mvc5\Kendo.Mvc.dll</HintPath>
+    <Reference Include="Kendo.Mvc, Version=2016.2.607.545, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Resources\Kendo.Mvc.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.AspNet.SignalR.Core, Version=2.2.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.AspNet.SignalR.Core.2.2.0\lib\net45\Microsoft.AspNet.SignalR.Core.dll</HintPath>
@@ -350,6 +351,8 @@
     <Content Include="Images\certificate.jpg" />
     <Content Include="Images\student-default.png" />
     <Content Include="Images\university-default-news.png" />
+    <Content Include="Resources\Kendo.Mvc.dll" />
+    <Content Include="Resources\Kendo.Mvc.xml" />
     <Content Include="SBAdminTheme\dist\css\sb-admin-2.css" />
     <Content Include="SBAdminTheme\dist\css\timeline.css" />
     <Content Include="SBAdminTheme\dist\js\sb-admin-2.js" />
@@ -510,7 +513,6 @@
     <Folder Include="Content\Kendo\images\" />
     <Folder Include="Content\Kendo\Metro\" />
     <Folder Include="Content\Kendo\Silver\" />
-    <Folder Include="Resources\" />
     <Folder Include="Views\Base\" />
   </ItemGroup>
   <ItemGroup>
