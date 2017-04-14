@@ -9,7 +9,7 @@
     {
         public ActionResult Index()
         {
-            this.Response.Cookies.Add(new HttpCookie(WebConstants.CookieKeyForChar, this.User.Identity.Name));
+            this.Response.Cookies.Add(new HttpCookie(WebConstants.CookieKeyForChat, this.User.Identity.Name));
             return this.View();
         }
     }

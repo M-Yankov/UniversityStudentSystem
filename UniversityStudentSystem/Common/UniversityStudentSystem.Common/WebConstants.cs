@@ -16,7 +16,7 @@
         public const int TopForumPostsCount = 10;
         public const int HomePageCacheDuration = 10 * 60; //// 600 seconds i.e. 10 min
 
-        public const string CookieKeyForChar = "client";
+        public const string CookieKeyForChat = "client";
 
         public const int PageSizeCourse = 6;
         public const int MinTextLength = 3;
