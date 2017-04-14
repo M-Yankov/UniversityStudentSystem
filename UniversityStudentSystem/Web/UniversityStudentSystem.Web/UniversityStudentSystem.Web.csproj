@@ -349,6 +349,7 @@
     <Content Include="Content\Kendo\kendo.silver.min.css" />
     <Content Include="Content\Kendo\textures\kendo.metro.min.css" />
     <Content Include="favicon.png" />
+    <Content Include="fonts\fontawesome-webfont.svg" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -442,6 +443,10 @@
     <Content Include="Areas\Public\Views\Report\All.cshtml" />
     <Content Include="Areas\Public\Views\Report\Details.cshtml" />
     <Content Include="Areas\Admin\Views\Tests\EditorTemplates\DateTime.cshtml" />
+    <Content Include="fonts\fontawesome-webfont.eot" />
+    <Content Include="fonts\fontawesome-webfont.ttf" />
+    <Content Include="fonts\fontawesome-webfont.woff" />
+    <Content Include="fonts\FontAwesome.otf" />
     <None Include="Properties\PublishProfiles\UniversitySystemMVC.pubxml" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.10.2.js" />
