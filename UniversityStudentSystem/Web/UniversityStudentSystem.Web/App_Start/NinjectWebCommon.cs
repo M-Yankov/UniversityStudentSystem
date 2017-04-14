@@ -42,7 +42,7 @@ namespace UniversityStudentSystem.Web
         /// <returns>The created kernel.</returns>
         private static IKernel CreateKernel()
         {
-            var kernel = new StandardKernel();
+            StandardKernel kernel = new StandardKernel();
             try
             {
                 kernel.Bind<Func<IKernel>>().ToMethod(ctx => () => new Bootstrapper().Kernel);
@@ -68,8 +68,6 @@ namespace UniversityStudentSystem.Web
             
             kernel.Bind(typeof(IRepository<>)).To(typeof(EfRepository<>));
             kernel.Bind(typeof(IRepository<,>)).To(typeof(EfRepository<,>));
-
-            var h = kernel.GetBindings(typeof(IRepository<>));
 
             kernel.Bind(b => b.From("UniversityStudentSystem.Services").SelectAllClasses().BindDefaultInterfaces());
         }        

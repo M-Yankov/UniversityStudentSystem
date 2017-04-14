@@ -5,6 +5,7 @@
 
     /// <summary>
     /// http://www.codeproject.com/Articles/770323/How-to-Convert-a-Date-Time-to-X-minutes-ago-in-Csh
+    /// Humanizer from NuGet can be used for same purposes.
     /// </summary>
     public static class DateTimeExtentions
     {

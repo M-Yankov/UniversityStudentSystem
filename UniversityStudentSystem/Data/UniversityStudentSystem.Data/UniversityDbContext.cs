@@ -1,7 +1,9 @@
 ﻿namespace UniversityStudentSystem.Data
 {
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
@@ -68,13 +70,13 @@
         private void ApplyAuditInfoRules()
         {
             // Approach via @julielerman: http://bit.ly/123661P
-            foreach (var entry in
-                this.ChangeTracker.Entries()
-                    .Where(
-                        e =>
-                        e.Entity is IAuditInfo && ((e.State == EntityState.Added) || (e.State == EntityState.Modified))))
+            IEnumerable<DbEntityEntry> entities = this.ChangeTracker.Entries()
+                    .Where(e =>  e.Entity is IAuditInfo && 
+                           ((e.State == EntityState.Added) || (e.State == EntityState.Modified)));
+
+            foreach (DbEntityEntry entry in entities)
             {
-                var entity = (IAuditInfo)entry.Entity;
+                IAuditInfo entity = (IAuditInfo)entry.Entity;
                 if (entry.State == EntityState.Added && entity.CreatedOn == default(DateTime))
                 {
                     entity.CreatedOn = DateTime.Now;

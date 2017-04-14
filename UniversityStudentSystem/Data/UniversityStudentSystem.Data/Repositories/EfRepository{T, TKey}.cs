@@ -2,6 +2,7 @@
 {
     using System;
     using System.Data.Entity;
+    using System.Data.Entity.Infrastructure;
     using System.Linq;
     using Models.CommonModels;
 
@@ -48,7 +49,7 @@
 
         public void Update(T entity)
         {
-            var entry = this.Context.Entry(entity);
+            DbEntityEntry<T> entry = this.Context.Entry(entity);
             if (entry.State == EntityState.Detached)
             {
                 this.DbSet.Attach(entity);

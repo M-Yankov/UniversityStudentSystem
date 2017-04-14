@@ -16,7 +16,7 @@
             Configuration = new MapperConfiguration(
                 cfg =>
                 {
-                    var types = assembly.GetExportedTypes();
+                    Type[] types = assembly.GetExportedTypes();
                     LoadStandardMappings(types, cfg);
                     LoadReverseMappings(types, cfg);
                     LoadCustomMappings(types, cfg);
