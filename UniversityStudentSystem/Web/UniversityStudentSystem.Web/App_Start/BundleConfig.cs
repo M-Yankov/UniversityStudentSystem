@@ -1,4 +1,4 @@
-﻿namespace UniversityStudentSystem.Web
+﻿    namespace UniversityStudentSystem.Web
 {
     using System.Web.Optimization;
 
@@ -55,11 +55,11 @@
             bundles.Add(new ScriptBundle("~/bundles/js-kendo-globalization").Include(
                             "~/Scripts/Kendo/kendo.culture.en-US.min.js"));
 
-            bundles.Add(new StyleBundle("~/bundles/css-kendo").Include(
+            bundles.Add(new StyleBundle("~/Content/Kendo/css-kendo-metro").Include(
                             "~/Content/Kendo/kendo.common.min.css",
                             "~/Content/Kendo/kendo.metro.min.css"));
 
-            bundles.Add(new StyleBundle("~/bundles/css-kendo-silver").Include(
+            bundles.Add(new StyleBundle("~/Content/Kendo/css-kendo-silver").Include(
                             "~/Content/Kendo/kendo.common.min.css",
                             "~/Content/Kendo/kendo.silver.min.css"));
 
