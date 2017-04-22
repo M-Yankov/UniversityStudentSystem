@@ -55,6 +55,18 @@
             $.connection.hub.start().done(function () {
                 $('#btn-chat').click(function () {
                     var msg = $('#btn-input').val();
+                    if (!msg.trim()) {
+                        return;
+                    }
+
+                    // prevent spaming
+                    if ($('#messages li.clearfix.right .chat-body p').last().text().toLowerCase().trim() === msg.toLowerCase().trim()) {
+                        var spamMessage = $('<div class="panel-footer"><p> please do not spam!</p></div>');
+                        $('.chat-panel.panel.panel-default').append(spamMessage);
+                        spamMessage.fadeOut(1000);
+                        return;
+                    }
+
                     chat.server.sendMessage(msg);
                     $('#btn-input').val('');
                 });
