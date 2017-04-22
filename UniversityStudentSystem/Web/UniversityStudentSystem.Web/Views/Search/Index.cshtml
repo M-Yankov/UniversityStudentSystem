@@ -3,7 +3,7 @@
 
 @model SearchResultModel
 @{
-    ViewBag.Title = "Search results";
+    this.ViewBag.Title = "Search results";
 }
 
 <div class="row" style="margin-top: 50px;">
@@ -125,7 +125,7 @@
                             @foreach (var trainer in Model.Trainers)
                             {
                                 <div class="col-md-2">
-                                    @Html.ActionLink(trainer.FullName, "Details", "Forum", new { area = "Public", id = trainer.Id, name = trainer.FullName.ToUrl() }, null)
+                                    @Html.ActionLink(trainer.FullName, "Details", "Trainers", new { area = "Public", id = trainer.Id, name = trainer.FullName.ToUrl() }, null)
                                 </div>
                             }
                         </div>
