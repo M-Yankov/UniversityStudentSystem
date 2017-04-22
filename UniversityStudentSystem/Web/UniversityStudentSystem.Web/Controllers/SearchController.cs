@@ -30,8 +30,8 @@
                 return this.View(model);
             }
 
-            model.Criteria = text;
             text = text.Trim().ToLower();
+            model.Criteria = text;
             model.Courses = this.searchService.GetCourses(text).To<CourseViewModel>().ToList();
             model.Trainers = this.searchService.GetTrainers(text).To<UserViewModel>().ToList();
             model.News = this.searchService.GetNews(text).To<NewsViewModel>().ToList();
