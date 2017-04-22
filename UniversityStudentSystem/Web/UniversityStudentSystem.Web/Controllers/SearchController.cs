@@ -24,13 +24,14 @@
         public ActionResult Index(string text = null)
         {
             var model = new SearchResultModel();
-            if (text == null || text.Length < WebConstants.MinTextLength)
+            if (text == null || text.Trim().Length < WebConstants.MinTextLength)
             {
                 this.TempData["Error"] = $"Type more than { WebConstants.MinTextLength } symbols for searching";
                 return this.View(model);
             }
 
-            text = text.ToLower();
+            model.Criteria = text;
+            text = text.Trim().ToLower();
             model.Courses = this.searchService.GetCourses(text).To<CourseViewModel>().ToList();
             model.Trainers = this.searchService.GetTrainers(text).To<UserViewModel>().ToList();
             model.News = this.searchService.GetNews(text).To<NewsViewModel>().ToList();

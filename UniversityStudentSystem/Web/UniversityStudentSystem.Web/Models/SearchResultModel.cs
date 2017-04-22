@@ -10,6 +10,8 @@
 
     public class SearchResultModel
     {
+        public string Criteria { get; set; }
+
         public ICollection<UserViewModel> Trainers { get; set; }
 
         public ICollection<CourseViewModel> Courses { get; set; }

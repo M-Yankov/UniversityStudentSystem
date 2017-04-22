@@ -20,5 +20,7 @@
 
         public const int PageSizeCourse = 6;
         public const int MinTextLength = 3;
+
+        public const string SearchPatternValidation = ".*\\S.{1,}\\S.*";
     }
 }

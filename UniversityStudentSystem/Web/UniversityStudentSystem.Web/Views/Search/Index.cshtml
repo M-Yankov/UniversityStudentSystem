@@ -1,4 +1,5 @@
 ﻿@using UniversityStudentSystem.Common.Extensions;
+@using UniversityStudentSystem.Common;
 
 @model SearchResultModel
 @{
@@ -9,7 +10,7 @@
     <div class="col-md-4 col-md-offset-4">
         <form action="/Search" method="get">
             <div class="form-group">
-                <input class="form-control" name="text" />
+                <input class="form-control" name="text" type="text" value="@Model.Criteria" pattern="@WebConstants.SearchPatternValidation"  />
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-success btn-outline btn-block btn-lg" value="Search" />
