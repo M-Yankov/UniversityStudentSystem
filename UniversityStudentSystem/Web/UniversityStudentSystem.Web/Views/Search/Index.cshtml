@@ -7,15 +7,24 @@
 }
 
 <div class="row" style="margin-top: 50px;">
-    <div class="col-md-4 col-md-offset-4">
+    <div class="col-md-8 col-md-offset-2">
         <form action="/Search" method="get">
             <div class="form-group">
                 <input class="form-control" name="text" type="text" value="@Model.Criteria" maxlength="100" pattern="@WebConstants.SearchPatternValidation"  />
                 <p class="help-block">At least 3 symbols required (leading and trailing spaces are ignored)</p>
             </div>
+            <div class="row">
+                <div class="col-md-2"><label for="All"><input type="checkbox" id="All" /> All</label></div>
+                <div class="col-md-2"><label for="Courses"><input type="checkbox" id="Courses" value="Courses" name="types" /> Courses</label></div>
+                <div class="col-md-2"><label for="Specialties"><input type="checkbox" id="Specialties" value="Specialties" name="types" /> Specialties</label></div>
+                <div class="col-md-2"><label for="Trainers"><input type="checkbox" id="Trainers" value="Trainsers" name="types" /> Trainers</label></div>
+                <div class="col-md-2"><label for="News"> <input type="checkbox" id="News" value="News" name="types" /> News</label></div>
+                <div class="col-md-2"><label for="ForumPosts"><input type="checkbox" id="ForumPosts" value="ForumPosts" name="types" /> Forum posts</label></div>
+            </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-success btn-outline btn-block btn-lg" value="Search" />
             </div>
+
         </form>
     </div>
 </div>
