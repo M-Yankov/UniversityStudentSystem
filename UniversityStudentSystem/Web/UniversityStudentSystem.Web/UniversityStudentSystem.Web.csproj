@@ -377,6 +377,7 @@
     <Content Include="Scripts\Kendo\kendo.listview.min.js" />
     <Content Include="Scripts\Kendo\kendo.upload.min.js" />
     <Content Include="Scripts\Kendo\kendo.web.min.js" />
+    <Content Include="Scripts\Site\GlobalSite.js" />
     <Content Include="Users\Common\CVBG.pdf" />
     <Content Include="Users\Common\CVEN.pdf" />
     <Content Include="Users\Common\CVFR.pdf" />

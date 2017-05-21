@@ -8,6 +8,12 @@
     }
 }
 
+@media(max-width:768px) {
+    .navbar-top-links .dropdown-user {
+        right: auto;
+    }
+}
+
 li .timeline-panel:hover {
     -moz-box-shadow: 0 1px 6px rgba(15, 199, 95, 0.64);
     -webkit-box-shadow: 0 1px 6px rgba(15, 199, 95, 0.64);
@@ -74,3 +80,11 @@ table#student-marks {
             color: white;
             text-shadow: 2px 2px 2px #333;
         }
+
+.sidebar > .collapse.in {
+    border-bottom: 2px #337ab7 solid;
+}
+
+.custom-search-form {
+    width: 100%;
+}

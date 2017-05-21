@@ -7,14 +7,15 @@
     <link rel="icon" type="image/png" href="~/favicon.png" />
 
     @Styles.Render("~/bundles/css-SBAdmin")
-    @RenderSection("SocialStyles", required: false)
-
-    @RenderSection("KendoCss", required: false)
-
     @Styles.Render("~/bundles/css-site")
 
+    @RenderSection("SocialStyles", required: false)
+    @RenderSection("KendoCss", required: false)
+
     @Scripts.Render("~/bundles/js-kendo-jquery")
+
     @RenderSection("KendoHead", required: false)
+
     <meta name="description" content="Student System" />
 </head>
 <body>
@@ -50,8 +51,8 @@
         </footer>
     </div>
 
-
     @Scripts.Render("~/bundles/js-SBAdmin")
+    @Scripts.Render("~/Scripts/Site/GlobalSite.js")
     @RenderSection("Scripts", required: false)
     @RenderSection("KendoJs", required: false)
 </body>
