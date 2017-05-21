@@ -10,6 +10,7 @@
     using Microsoft.AspNet.Identity;
     using Microsoft.AspNet.Identity.Owin;
     using Microsoft.Owin.Security;
+    using Models.Enums;
     using Models.Specialties;
 
     using UniversityStudentSystem.Data.Models;

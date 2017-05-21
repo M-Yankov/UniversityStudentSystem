@@ -1,4 +1,4 @@
-﻿namespace UniversityStudentSystem.Web.Controllers
+﻿namespace UniversityStudentSystem.Web.Models.Enums
 {
     public enum ManageMessageId
     {
