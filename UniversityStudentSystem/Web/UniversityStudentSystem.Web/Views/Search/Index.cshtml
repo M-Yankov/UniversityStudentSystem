@@ -35,7 +35,7 @@
     {
         if (this.Model.Courses.Count > 0)
         {
-            <h3>Courses</h3>
+            <h3>Courses <span class="label label-success">@this.Model.Courses.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -56,7 +56,7 @@
 
         if (this.Model.Specialties.Count > 0)
         {
-            <h3>Specialties</h3>
+            <h3>Specialties <span class="label label-success">@this.Model.Specialties.Count results found</span>   </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -76,7 +76,7 @@
 
         if (this.Model.News.Count > 0)
         {
-            <h3>News</h3>
+            <h3>News <span class="label label-success">@this.Model.News.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -96,13 +96,13 @@
 
         if (this.Model.ForumPosts.Count > 0)
         {
-            <h3>Forum posts</h3>
+            <h3>Forum posts <span class="label label-success">@this.Model.ForumPosts.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
                     <div class="panel panel-default">
                         <div class="panel-body">
-                            @foreach (var forumPost in Model.ForumPosts)
+                            @foreach (var forumPost in this.Model.ForumPosts)
                             {
                                 <div class="col-md-2">
                                     @Html.ActionLink(forumPost.Title, "Details", "Forum", new { area = "Public", id = forumPost.Id, name = forumPost.Title.ToUrl() }, null)
@@ -116,7 +116,7 @@
 
         if (this.Model.Trainers.Count > 0)
         {
-            <h3>Trainers</h3>
+            <h3>Trainers <span class="label label-success">@this.Model.Trainers.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
