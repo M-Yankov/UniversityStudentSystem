@@ -4,6 +4,7 @@
     using System.Web.Mvc;
     using Common;
     using Infrastructure.Mapping;
+    using Microsoft.AspNet.Identity;
     using Models;
     using Services.Contracts;
     using UniversityStudentSystem.Web.Controllers;
@@ -11,14 +12,26 @@
     public class ReportController : BaseController
     {
         private IBugReportService reportService;
+        private IUserService userService;
 
-        public ReportController(IBugReportService bugReportService)
+        public ReportController(IBugReportService bugReportService, IUserService userService)
         {
+            this.userService = userService;
             this.reportService = bugReportService;
         }
         
         public ActionResult Index()
         {
+            if (this.User != null)
+            {
+                UniversityStudentSystem.Data.Models.User user = this.userService.GetById(this.UserId);
+                if (user != null)
+                {
+                    BugReportInputModel model = new BugReportInputModel() { Email = user.Email };
+                    this.View(model);
+                }
+            }
+
             return this.View();
         }
 
