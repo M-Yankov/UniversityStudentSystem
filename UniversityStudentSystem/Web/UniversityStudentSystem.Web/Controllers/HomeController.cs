@@ -5,6 +5,7 @@
     using System.Web.Mvc;
     using Common;
     using Infrastructure.Mapping;
+    using Microsoft.AspNet.Identity.EntityFramework;
     using Models;
     using Models.Courses;
     using Models.ForumPosts;
@@ -73,25 +74,25 @@
             sideMenu.Courses = this.coursesService
                 .GetAll()
                 .OrderByDescending(c => c.CreatedOn)
-                .Take(5)
+                .Take(WebConstants.DefaultCountOfItemsInNavigation)
                 .To<CourseViewModel>()
                 .ToList();
 
             sideMenu.Specialties = this.specialtiesService
                 .GetAll()
                 .OrderByDescending(c => c.CreatedOn)
-                .Take(5)
+                .Take(WebConstants.DefaultCountOfItemsInNavigation)
                 .To<SpecialtyViewModel>()
                 .ToList();
 
-            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            IdentityRole trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
             if (trainerRole != null)
             {
                 sideMenu.Trainers = this.usersService
                         .GetAll()
                         .Where(u => u.Roles.Any(r => r.RoleId == trainerRole.Id))
                         .OrderByDescending(c => c.CreatedOn)
-                        .Take(5)
+                        .Take(WebConstants.DefaultCountOfItemsInNavigation)
                         .To<UserViewModel>()
                         .ToList();
             }  
@@ -135,7 +136,7 @@
         [OutputCache(Duration = WebConstants.HomePageCacheDuration)]
         public ActionResult TrainerStatistic()
         {
-            var trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
+            IdentityRole trainerRole = this.usersService.GetRoles().FirstOrDefault(r => r.Name == RoleConstants.Trainer);
             StatisticViewModel model = new StatisticViewModel()
             {
                 Count = this.usersService
