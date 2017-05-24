@@ -4,7 +4,8 @@
 @model UniversityStudentSystem.Web.Models.SideMenu.SideMenuViewModel
 
 @{ 
-    Layout = null;
+    this.Layout = null;
+    string searchKeys = string.Format("{0},{1},{2},{3},{4}", SearchResultModel.CourseSearchKey, SearchResultModel.ForumPostSearchKey, SearchResultModel.NewsSearchKey, SearchResultModel.SpecialtySearchKey, SearchResultModel.TrainersSearchKey);
 }
 
 <div class="navbar-default sidebar" role="navigation">
@@ -13,6 +14,7 @@
             <li class="sidebar-search">
                 <div class="input-group custom-search-form">
                     <form action="/Search" method="get">
+                        <input type="hidden" name="types" value="@(searchKeys)" />
                         <input type="text" class="form-control" name="text" style="width: 80%;"  maxlength="100" required="required" pattern="@WebConstants.SearchPatternValidation" placeholder="Search...">
                         <span class="input-group-btn" style="display: inline;">
                             <button class="btn btn-default" type="submit">

@@ -264,6 +264,7 @@
     <Compile Include="Controllers\ManageController.cs">
       <ExcludeFromStyleCop>True</ExcludeFromStyleCop>
     </Compile>
+    <Compile Include="Helpers\CheckboxHelper.cs" />
     <Compile Include="Models\Enums\ManageMessageId.cs" />
     <Compile Include="Controllers\ProfileController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
@@ -378,6 +379,7 @@
     <Content Include="Scripts\Kendo\kendo.upload.min.js" />
     <Content Include="Scripts\Kendo\kendo.web.min.js" />
     <Content Include="Scripts\Site\GlobalSite.js" />
+    <Content Include="Scripts\Site\Search\Search.js" />
     <Content Include="Users\Common\CVBG.pdf" />
     <Content Include="Users\Common\CVEN.pdf" />
     <Content Include="Users\Common\CVFR.pdf" />

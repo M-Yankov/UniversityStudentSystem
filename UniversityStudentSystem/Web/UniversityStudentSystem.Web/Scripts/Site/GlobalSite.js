@@ -1,6 +1,6 @@
 ﻿(function ($) {
 
-    // http://getbootstrap.com/javascript/#collapse - scroll down to events
+    // disable body scroll. http://getbootstrap.com/javascript/#collapse - scroll down to events
 
     $(document.body).on('hide.bs.collapse', '.navbar-collapse', function (e) {
         if ($(e.target).is('div.sidebar-nav.navbar-collapse.collapse')) {

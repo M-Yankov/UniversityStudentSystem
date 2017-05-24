@@ -1,25 +1,67 @@
 ﻿@using UniversityStudentSystem.Common.Extensions;
 @using UniversityStudentSystem.Common;
+@using System.Linq;
+@using UniversityStudentSystem.Web.Helpers;
 
 @model SearchResultModel
 @{
     this.ViewBag.Title = "Search results";
+    const string typesKey = "types";
+
+    string types = string.Empty;
+    bool allTypesSelected = false;
+    if (this.Request.QueryString.AllKeys.Contains(typesKey))
+    {
+        types = this.Request.QueryString[typesKey].ToString();
+        allTypesSelected = types.Contains(SearchResultModel.CourseSearchKey) && types.Contains(SearchResultModel.ForumPostSearchKey) && types.Contains(SearchResultModel.NewsSearchKey) && types.Contains(SearchResultModel.SpecialtySearchKey) && types.Contains(SearchResultModel.TrainersSearchKey);
+    }
+    else
+    {
+        allTypesSelected = true;
+    }
 }
 
 <div class="row" style="margin-top: 50px;">
     <div class="col-md-8 col-md-offset-2">
-        <form action="/Search" method="get">
+        <form action="/Search" id="search-form" method="get">
             <div class="form-group">
-                <input class="form-control" name="text" type="text" value="@Model.Criteria" maxlength="100" pattern="@WebConstants.SearchPatternValidation"  />
+                <input class="form-control" name="text" type="text" value="@Model.Criteria" maxlength="100" pattern="@WebConstants.SearchPatternValidation" />
                 <p class="help-block">At least 3 symbols required (leading and trailing spaces are ignored)</p>
             </div>
             <div class="row">
-                <div class="col-md-2"><label for="All"><input type="checkbox" id="All" /> All</label></div>
-                <div class="col-md-2"><label for="Courses"><input type="checkbox" id="Courses" value="Courses" name="types" /> Courses</label></div>
-                <div class="col-md-2"><label for="Specialties"><input type="checkbox" id="Specialties" value="Specialties" name="types" /> Specialties</label></div>
-                <div class="col-md-2"><label for="Trainers"><input type="checkbox" id="Trainers" value="Trainsers" name="types" /> Trainers</label></div>
-                <div class="col-md-2"><label for="News"> <input type="checkbox" id="News" value="News" name="types" /> News</label></div>
-                <div class="col-md-2"><label for="ForumPosts"><input type="checkbox" id="ForumPosts" value="ForumPosts" name="types" /> Forum posts</label></div>
+                <div class="col-md-2">
+                    <label for="All">
+                        @Html.CheckboxCustom(allTypesSelected, "All") All
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Courses">
+                        @Html.CheckboxCustom(types.Contains(SearchResultModel.CourseSearchKey), "Courses", SearchResultModel.CourseSearchKey, typesKey) Courses
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Specialties">
+                        @Html.CheckboxCustom(types.Contains(SearchResultModel.SpecialtySearchKey), "Specialties", SearchResultModel.SpecialtySearchKey, typesKey) Specialties
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="Trainers">
+                        @Html.CheckboxCustom(types.Contains(SearchResultModel.TrainersSearchKey), "Trainers", SearchResultModel.TrainersSearchKey, typesKey) Trainers
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="News">
+                        @Html.CheckboxCustom(types.Contains(SearchResultModel.NewsSearchKey), "News", SearchResultModel.NewsSearchKey, typesKey) News
+                    </label>
+                </div>
+                <div class="col-md-2">
+                    <label for="ForumPosts">
+                        @Html.CheckboxCustom(types.Contains(SearchResultModel.ForumPostSearchKey), "ForumPosts", SearchResultModel.ForumPostSearchKey, typesKey) Forum posts
+                    </label>
+                </div>
+            </div>
+            <div class="row">
+                <p class="text-danger hidden" id="error-message"> Please select at least one category </p> 
             </div>
             <div class="form-group">
                 <input type="submit" class="btn btn-success btn-outline btn-block btn-lg" value="Search" />
@@ -42,7 +84,7 @@
     }
     else
     {
-        if (this.Model.Courses.Count > 0)
+        if (types.Contains(SearchResultModel.CourseSearchKey))
         {
             <h3>Courses <span class="label label-success">@this.Model.Courses.Count results found</span> </h3>
             <hr />
@@ -63,7 +105,7 @@
             </div>
         }
 
-        if (this.Model.Specialties.Count > 0)
+        if (types.Contains(SearchResultModel.SpecialtySearchKey))
         {
             <h3>Specialties <span class="label label-success">@this.Model.Specialties.Count results found</span>   </h3>
             <hr />
@@ -83,7 +125,7 @@
             </div>
         }
 
-        if (this.Model.News.Count > 0)
+        if (types.Contains(SearchResultModel.NewsSearchKey))
         {
             <h3>News <span class="label label-success">@this.Model.News.Count results found</span> </h3>
             <hr />
@@ -103,7 +145,7 @@
             </div>
         }
 
-        if (this.Model.ForumPosts.Count > 0)
+        if (types.Contains(SearchResultModel.ForumPostSearchKey))
         {
             <h3>Forum posts <span class="label label-success">@this.Model.ForumPosts.Count results found</span> </h3>
             <hr />
@@ -123,7 +165,7 @@
             </div>
         }
 
-        if (this.Model.Trainers.Count > 0)
+        if (types.Contains(SearchResultModel.TrainersSearchKey))
         {
             <h3>Trainers <span class="label label-success">@this.Model.Trainers.Count results found</span> </h3>
             <hr />
@@ -144,3 +186,5 @@
         }
     }
 </div>
+
+@Scripts.Render("~/SearchScripts")
