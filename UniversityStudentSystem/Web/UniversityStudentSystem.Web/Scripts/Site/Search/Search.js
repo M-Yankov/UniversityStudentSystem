@@ -25,7 +25,9 @@
 
         var countOfSelectedTypes = $('#search-form input[type=checkbox]:checked:not("#All")').length;
         if (countOfSelectedTypes === 5) {
-            $('#All')[0].checked = truel;
+            $('#All')[0].checked = true;
+        } else {
+            $('#All')[0].checked = false;
         }
     });
 

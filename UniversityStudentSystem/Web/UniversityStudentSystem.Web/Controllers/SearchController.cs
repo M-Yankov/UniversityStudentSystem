@@ -22,7 +22,7 @@
             this.searchService = searchService;
         }
 
-        public ActionResult Index(string types = null, string text = null)
+        public ActionResult Index(string[] types = null, string text = null)
         {
             var model = new SearchResultModel();
             if (text == null || text.Trim().Length < WebConstants.MinTextLength)
@@ -31,7 +31,7 @@
                 return this.View(model);
             }
 
-            if (!string.IsNullOrEmpty(types))
+            if (types != null && types.Length > 0)
             {
                 text = text.Trim().ToLower();
                 model.Criteria = text;
