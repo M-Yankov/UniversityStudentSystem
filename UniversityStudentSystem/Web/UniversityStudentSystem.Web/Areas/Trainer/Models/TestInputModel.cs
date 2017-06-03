@@ -13,7 +13,7 @@
     {
         [Required]
         [Display(Name = "Start date")]
-        [DisplayFormat(DataFormatString = "{0:dd/MM/yyyy HH:mm}")]
+        [DisplayFormat(DataFormatString = WebConstants.DateFormatPlaceholder)]
         [DataRange(ModelConstants.MinDate, ModelConstants.MaxDate)]
         public DateTime StartDate { get; set; }
 

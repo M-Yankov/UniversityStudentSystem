@@ -1,6 +1,7 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
 @using UniversityStudentSystem.Web.Models.NewsModels;
 @using UniversityStudentSystem.Web.Areas.Admin.Models;
+@using UniversityStudentSystem.Common;
 
 @{
     string controller = "News";
@@ -11,7 +12,7 @@
 {
     cols.Bound(news => news.Title).Width(200);
     cols.Bound(news => news.Content).Width(550);
-    cols.Bound(news => news.CreatedOn).Format("{0:dd/MM/yyyy HH:mm}").Width(200);
+    cols.Bound(news => news.CreatedOn).Format(WebConstants.DateFormatPlaceholder).Width(200);
     cols.Command(cmd => { cmd.Destroy(); });
 }))
 

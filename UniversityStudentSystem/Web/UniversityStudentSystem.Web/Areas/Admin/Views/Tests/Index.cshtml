@@ -1,5 +1,6 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
 @using UniversityStudentSystem.Web.Areas.Admin.Models;
+@using UniversityStudentSystem.Common;
 @{
     string controller = "Tests";
     ViewBag.Title = "Administration - " + controller;
@@ -8,8 +9,8 @@
 @(Html.FullFeaturedGrid<TestAdminModel>(controller, test => test.Id, cols =>
 {
     cols.Bound(test => test.Name);
-    cols.Bound(test => test.StartDate).Format("{0:dd/MM/yyyy HH:mm}");
-    cols.Bound(test => test.EndDate).Format("{0:dd/MM/yyyy HH:mm}");
+    cols.Bound(test => test.StartDate).Format(WebConstants.DateFormatPlaceholder);
+    cols.Bound(test => test.EndDate).Format(WebConstants.DateFormatPlaceholder);
     cols.Bound(test => test.IsEnabled);
     cols.Command(cmd => { cmd.Destroy(); cmd.Edit(); });
 }))
@@ -59,7 +60,7 @@
 
         jQuery.extend(jQuery.validator.methods, {
             date: function (value, element) {
-                var res = this.optional(element) || kendo.parseDate(value, "dd/MM/yyyy HH:mm") != null;
+                var res = this.optional(element) || kendo.parseDate(value, '@WebConstants.WebDateFormat') != null;
                 return res;
             },
             number: function (value, element) {
@@ -75,7 +76,7 @@
             //use the custom date format here
             //kendo.parseDate - http://docs.telerik.com/kendo-ui/api/javascript/kendo#methods-parseDate
 
-            return input.val() === "" || kendo.parseDate(input.val(), "dd/MM/yyyy HH:mm") !== null;
+            return input.val() === "" || kendo.parseDate(input.val(), '@WebConstants.WebDateFormat') !== null;
         } 
 
         //kendo.ui.validator.rules.mvcnumber = function (input) {

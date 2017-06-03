@@ -1,3 +1,5 @@
+@using UniversityStudentSystem.Common;
+
 @model DateTime?
 
-@(Html.Kendo().DateTimePickerFor(m => m).Format("dd/MM/yyyy HH:mm").TimeFormat("HH:mm"))
+@(Html.Kendo().DateTimePickerFor(m => m).Format(WebConstants.WebDateFormat).TimeFormat("HH:mm"))

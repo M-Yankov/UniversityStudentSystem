@@ -1,6 +1,7 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Admin.Helpers;
 @using UniversityStudentSystem.Web.Models.ForumPosts;
 @using UniversityStudentSystem.Web.Areas.Admin.Models;
+@using UniversityStudentSystem.Common;
 
 @{
     string controller = "ForumPosts";
@@ -12,7 +13,7 @@
     cols.Bound(forum => forum.Title);
     cols.Bound(forum => forum.Content).Width(450);
     cols.Bound(forum => forum.Category);
-    cols.Bound(forum => forum.CreatedOn).Format("{0:dd/MM/yyyy HH:mm}");
+    cols.Bound(forum => forum.CreatedOn).Format(WebConstants.DateFormatPlaceholder);
     cols.Command(cmd => { cmd.Destroy(); });
 }))
 

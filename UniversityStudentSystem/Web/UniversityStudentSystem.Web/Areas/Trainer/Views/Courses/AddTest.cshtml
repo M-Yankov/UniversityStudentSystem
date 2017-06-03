@@ -1,4 +1,5 @@
 ﻿@using UniversityStudentSystem.Web.Areas.Trainer.Models;
+@using UniversityStudentSystem.Common;
 
 @model TestInputModel
 
@@ -76,7 +77,7 @@
     <script>
         jQuery.extend(jQuery.validator.methods, {
             date: function (value, element) {
-                var res = this.optional(element) || kendo.parseDate(value, "dd/MM/yyyy HH:mm") != null;
+                var res = this.optional(element) || kendo.parseDate(value, '@WebConstants.WebDateFormat') != null;
                 return res;
             },
             number: function (value, element) {

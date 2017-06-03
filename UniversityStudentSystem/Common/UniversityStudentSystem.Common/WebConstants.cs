@@ -23,5 +23,7 @@
         public const int DefaultCountOfItemsInNavigation = 5;
 
         public const string SearchPatternValidation = ".*\\S.{1,}\\S.*";
+        public const string WebDateFormat = "dd/MM/yyyy HH:mm";
+        public const string DateFormatPlaceholder = "{0:dd/MM/yyyy HH:mm}";
     }
 }

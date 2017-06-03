@@ -6,6 +6,7 @@
     using System.Web.Mvc;
     using System.Web.Optimization;
     using System.Web.Routing;
+    using Common;
 
     public class MvcApplication : HttpApplication
     {
@@ -24,7 +25,7 @@
         private void Application_BeginRequest(object sender, System.EventArgs e)
         {
             CultureInfo newCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
-            newCulture.DateTimeFormat.ShortDatePattern = "dd/MM/yyyy HH:mm";
+            newCulture.DateTimeFormat.ShortDatePattern = WebConstants.DateFormatPlaceholder;
             newCulture.DateTimeFormat.DateSeparator = "/";
             newCulture.DateTimeFormat.TimeSeparator = ":";
             Thread.CurrentThread.CurrentCulture = newCulture;
