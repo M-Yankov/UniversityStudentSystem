@@ -7,6 +7,8 @@
 @{
     this.ViewBag.Title = "Search results";
     const string typesKey = "types";
+    const string ClassNoResultsFound = "label-warning";
+    const string ClassResultsFound = "label-success";
 
     string types = string.Empty;
     bool allTypesSelected = false;
@@ -25,7 +27,7 @@
     <div class="col-md-8 col-md-offset-2">
         <form action="/Search" id="search-form" method="get">
             <div class="form-group">
-                <input class="form-control" name="text" type="text" value="@Model.Criteria" maxlength="100" pattern="@WebConstants.SearchPatternValidation" />
+                <input class="form-control" name="text" type="text" value="@Model.Criteria" maxlength="100" required="required" pattern="@WebConstants.SearchPatternValidation" />
                 <p class="help-block">At least 3 symbols required (leading and trailing spaces are ignored)</p>
             </div>
             <div class="row">
@@ -86,7 +88,7 @@
     {
         if (types.Contains(SearchResultModel.CourseSearchKey))
         {
-            <h3>Courses <span class="label label-success">@this.Model.Courses.Count results found</span> </h3>
+            <h3>Courses <span class="label @(this.Model.Courses.Count > 0 ? ClassResultsFound : ClassNoResultsFound)">@this.Model.Courses.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -107,7 +109,7 @@
 
         if (types.Contains(SearchResultModel.SpecialtySearchKey))
         {
-            <h3>Specialties <span class="label label-success">@this.Model.Specialties.Count results found</span>   </h3>
+            <h3>Specialties <span class="label @(this.Model.Specialties.Count > 0 ? ClassResultsFound : ClassNoResultsFound)">@this.Model.Specialties.Count results found</span>   </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -127,7 +129,7 @@
 
         if (types.Contains(SearchResultModel.NewsSearchKey))
         {
-            <h3>News <span class="label label-success">@this.Model.News.Count results found</span> </h3>
+            <h3>News <span class="label @(this.Model.News.Count > 0 ? ClassResultsFound : ClassNoResultsFound)">@this.Model.News.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -147,7 +149,7 @@
 
         if (types.Contains(SearchResultModel.ForumPostSearchKey))
         {
-            <h3>Forum posts <span class="label label-success">@this.Model.ForumPosts.Count results found</span> </h3>
+            <h3>Forum posts <span class="label @(this.Model.ForumPosts.Count > 0 ? ClassResultsFound : ClassNoResultsFound)">@this.Model.ForumPosts.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
@@ -167,7 +169,7 @@
 
         if (types.Contains(SearchResultModel.TrainersSearchKey))
         {
-            <h3>Trainers <span class="label label-success">@this.Model.Trainers.Count results found</span> </h3>
+            <h3>Trainers <span class="label @(this.Model.Trainers.Count > 0 ? ClassResultsFound : ClassNoResultsFound)">@this.Model.Trainers.Count results found</span> </h3>
             <hr />
             <div class="row">
                 <div class="col-md-12">
